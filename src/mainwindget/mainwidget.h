@@ -5,6 +5,14 @@
 #include <QSystemTrayIcon>
 #include <QMenu>
 
+#include <QFileDialog>
+#include <QDir>
+#include <QMessageBox>
+#include <QStringList>
+#include <QStringListModel>
+
+#include <QDate>
+
 namespace Ui {
     class MainWidget;
 }
@@ -128,6 +136,18 @@ private:
       Return info in params tab
       */
     QStringList getParams();
+
+    /**
+      @function
+      Set data to lang combobox
+      */
+    void setLangList();
+
+    /**
+      @function
+      Set data to type combobox
+      */
+    void setTypeList();
 };
 
 #endif // MAINWIDGET_H

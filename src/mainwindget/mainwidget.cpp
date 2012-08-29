@@ -8,11 +8,7 @@
 #include <QDesktopServices> /// for open home page
 #include <QUrl>
 #include <QDesktopWidget>
-#include <QFileDialog>
-#include <QDir>
-#include <QMessageBox>
-#include <QStringList>
-#include <QDate>
+
 
 #include <QDebug>
 
@@ -28,8 +24,8 @@ MainWidget::MainWidget(QWidget *parent) :
     createConnect();
     trIcon->show();  //display tray
 
-        debug();
-        genIdx();
+    debug();
+    genIdx();
 }
 ///----------------------------------------------------------------------------
 MainWidget::~MainWidget()
@@ -43,7 +39,7 @@ void MainWidget::debug()
     QString str = "";
     //    str = "/home/files/Develop/C++/Qt/MyProgs/projectB/projectB/bin/example/greek.htm";
     //        str = "/home/files/Develop/C++/Qt/MyProgs/projectB/projectB/bin/example/robinson.htm";
-//                str = "/home/files/Develop/C++/Qt/MyProgs/projectB/projectB/bin/example/cslav.htm";
+    //                str = "/home/files/Develop/C++/Qt/MyProgs/projectB/projectB/bin/example/cslav.htm";
     //        str = "/home/files/Develop/C++/Qt/MyProgs/projectB/projectB/bin/example/vikhlyantsev.htm";
     //    str = "/home/files/Develop/git/projectB/projectB/bin/example";
     //            str = "/home/files/Develop/C++/Qt/MyProgs/projectB/projectB/bin/example/bibleinfo.htm";
@@ -55,11 +51,13 @@ void MainWidget::debug()
 
     ui->LENameDict->setText("text name1");
     ui->LEAuthor->setText("test");
-//    getParams();
+    //    getParams();
 }
 ///----------------------------------------------------------------------------
 void MainWidget::init()
 {
+    setLangList();
+    setTypeList();
     gui_about = new AboutDialog(this);
 
     gui_settings = new AppSettings(this);
@@ -279,7 +277,7 @@ void MainWidget::genIdx()
         if (line.indexOf("<h4>") == -1)
         {
 
-//            if (line.indexOf("<title>") != -1)
+            //            if (line.indexOf("<title>") != -1)
 
 
 
@@ -293,10 +291,6 @@ void MainWidget::genIdx()
     if (ui->checkBParams->checkState())
     {
         QStringList list = getParams();
-
-
-        qDebug() << QDate::currentDate().toString();
-
         streamDict << "<html>\r\n";
         streamDict << "<head>\r\n";
         streamDict << "\t<meta name=\"Author\" content=\"" << list.at(0) << "\">\r\n";
@@ -311,6 +305,34 @@ void MainWidget::genIdx()
         streamDict << "\t<meta name=\"Numbering\" content=\"" << list.at(6) << "\">\r\n";
         streamDict << "<title>" << ui->LENameDict->text() << "</title>\r\n";
         streamDict << "</head>\r\n";
+
+        QString str;
+        str = "<html>\r\n";
+        count += str.length();
+        str = "<head>\r\n";
+        count += str.length();
+        str = QString("\t<meta name=\"Author\" content=\"%1\">\r\n").arg(list.at(0));
+        count += str.length();
+        str = QString("\t<meta name=\"Date\" content=\"DateOfDict\">\r\n");
+        count += str.length();
+        str = QString("\t<meta name=\"Date\" content=\"%1\">\r\n").arg(QDate::currentDate().toString());
+        count += str.length();
+        str = QString("\t<meta name=\"Revision\" content=\"%1\">\r\n").arg(list.at(1));
+        count += str.length();
+        str = QString("\t<meta name=\"Language\" content=\"%1\">\r\n").arg(list.at(2));
+        count += str.length();
+        str = QString("\t<meta name=\"Type\" content=\"%1\">\r\n").arg(list.at(3));
+        count += str.length();
+        str = QString("\t<meta name=\"Description\" content=\"%1\">\r\n").arg(list.at(4));
+        count += str.length();
+        str = QString("\t<meta name=\"Rights\" content=\"%1\">\r\n").arg(list.at(5));
+        count += str.length();
+        str = QString("\t<meta name=\"Numbering\" content=\"%1\">\r\n").arg(list.at(6));
+        count += str.length();
+        str = QString("<title>%1</title>\r\n").arg(ui->LENameDict->text());
+        count += str.length();
+        str = QString("</head>\r\n");
+        count += str.length();
     }
 
     //-----------
@@ -377,40 +399,40 @@ void MainWidget::showHideEdit(int flag)
 void MainWidget::showWordInTable()
 {
     qDebug() << "show =)";
-//    for (int i = 0; i < data.files.size(); ++i)
-//    {
-//        QTableWidgetItem *fileNameItem = new QTableWidgetItem(data.files[i]);
-//        fileNameItem->setFlags(fileNameItem->flags() ^ Qt::ItemIsEditable);
+    //    for (int i = 0; i < data.files.size(); ++i)
+    //    {
+    //        QTableWidgetItem *fileNameItem = new QTableWidgetItem(data.files[i]);
+    //        fileNameItem->setFlags(fileNameItem->flags() ^ Qt::ItemIsEditable);
 
-//        QTableWidgetItem *bookItem = new QTableWidgetItem(data.books[i]);
-//        bookItem->setFlags(bookItem->flags() ^ Qt::ItemIsEditable);
+    //        QTableWidgetItem *bookItem = new QTableWidgetItem(data.books[i]);
+    //        bookItem->setFlags(bookItem->flags() ^ Qt::ItemIsEditable);
 
-//        QTableWidgetItem *moduleItem = new QTableWidgetItem(data.modules[i]);
-//        moduleItem->setFlags(moduleItem->flags() ^ Qt::ItemIsEditable);
+    //        QTableWidgetItem *moduleItem = new QTableWidgetItem(data.modules[i]);
+    //        moduleItem->setFlags(moduleItem->flags() ^ Qt::ItemIsEditable);
 
-//        QTableWidgetItem *verseItem = new QTableWidgetItem(data.verse[i]);
-//        verseItem->setFlags(verseItem->flags() ^ Qt::ItemIsEditable);
+    //        QTableWidgetItem *verseItem = new QTableWidgetItem(data.verse[i]);
+    //        verseItem->setFlags(verseItem->flags() ^ Qt::ItemIsEditable);
 
-//        QTableWidgetItem *chapterItem = new QTableWidgetItem(data.chapter[i]);
-//        chapterItem->setFlags(chapterItem->flags() ^ Qt::ItemIsEditable);
+    //        QTableWidgetItem *chapterItem = new QTableWidgetItem(data.chapter[i]);
+    //        chapterItem->setFlags(chapterItem->flags() ^ Qt::ItemIsEditable);
 
-//        QTableWidgetItem *urlItem = new QTableWidgetItem(data.url[i]);
-//        urlItem->setFlags(urlItem->flags() ^ Qt::ItemIsEditable);
+    //        QTableWidgetItem *urlItem = new QTableWidgetItem(data.url[i]);
+    //        urlItem->setFlags(urlItem->flags() ^ Qt::ItemIsEditable);
 
-//        int row = ui->tableFiles->rowCount();
-//        ui->tableFiles->insertRow(row);
+    //        int row = ui->tableFiles->rowCount();
+    //        ui->tableFiles->insertRow(row);
 
-//        ui->tableFiles->setItem(row, 0, moduleItem);
-//        ui->tableFiles->setItem(row, 1, bookItem);
-//        ui->tableFiles->setItem(row, 2, chapterItem);
-//        ui->tableFiles->setItem(row, 3, verseItem);
-//        ui->tableFiles->setItem(row, 4, fileNameItem);
-//        ui->tableFiles->setItem(row, 5, urlItem);
-//    }
-//    ui->tableFiles->resizeColumnsToContents();
+    //        ui->tableFiles->setItem(row, 0, moduleItem);
+    //        ui->tableFiles->setItem(row, 1, bookItem);
+    //        ui->tableFiles->setItem(row, 2, chapterItem);
+    //        ui->tableFiles->setItem(row, 3, verseItem);
+    //        ui->tableFiles->setItem(row, 4, fileNameItem);
+    //        ui->tableFiles->setItem(row, 5, urlItem);
+    //    }
+    //    ui->tableFiles->resizeColumnsToContents();
 
-//    ui->filesFoundLabel->setText(tr("%1 file(s) found").arg(data.files.size()) +
-//                                 (" (Double click on a file to open it)"));
+    //    ui->filesFoundLabel->setText(tr("%1 file(s) found").arg(data.files.size()) +
+    //                                 (" (Double click on a file to open it)"));
 }
 ///----------------------------------------------------------------------------
 QStringList MainWidget::getParams()
@@ -428,10 +450,20 @@ QStringList MainWidget::getParams()
 
 
 ///----------------------------------------------------------------------------
-
-
+void MainWidget::setTypeList()
+{
+    QStringList items = getFillType();
+    QStringListModel *typeModel = new QStringListModel(items, this);
+    ui->comBoxType-> setModel(typeModel);
+}
 ///----------------------------------------------------------------------------
+void MainWidget::setLangList()
+{
+    QStringList items = getFillLang();
+    QStringListModel *typeModel = new QStringListModel(items, this);
+    ui->comBoxLang-> setModel(typeModel);
 
+}
 ///----------------------------------------------------------------------------
 ///----------------------------------------------------------------------------
 ///----------------------------------------------------------------------------

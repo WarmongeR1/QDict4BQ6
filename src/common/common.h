@@ -50,6 +50,16 @@ QString absolutifyFileName(QString fn, QString path);
   @return encoding(Codec)
    */
 QTextCodec* getCodecOfEncoding(QString encoding); // получает строку с названием кодировки и возвращает кодес с этй кодировкой ( написана для уменьшения дублирования кода)
-
-
+/**
+  @fucnction
+  Return list of lang
+  @retun list
+  */
+QStringList getFillLang();
+/**
+    @fucnction
+    Return list of type dict
+    @retun list
+    */
+QStringList getFillType();
 #endif // end __COMMON_H

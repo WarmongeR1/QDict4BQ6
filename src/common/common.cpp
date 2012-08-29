@@ -12,7 +12,7 @@ QString getEncodingFromFile(QString file, QString language)
 #ifdef Q_OS_LINUX
     pr.start("enca -L " + language + " \""  + file + "\"");
 #endif
-//    pr.start("pwd");
+    //    pr.start("pwd");
 
     QString encoding = "";
     if (pr.waitForFinished() == true)
@@ -36,7 +36,7 @@ QString getEncodingFromFile(QString file, QString language)
     if (encoding.indexOf("KOI8-R Cyrillic") >= 0) encoding = "KOI8-R";
     if (encoding.indexOf("KOI8-U Cyrillic") >= 0) encoding = "KOI8-U";
     if (encoding.indexOf("Unrecognized encoding") >= 0) encoding = "UTF-8";
-//    qDebug() << "encoding = " << encoding;
+    //    qDebug() << "encoding = " << encoding;
     return encoding;
 }
 ///----------------------------------------------------------------------------
@@ -90,7 +90,39 @@ QTextCodec * getCodecOfEncoding(QString encoding)
     if (encoding.toUpper ()== "KOI8-R")       codec = QTextCodec::codecForName("KOI8-R");
     if (encoding.toUpper ()== "KOI8-U")       codec = QTextCodec::codecForName("KOI8-U");
 
-//        qDebug() << " encoding = " << encoding;
+    //        qDebug() << " encoding = " << encoding;
     return codec;
 }
+///----------------------------------------------------------------------------
+QStringList getFillLang()
+{
+    QStringList items;
+    items << QString ("rus")
+          << QString ("eng");
+    return items;
+}
+///----------------------------------------------------------------------------
+QStringList getFillType()
+{
+    //    Dictionary/Справочник
+    //   Encyclopedia/Энциклопедия
+    //   Glossary/Глоссарий
+    //   Lexicon/Симфония
+    //   Thesaurus/Тезаурус
+    //   Vocabulary/Толковый
+    //   Wordbook/Словарь
+    QStringList items;
+    items << QString ("Dictionary")
+          << QString ("Encyclopedia")
+          << QString ("Encyclopedia")
+          << QString ("Glossary")
+          << QString ("Lexicon")
+          << QString ("Thesaurus")
+          << QString ("Vocabulary")
+          << QString ("Wordbook");
+    return items;
+}
+///----------------------------------------------------------------------------
+///----------------------------------------------------------------------------
+///----------------------------------------------------------------------------
 ///----------------------------------------------------------------------------
