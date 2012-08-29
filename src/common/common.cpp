@@ -123,6 +123,73 @@ QStringList getFillType()
     return items;
 }
 ///----------------------------------------------------------------------------
+QStringList getListWord(QString filename)
+{
+    QStringList list;
+    QFile file(filename);
+    if (file.open(QIODevice::ReadOnly))
+    {
+        QTextStream streamInput(&file);
+        QString line = streamInput.readLine();
+        int count;
+        QString str, str2;
+        do
+        {
+            /// edit to standart
+            /// replace tag to standart
+//            line.replace(tagBegin, "<h4>");
+//            line.replace(tagEnd, "</h4>");
+
+            int h4 = QString("<h4>").length();
+
+            int posH4_1 = line.indexOf("<h4>");
+            int posH4_2 = line.indexOf("<h4>", posH4_1);
+
+            /// split text  mid <h4> and <h4>
+            /// if the text in multiple lines
+            while ((posH4_2 == -1 or posH4_1 == posH4_2)
+                   and !streamInput.atEnd())
+            {
+                line.append(streamInput.readLine() + "\r\n");
+                posH4_2 = line.indexOf("<h4>", posH4_1 + h4);
+            }
+            str = line.mid(posH4_1,
+                           posH4_2 - posH4_1);
+
+            int posBegin = str.indexOf("<h4>");
+            int posEnd = str.indexOf("</h4>");
+            str2 = line.mid(posBegin + QString("<h4>").length(),
+                            posEnd - posBegin - QString("<h4>").length());
+            if (!str.isEmpty())
+            {
+//                streamDict << str;
+            }
+
+            if (!str2.isEmpty())
+            {
+                int count2;
+                if (count %2 != 0)
+                    count++;
+
+                count2 = count;
+//                streamIdx << str2 << "\r\n" << QString::number(count2) + "\r\n";
+            }
+            count += (str.length()) *2;
+            list << QString(str).remove("\r\n");
+            line.remove(str);
+//            QString sttt = str2 + "<|>" + str;
+
+            line.append(streamInput.readLine() + "\r\n");
+        } while (!streamInput.atEnd());
+        file.close();
+    }
+    else
+    {
+        qDebug() << "Error: not open file for read word list:" << filename;
+    }
+    return list;
+}
+
 ///----------------------------------------------------------------------------
 ///----------------------------------------------------------------------------
 ///----------------------------------------------------------------------------

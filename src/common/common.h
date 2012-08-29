@@ -59,7 +59,15 @@ QStringList getFillLang();
 /**
     @fucnction
     Return list of type dict
-    @retun list
+    @return list
     */
 QStringList getFillType();
+/**
+  @function
+  Return list words from dict
+  @param path_to_file
+  @return list_of_words
+  */
+QStringList getListWord(QString);
 #endif // end __COMMON_H
+

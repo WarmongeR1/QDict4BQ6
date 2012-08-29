@@ -51,6 +51,8 @@ void MainWidget::debug()
 
     ui->LENameDict->setText("text name1");
     ui->LEAuthor->setText("test");
+//    QStringList list = getListWord(ui->LEFile->text());
+//    qDebug() << list;
     //    getParams();
 }
 ///----------------------------------------------------------------------------
@@ -70,6 +72,7 @@ void MainWidget::init()
     this->move(rect.width() / 2 - this->width() / 2,
                rect.height() / 2 - this->height() / 2);
     showHideEdit(ui->checkBEditOn->checkState());
+    ui->tableEdit->setColumnCount(2);
 }
 ///----------------------------------------------------------------------------
 void MainWidget::createConnect()
@@ -398,41 +401,49 @@ void MainWidget::showHideEdit(int flag)
 ///----------------------------------------------------------------------------
 void MainWidget::showWordInTable()
 {
-    qDebug() << "show =)";
-    //    for (int i = 0; i < data.files.size(); ++i)
-    //    {
-    //        QTableWidgetItem *fileNameItem = new QTableWidgetItem(data.files[i]);
-    //        fileNameItem->setFlags(fileNameItem->flags() ^ Qt::ItemIsEditable);
+    /// create list word
+    QStringList list = getListWord(ui->LEFile->text());
 
-    //        QTableWidgetItem *bookItem = new QTableWidgetItem(data.books[i]);
-    //        bookItem->setFlags(bookItem->flags() ^ Qt::ItemIsEditable);
+    QStringList listWord;
+    QStringList listDescription;
+//   listWord = getParams();
+//   listDescription = getParams();
 
-    //        QTableWidgetItem *moduleItem = new QTableWidgetItem(data.modules[i]);
-    //        moduleItem->setFlags(moduleItem->flags() ^ Qt::ItemIsEditable);
+//    qDebug() << list;
+    int ph4 = QString("<h4>").length();
+    for (int i = 0; i < list.size(); i++)
+    {
+        QString line = list.at(i);
 
-    //        QTableWidgetItem *verseItem = new QTableWidgetItem(data.verse[i]);
-    //        verseItem->setFlags(verseItem->flags() ^ Qt::ItemIsEditable);
+        int posBegin = line.indexOf("<h4>");
+        int posEnd = line.indexOf("</h4>");
+        listWord << line.mid(posBegin + ph4,
+                             posEnd - ph4);
+        listDescription << line.mid(posEnd + ph4+1,
+                                    line.length() - posEnd - ph4-1);
+    }
 
-    //        QTableWidgetItem *chapterItem = new QTableWidgetItem(data.chapter[i]);
-    //        chapterItem->setFlags(chapterItem->flags() ^ Qt::ItemIsEditable);
 
-    //        QTableWidgetItem *urlItem = new QTableWidgetItem(data.url[i]);
-    //        urlItem->setFlags(urlItem->flags() ^ Qt::ItemIsEditable);
+    /// fill table
+    ui->tableEdit->clear();
+    for (int i = 0; i < listWord.size(); ++i)
+    {
+        QTableWidgetItem *wordNameItem = new QTableWidgetItem(listWord.at(i));
+        wordNameItem->setFlags(wordNameItem->flags() ^ Qt::ItemIsEditable);
 
-    //        int row = ui->tableFiles->rowCount();
-    //        ui->tableFiles->insertRow(row);
+        QTableWidgetItem *descriptionItem = new QTableWidgetItem(listDescription.at(i));
+        descriptionItem->setFlags(descriptionItem->flags() ^ Qt::ItemIsEditable);
 
-    //        ui->tableFiles->setItem(row, 0, moduleItem);
-    //        ui->tableFiles->setItem(row, 1, bookItem);
-    //        ui->tableFiles->setItem(row, 2, chapterItem);
-    //        ui->tableFiles->setItem(row, 3, verseItem);
-    //        ui->tableFiles->setItem(row, 4, fileNameItem);
-    //        ui->tableFiles->setItem(row, 5, urlItem);
-    //    }
-    //    ui->tableFiles->resizeColumnsToContents();
+        int row = ui->tableEdit->rowCount();
+        ui->tableEdit->insertRow(row);
 
-    //    ui->filesFoundLabel->setText(tr("%1 file(s) found").arg(data.files.size()) +
-    //                                 (" (Double click on a file to open it)"));
+        ui->tableEdit->setItem(row, 0, wordNameItem);
+        ui->tableEdit->setItem(row, 1, descriptionItem);
+    }
+    ui->tableEdit->resizeColumnsToContents();
+    ui->tableEdit->resizeRowsToContents();
+    ui->tableEdit->resizeColumnToContents(0);
+    ui->tableEdit->resizeColumnToContents(1);
 }
 ///----------------------------------------------------------------------------
 QStringList MainWidget::getParams()
@@ -447,8 +458,6 @@ QStringList MainWidget::getParams()
     list << ui->LENumbering->text(); // [6]
     return list;
 }
-
-
 ///----------------------------------------------------------------------------
 void MainWidget::setTypeList()
 {
@@ -462,7 +471,6 @@ void MainWidget::setLangList()
     QStringList items = getFillLang();
     QStringListModel *typeModel = new QStringListModel(items, this);
     ui->comBoxLang-> setModel(typeModel);
-
 }
 ///----------------------------------------------------------------------------
 ///----------------------------------------------------------------------------
