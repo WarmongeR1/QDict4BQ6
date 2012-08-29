@@ -201,37 +201,57 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/mainwindget/mainwidget.ui" line="22"/>
+        <location filename="../../src/mainwindget/mainwidget.ui" line="43"/>
+        <source>Ctrl+B</source>
+        <translation>Ctrl+B</translation>
+    </message>
+    <message>
+        <location filename="../../src/mainwindget/mainwidget.ui" line="129"/>
+        <source>Parameters</source>
+        <translation>Параметры</translation>
+    </message>
+    <message>
+        <location filename="../../src/mainwindget/mainwidget.ui" line="255"/>
         <source>Settings</source>
         <translation>Настройки</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindget/mainwidget.ui" line="42"/>
+        <location filename="../../src/mainwindget/mainwidget.ui" line="258"/>
+        <source>Ctrl+H</source>
+        <translation>Ctrl+H</translation>
+    </message>
+    <message>
+        <location filename="../../src/mainwindget/mainwidget.ui" line="278"/>
         <source>Site</source>
         <translation>Сайт</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindget/mainwidget.ui" line="72"/>
+        <location filename="../../src/mainwindget/mainwidget.ui" line="281"/>
+        <source>Ctrl+J</source>
+        <translation>Ctrl+J</translation>
+    </message>
+    <message>
+        <location filename="../../src/mainwindget/mainwidget.ui" line="311"/>
         <source>Ctrl+Q</source>
         <translation>Ctrl+Q</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindget/mainwidget.ui" line="85"/>
+        <location filename="../../src/mainwindget/mainwidget.ui" line="24"/>
         <source>Idx</source>
         <translation>Idx</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindget/mainwidget.ui" line="91"/>
+        <location filename="../../src/mainwindget/mainwidget.ui" line="30"/>
         <source>File:</source>
         <translation>Файл:</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindget/mainwidget.ui" line="101"/>
+        <location filename="../../src/mainwindget/mainwidget.ui" line="40"/>
         <source>&amp;Browse</source>
         <translation>&amp;Обзор</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindget/mainwidget.ui" line="108"/>
+        <location filename="../../src/mainwindget/mainwidget.ui" line="50"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -244,82 +264,138 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Поддерживаемые форматы:&lt;span style=&quot; font-weight:600;&quot;&gt; htm, html, txt&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindget/mainwidget.ui" line="121"/>
+        <location filename="../../src/mainwindget/mainwidget.ui" line="63"/>
         <source>Name dictionary:</source>
         <translation>Название словаря:</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindget/mainwidget.ui" line="131"/>
+        <location filename="../../src/mainwindget/mainwidget.ui" line="73"/>
         <source>Home headlines:</source>
         <translation>Начало заголовков:</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindget/mainwidget.ui" line="141"/>
+        <location filename="../../src/mainwindget/mainwidget.ui" line="83"/>
         <source>Home Articles:</source>
         <translation>Начало статей:</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindget/mainwidget.ui" line="181"/>
+        <location filename="../../src/mainwindget/mainwidget.ui" line="98"/>
+        <source>Ctrl+G</source>
+        <translation>Ctrl+G</translation>
+    </message>
+    <message>
+        <location filename="../../src/mainwindget/mainwidget.ui" line="121"/>
+        <source>Ctrl+F</source>
+        <translation>Ctrl+F</translation>
+    </message>
+    <message>
+        <location filename="../../src/mainwindget/mainwidget.ui" line="135"/>
+        <source>Author:</source>
+        <translation>Автор:</translation>
+    </message>
+    <message>
+        <location filename="../../src/mainwindget/mainwidget.ui" line="145"/>
+        <source>Version:</source>
+        <translation>Версия:</translation>
+    </message>
+    <message>
+        <location filename="../../src/mainwindget/mainwidget.ui" line="155"/>
+        <source>Language:</source>
+        <translation>Язык:</translation>
+    </message>
+    <message>
+        <location filename="../../src/mainwindget/mainwidget.ui" line="165"/>
+        <source>Type:</source>
+        <translation>Тип:</translation>
+    </message>
+    <message>
+        <location filename="../../src/mainwindget/mainwidget.ui" line="175"/>
+        <source>Description:</source>
+        <translation>Описание:</translation>
+    </message>
+    <message>
+        <location filename="../../src/mainwindget/mainwidget.ui" line="185"/>
+        <source>Copyright:</source>
+        <translation>Авторские права:</translation>
+    </message>
+    <message>
+        <location filename="../../src/mainwindget/mainwidget.ui" line="195"/>
+        <source>Numbering:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/mainwindget/mainwidget.ui" line="206"/>
+        <location filename="../../src/mainwindget/mainwidget.ui" line="212"/>
         <source>Edit</source>
         <translation>Редактировать</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindget/mainwidget.ui" line="187"/>
+        <location filename="../../src/mainwindget/mainwidget.ui" line="219"/>
         <source>Find:</source>
         <translation>Поиск:</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindget/mainwidget.ui" line="200"/>
+        <location filename="../../src/mainwindget/mainwidget.ui" line="229"/>
+        <source>Add word</source>
+        <translation>Добавить слово</translation>
+    </message>
+    <message>
+        <location filename="../../src/mainwindget/mainwidget.ui" line="232"/>
+        <source>Ctrl+W</source>
+        <translation>Ctrl+W</translation>
+    </message>
+    <message>
+        <location filename="../../src/mainwindget/mainwidget.ui" line="242"/>
         <source>Editing double click on a word</source>
         <translation>Для редактирования дважды нажмите на слово</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindget/mainwidget.ui" line="173"/>
+        <location filename="../../src/mainwindget/mainwidget.ui" line="118"/>
         <source>Clear</source>
         <translation>Очистить</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindget/mainwidget.ui" line="153"/>
+        <location filename="../../src/mainwindget/mainwidget.ui" line="95"/>
         <source>Gen</source>
         <translation>Генерировать</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindget/mainwidget.ui" line="49"/>
+        <location filename="../../src/mainwindget/mainwidget.ui" line="288"/>
         <source>About</source>
         <translation>О программе</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindget/mainwidget.ui" line="69"/>
+        <location filename="../../src/mainwindget/mainwidget.ui" line="308"/>
         <source>Exit</source>
         <translation>Выход</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindget/mainwidget.cpp" line="92"/>
+        <location filename="../../src/mainwindget/mainwidget.cpp" line="95"/>
         <source>&amp;Hide</source>
         <translation>&amp;Скрыть</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindget/mainwidget.cpp" line="95"/>
-        <source>&amp;Expand</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../../src/mainwindget/mainwidget.cpp" line="98"/>
-        <source>&amp;Restore</source>
-        <translation type="unfinished"></translation>
+        <source>&amp;Expand</source>
+        <translation>&amp;Развернуть</translation>
     </message>
     <message>
         <location filename="../../src/mainwindget/mainwidget.cpp" line="101"/>
+        <source>&amp;Restore</source>
+        <translation>&amp;Восстановить</translation>
+    </message>
+    <message>
+        <location filename="../../src/mainwindget/mainwidget.cpp" line="104"/>
         <source>Q&amp;uit</source>
         <translation>&amp;Выход</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindget/mainwidget.cpp" line="127"/>
+        <location filename="../../src/mainwindget/mainwidget.cpp" line="130"/>
         <source>Open File...</source>
         <translation>&amp;Открыть файл</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindget/mainwidget.cpp" line="128"/>
+        <location filename="../../src/mainwindget/mainwidget.cpp" line="131"/>
         <source>HTML-Files (*.htm *.html);;Text files (*.txt)</source>
         <translation>HTML-файлы (*.htm *.html);;Текстовые файлы (*.txt)</translation>
     </message>

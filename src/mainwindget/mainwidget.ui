@@ -40,7 +40,7 @@
           <string>&amp;Browse</string>
          </property>
          <property name="shortcut">
-          <string>Ctrl+B, Ctrl+S</string>
+          <string>Ctrl+B</string>
          </property>
         </widget>
        </item>
@@ -126,7 +126,7 @@ p, li { white-space: pre-wrap; }
      </widget>
      <widget class="QWidget" name="tab_3">
       <attribute name="title">
-       <string>Options</string>
+       <string>Parameters</string>
       </attribute>
       <layout class="QGridLayout" name="gridLayout_4">
        <item row="0" column="0">
