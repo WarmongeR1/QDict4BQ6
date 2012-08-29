@@ -75,6 +75,13 @@ private slots:
       */
     void editWord();
 
+    /**
+      @fucntion
+      Activate or unactivate tab edit
+      @param check_state  (int)
+      */
+    void showHideEdit(int);
+
 private:
     Ui::MainWidget *ui;
     AboutDialog *gui_about; // about dialog

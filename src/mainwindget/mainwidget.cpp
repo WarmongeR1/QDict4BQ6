@@ -67,6 +67,7 @@ void MainWidget::init()
     QRect rect = QApplication::desktop()->availableGeometry(this);
     this->move(rect.width() / 2 - this->width() / 2,
                rect.height() / 2 - this->height() / 2);
+    showHideEdit(ui->checkBEditOn->checkState());
 }
 ///----------------------------------------------------------------------------
 void MainWidget::createConnect()
@@ -85,6 +86,8 @@ void MainWidget::createConnect()
     connect(ui->pBSettings, SIGNAL(clicked()), SLOT(showSettings()));
     /// exit
     connect(ui->pBExit, SIGNAL(clicked()), qApp, SLOT(quit()));
+    /// tab edit activate
+    connect(ui->checkBEditOn, SIGNAL(stateChanged(int)), SLOT(showHideEdit(int)));
 }
 ///----------------------------------------------------------------------------
 void MainWidget::createActions()
@@ -264,15 +267,9 @@ void MainWidget::genIdx()
             streamDict << line;
             count += line.length() * 2;
         }
-        //        count += line.length(); // сейчас изменил
     }
     while (line.indexOf("<h4>") == -1
            and !streamInput.atEnd());
-    //    qDebug() << count;
-    //    count -= line.length();
-    //    qDebug() << count << line;
-    /// 7 лишних символов (14 инт)
-    //    count += 2;
 
     do
     {
@@ -291,7 +288,6 @@ void MainWidget::genIdx()
             line.append(streamInput.readLine() + "\r\n");
             posH4_2 = line.indexOf("<h4>", posH4_1 + h4);
         }
-        //        line.remove("<br>");
         str = line.mid(posH4_1,
                        posH4_2 - posH4_1);
 
@@ -313,14 +309,24 @@ void MainWidget::genIdx()
             count2 = count;
             streamIdx << str2 << "\r\n" << QString::number(count2) + "\r\n";
         }
-        //        qDebug() << str;
         count += (str.length()) *2;
         line.remove(str);
         line.append(streamInput.readLine() + "\r\n");
     } while (!streamInput.atEnd());
-
     //        QMessageBox::information(0, "Gen idx file", "Operation Complete");
 }
 ///----------------------------------------------------------------------------
+void MainWidget::showHideEdit(int flag)
+{
+//    ui->
+    ui->LEFind->setEnabled(flag);
+    ui->tableEdit->setEnabled(flag);
+    ui->pBAddWord->setEnabled(flag);
+    ui->label->setEnabled(flag);
+    ui->label_6->setEnabled(flag);
+
+
+}
+
 ///----------------------------------------------------------------------------
 ///----------------------------------------------------------------------------
