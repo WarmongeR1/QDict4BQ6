@@ -51,6 +51,18 @@ protected:
     virtual void closeEvent(QCloseEvent *e);
 
 private:
+
+    /**
+      @function
+      init
+      */
+    void init();
+    /**
+      @function
+      Create connects
+      */
+    void createConnects();
+
     void setupActions();
     void setupToolBar();
     void setupMenu();

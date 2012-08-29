@@ -33,18 +33,18 @@
 
 #define FORWARD_ACTION(action1, action2) \
     connect(action1, SIGNAL(triggered()), \
-            ui->webView->pageAction(action2), SLOT(trigger())); \
+    ui->webView->pageAction(action2), SLOT(trigger())); \
     connect(ui->webView->pageAction(action2), \
-            SIGNAL(changed()), SLOT(adjustActions()));
+    SIGNAL(changed()), SLOT(adjustActions()));
 
 
 HtmlEditor::HtmlEditor(QWidget *parent)
-        : QMainWindow(parent)
-        , ui(new Ui_MainWindow)
-        , sourceDirty(true)
-        , highlighter(0)
-        , ui_dialog(0)
-        , insertHtmlDialog(0)
+    : QMainWindow(parent)
+    , ui(new Ui_MainWindow)
+    , sourceDirty(true)
+    , highlighter(0)
+    , ui_dialog(0)
+    , insertHtmlDialog(0)
 {
     ui->setupUi(this);
     ui->tabWidget->setTabText(0, "Normal View");
@@ -52,6 +52,50 @@ HtmlEditor::HtmlEditor(QWidget *parent)
     connect(ui->tabWidget, SIGNAL(currentChanged(int)), SLOT(changeTab(int)));
     resize(600, 600);
 
+    init();
+    createConnects();
+    setCurrentFileName(QString());
+
+    QString initialFile = ":/example.html";
+    const QStringList args = QCoreApplication::arguments();
+    if (args.count() == 2)
+        initialFile = args.at(1);
+
+    if (!load(initialFile))
+        fileNew();
+
+    adjustActions();
+    adjustSource();
+    setWindowModified(false);
+    changeZoom(100);
+}
+///----------------------------------------------------------------------------
+HtmlEditor::~HtmlEditor()
+{
+    delete ui;
+    delete ui_dialog;
+}
+///----------------------------------------------------------------------------
+bool HtmlEditor::maybeSave()
+{
+    if (!isWindowModified())
+        return true;
+
+    QMessageBox::StandardButton ret;
+    ret = QMessageBox::warning(this, tr("HTML Editor"),
+                               tr("The document has been modified.\n"
+                                  "Do you want to save your changes?"),
+                               QMessageBox::Save | QMessageBox::Discard
+                               | QMessageBox::Cancel);
+    if (ret == QMessageBox::Save)
+        return fileSave();
+    else if (ret == QMessageBox::Cancel)
+        return false;
+    return true;
+}
+///----------------------------------------------------------------------------
+void HtmlEditor::init()
+{
     highlighter = new Highlighter(ui->plainTextEdit->document());
 
     QWidget *spacer = new QWidget(this);
@@ -69,7 +113,10 @@ HtmlEditor::HtmlEditor(QWidget *parent)
     zoomSlider->setPageStep(100);
     connect(zoomSlider, SIGNAL(valueChanged(int)), SLOT(changeZoom(int)));
     ui->standardToolBar->insertWidget(ui->actionZoomIn, zoomSlider);
-
+}
+///----------------------------------------------------------------------------
+void HtmlEditor::createConnects()
+{
     connect(ui->actionFileNew, SIGNAL(triggered()), SLOT(fileNew()));
     connect(ui->actionFileOpen, SIGNAL(triggered()), SLOT(fileOpen()));
     connect(ui->actionFileSave, SIGNAL(triggered()), SLOT(fileSave()));
@@ -105,7 +152,7 @@ HtmlEditor::HtmlEditor(QWidget *parent)
     connect(ui->actionStyleAddress, SIGNAL(triggered()), SLOT(styleAddress()));
     connect(ui->actionFormatFontName, SIGNAL(triggered()), SLOT(formatFontName()));
     connect(ui->actionFormatFontSize, SIGNAL(triggered()), SLOT(formatFontSize()));
-     connect(ui->actionFormatTextColor, SIGNAL(triggered()), SLOT(formatTextColor()));
+    connect(ui->actionFormatTextColor, SIGNAL(triggered()), SLOT(formatTextColor()));
     connect(ui->actionFormatBackgroundColor, SIGNAL(triggered()), SLOT(formatBackgroundColor()));
 
     // no page action exists yet for these, so use execCommand trick
@@ -125,47 +172,8 @@ HtmlEditor::HtmlEditor(QWidget *parent)
 
     connect(ui->webView->page(), SIGNAL(contentsChanged()), SLOT(adjustSource()));
     ui->webView->setFocus();
-
-    setCurrentFileName(QString());
-
-    QString initialFile = ":/example.html";
-    const QStringList args = QCoreApplication::arguments();
-    if (args.count() == 2)
-        initialFile = args.at(1);
-
-    if (!load(initialFile))
-        fileNew();
-
-    adjustActions();
-    adjustSource();
-    setWindowModified(false);
-    changeZoom(100);
 }
-
-HtmlEditor::~HtmlEditor()
-{
-    delete ui;
-    delete ui_dialog;
-}
-
-bool HtmlEditor::maybeSave()
-{
-    if (!isWindowModified())
-        return true;
-
-    QMessageBox::StandardButton ret;
-    ret = QMessageBox::warning(this, tr("HTML Editor"),
-                               tr("The document has been modified.\n"
-                                  "Do you want to save your changes?"),
-                               QMessageBox::Save | QMessageBox::Discard
-                               | QMessageBox::Cancel);
-    if (ret == QMessageBox::Save)
-        return fileSave();
-    else if (ret == QMessageBox::Cancel)
-        return false;
-    return true;
-}
-
+///----------------------------------------------------------------------------
 void HtmlEditor::fileNew()
 {
     if (maybeSave()) {
@@ -189,15 +197,15 @@ void HtmlEditor::fileNew()
         QApplication::postEvent(ui->webView, e2);
     }
 }
-
+///----------------------------------------------------------------------------
 void HtmlEditor::fileOpen()
 {
     QString fn = QFileDialog::getOpenFileName(this, tr("Open File..."),
-                 QString(), tr("HTML-Files (*.htm *.html);;All Files (*)"));
+                                              QString(), tr("HTML-Files (*.htm *.html);;All Files (*)"));
     if (!fn.isEmpty())
         load(fn);
 }
-
+///----------------------------------------------------------------------------
 bool HtmlEditor::fileSave()
 {
     if (fileName.isEmpty() || fileName.startsWith(QLatin1String(":/")))
@@ -216,11 +224,11 @@ bool HtmlEditor::fileSave()
     setWindowModified(false);
     return success;
 }
-
+///----------------------------------------------------------------------------
 bool HtmlEditor::fileSaveAs()
 {
     QString fn = QFileDialog::getSaveFileName(this, tr("Save as..."),
-                 QString(), tr("HTML-Files (*.htm *.html);;All Files (*)"));
+                                              QString(), tr("HTML-Files (*.htm *.html);;All Files (*)"));
     if (fn.isEmpty())
         return false;
     if (!(fn.endsWith(".htm", Qt::CaseInsensitive) || fn.endsWith(".html", Qt::CaseInsensitive)))
@@ -228,7 +236,7 @@ bool HtmlEditor::fileSaveAs()
     setCurrentFileName(fn);
     return fileSave();
 }
-
+///----------------------------------------------------------------------------
 void HtmlEditor::insertImage()
 {
     QString filters;
@@ -239,7 +247,7 @@ void HtmlEditor::insertImage()
     filters += tr("All Files (*)");
 
     QString fn = QFileDialog::getOpenFileName(this, tr("Open image..."),
-                 QString(), filters);
+                                              QString(), filters);
     if (fn.isEmpty())
         return;
     if (!QFile::exists(fn))
@@ -248,7 +256,7 @@ void HtmlEditor::insertImage()
     QUrl url = QUrl::fromLocalFile(fn);
     execCommand("insertImage", url.toString());
 }
-
+///----------------------------------------------------------------------------
 // shamelessly copied from Qt Demo Browser
 static QUrl guessUrlFromString(const QString &string)
 {
@@ -282,7 +290,7 @@ static QUrl guessUrlFromString(const QString &string)
     // Fall back to QUrl's own tolerant parser.
     return QUrl(string, QUrl::TolerantMode);
 }
-
+///----------------------------------------------------------------------------
 void HtmlEditor::createLink()
 {
     QString link = QInputDialog::getText(this, tr("Create link"),
@@ -293,7 +301,7 @@ void HtmlEditor::createLink()
             execCommand("createLink", url.toString());
     }
 }
-
+///----------------------------------------------------------------------------
 void HtmlEditor::insertHtml()
 {
     if (!insertHtmlDialog) {
@@ -316,7 +324,7 @@ void HtmlEditor::insertHtml()
 
     delete hilite;
 }
-
+///----------------------------------------------------------------------------
 void HtmlEditor::zoomOut()
 {
     int percent = static_cast<int>(ui->webView->zoomFactor() * 100);
@@ -330,7 +338,7 @@ void HtmlEditor::zoomOut()
         zoomSlider->setValue(percent);
     }
 }
-
+///----------------------------------------------------------------------------
 void HtmlEditor::zoomIn()
 {
     int percent = static_cast<int>(ui->webView->zoomFactor() * 100);
@@ -344,26 +352,26 @@ void HtmlEditor::zoomIn()
         zoomSlider->setValue(percent);
     }
 }
-
+///----------------------------------------------------------------------------
 void HtmlEditor::editSelectAll()
 {
     ui->webView->triggerPageAction(QWebPage::SelectAll);
 }
-
+///----------------------------------------------------------------------------
 void HtmlEditor::execCommand(const QString &cmd)
 {
     QWebFrame *frame = ui->webView->page()->mainFrame();
     QString js = QString("document.execCommand(\"%1\", false, null)").arg(cmd);
     frame->evaluateJavaScript(js);
 }
-
+///----------------------------------------------------------------------------
 void HtmlEditor::execCommand(const QString &cmd, const QString &arg)
 {
     QWebFrame *frame = ui->webView->page()->mainFrame();
     QString js = QString("document.execCommand(\"%1\", false, \"%2\")").arg(cmd).arg(arg);
     frame->evaluateJavaScript(js);
 }
-
+///----------------------------------------------------------------------------
 bool HtmlEditor::queryCommandState(const QString &cmd)
 {
     QWebFrame *frame = ui->webView->page()->mainFrame();
@@ -371,97 +379,97 @@ bool HtmlEditor::queryCommandState(const QString &cmd)
     QVariant result = frame->evaluateJavaScript(js);
     return result.toString().simplified().toLower() == "true";
 }
-
+///----------------------------------------------------------------------------
 void HtmlEditor::styleParagraph()
 {
     execCommand("formatBlock", "p");
 }
-
+///----------------------------------------------------------------------------
 void HtmlEditor::styleHeading1()
 {
     execCommand("formatBlock", "h1");
 }
-
+///----------------------------------------------------------------------------
 void HtmlEditor::styleHeading2()
 {
     execCommand("formatBlock", "h2");
 }
-
+///----------------------------------------------------------------------------
 void HtmlEditor::styleHeading3()
 {
     execCommand("formatBlock", "h3");
 }
-
+///----------------------------------------------------------------------------
 void HtmlEditor::styleHeading4()
 {
     execCommand("formatBlock", "h4");
 }
-
+///----------------------------------------------------------------------------
 void HtmlEditor::styleHeading5()
 {
     execCommand("formatBlock", "h5");
 }
-
+///----------------------------------------------------------------------------
 void HtmlEditor::styleHeading6()
 {
     execCommand("formatBlock", "h6");
 }
-
+///----------------------------------------------------------------------------
 void HtmlEditor::stylePreformatted()
 {
     execCommand("formatBlock", "pre");
 }
-
+///----------------------------------------------------------------------------
 void HtmlEditor::styleAddress()
 {
     execCommand("formatBlock", "address");
 }
-
+///----------------------------------------------------------------------------
 void HtmlEditor::formatStrikeThrough()
 {
     execCommand("strikeThrough");
 }
-
+///----------------------------------------------------------------------------
 void HtmlEditor::formatAlignLeft()
 {
     execCommand("justifyLeft");
 }
-
+///----------------------------------------------------------------------------
 void HtmlEditor::formatAlignCenter()
 {
     execCommand("justifyCenter");
 }
-
+///----------------------------------------------------------------------------
 void HtmlEditor::formatAlignRight()
 {
     execCommand("justifyRight");
 }
-
+///----------------------------------------------------------------------------
 void HtmlEditor::formatAlignJustify()
 {
     execCommand("justifyFull");
 }
-
+///----------------------------------------------------------------------------
 void HtmlEditor::formatIncreaseIndent()
 {
     execCommand("indent");
 }
-
+///----------------------------------------------------------------------------
 void HtmlEditor::formatDecreaseIndent()
 {
     execCommand("outdent");
 }
-
+///----------------------------------------------------------------------------
 void HtmlEditor::formatNumberedList()
 {
     execCommand("insertOrderedList");
 }
-
+///----------------------------------------------------------------------------
 void HtmlEditor::formatBulletedList()
 {
     execCommand("insertUnorderedList");
 }
-
+///----------------------------------------------------------------------------
 void HtmlEditor::formatFontName()
 {
     QStringList families = QFontDatabase().families();
@@ -472,7 +480,7 @@ void HtmlEditor::formatFontName()
     if (ok)
         execCommand("fontName", family);
 }
-
+///----------------------------------------------------------------------------
 void HtmlEditor::formatFontSize()
 {
     QStringList sizes;
@@ -486,26 +494,26 @@ void HtmlEditor::formatFontSize()
 
     bool ok = false;
     QString size = QInputDialog::getItem(this, tr("Font Size"), tr("Select font size:"),
-                                        sizes, sizes.indexOf("medium"), false, &ok);
+                                         sizes, sizes.indexOf("medium"), false, &ok);
 
     if (ok)
         execCommand("fontSize", QString::number(sizes.indexOf(size)));
 }
-
+///----------------------------------------------------------------------------
 void HtmlEditor::formatTextColor()
 {
     QColor color = QColorDialog::getColor(Qt::black, this);
     if (color.isValid())
         execCommand("foreColor", color.name());
 }
-
+///----------------------------------------------------------------------------
 void HtmlEditor::formatBackgroundColor()
 {
     QColor color = QColorDialog::getColor(Qt::white, this);
     if (color.isValid())
         execCommand("hiliteColor", color.name());
 }
-
+///----------------------------------------------------------------------------
 #define FOLLOW_ENABLE(a1, a2) a1->setEnabled(ui->webView->pageAction(a2)->isEnabled())
 #define FOLLOW_CHECK(a1, a2) a1->setChecked(ui->webView->pageAction(a2)->isChecked())
 
@@ -524,7 +532,7 @@ void HtmlEditor::adjustActions()
     ui->actionFormatNumberedList->setChecked(queryCommandState("insertOrderedList"));
     ui->actionFormatBulletedList->setChecked(queryCommandState("insertUnorderedList"));
 }
-
+///----------------------------------------------------------------------------
 void HtmlEditor::adjustSource()
 {
     setWindowModified(true);
@@ -533,7 +541,7 @@ void HtmlEditor::adjustSource()
     if (ui->tabWidget->currentIndex() == 1)
         changeTab(1);
 }
-
+///----------------------------------------------------------------------------
 void HtmlEditor::changeTab(int index)
 {
     if (sourceDirty && (index == 1)) {
@@ -542,7 +550,7 @@ void HtmlEditor::changeTab(int index)
         sourceDirty = false;
     }
 }
-
+///----------------------------------------------------------------------------
 void HtmlEditor::openLink(const QUrl &url)
 {
     QString msg = QString(tr("Open %1 ?")).arg(url.toString());
@@ -551,7 +559,7 @@ void HtmlEditor::openLink(const QUrl &url)
             QMessageBox::Open)
         QDesktopServices::openUrl(url);
 }
-
+///----------------------------------------------------------------------------
 void HtmlEditor::changeZoom(int percent)
 {
     ui->actionZoomOut->setEnabled(percent > 25);
@@ -562,7 +570,7 @@ void HtmlEditor::changeZoom(int percent)
     zoomLabel->setText(tr(" Zoom: %1% ").arg(percent));
     zoomSlider->setValue(percent);
 }
-
+///----------------------------------------------------------------------------
 void HtmlEditor::closeEvent(QCloseEvent *e)
 {
     if (maybeSave())
@@ -570,7 +578,7 @@ void HtmlEditor::closeEvent(QCloseEvent *e)
     else
         e->ignore();
 }
-
+///----------------------------------------------------------------------------
 bool HtmlEditor::load(const QString &f)
 {
     if (!QFile::exists(f))
@@ -588,7 +596,7 @@ bool HtmlEditor::load(const QString &f)
     setCurrentFileName(f);
     return true;
 }
-
+///----------------------------------------------------------------------------
 void HtmlEditor::setCurrentFileName(const QString &fileName)
 {
     this->fileName = fileName;
@@ -607,3 +615,4 @@ void HtmlEditor::setCurrentFileName(const QString &fileName)
         allowSave = false;
     ui->actionFileSave->setEnabled(allowSave);
 }
+///----------------------------------------------------------------------------

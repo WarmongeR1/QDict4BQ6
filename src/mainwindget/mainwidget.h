@@ -97,11 +97,20 @@ private slots:
       */
     void showHideEdit(int);
 
+    /**
+      @function
+      Edit word in pos
+      @param row
+      @param column
+      */
+    void editWordInPos(int row,int column);
+
 private:
     Ui::MainWidget *ui;
     AboutDialog *gui_about; // about dialog
     AppSettings *gui_settings; // settings dialog
     HtmlEditor *gui_htmleditor; // html editor for word
+
 
     //tray
     QSystemTrayIcon *trIcon;

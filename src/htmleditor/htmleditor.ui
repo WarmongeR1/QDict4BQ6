@@ -88,10 +88,7 @@
     <property name="title">
      <string>&amp;File</string>
     </property>
-    <addaction name="actionFileNew"/>
-    <addaction name="actionFileOpen"/>
     <addaction name="actionFileSave"/>
-    <addaction name="actionFileSaveAs"/>
     <addaction name="separator"/>
     <addaction name="actionExit"/>
    </widget>
@@ -173,8 +170,6 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
-   <addaction name="actionFileNew"/>
-   <addaction name="actionFileOpen"/>
    <addaction name="actionFileSave"/>
    <addaction name="separator"/>
    <addaction name="actionEditUndo"/>
@@ -219,7 +214,7 @@
   </widget>
   <action name="actionFileNew">
    <property name="icon">
-    <iconset>
+    <iconset resource="../../resources/resources.qrc">
      <normaloff>:/images/images/document-new.png</normaloff>:/images/images/document-new.png</iconset>
    </property>
    <property name="text">
@@ -231,7 +226,7 @@
   </action>
   <action name="actionFileOpen">
    <property name="icon">
-    <iconset>
+    <iconset resource="../../resources/resources.qrc">
      <normaloff>:/images/images/document-open.png</normaloff>:/images/images/document-open.png</iconset>
    </property>
    <property name="text">
@@ -243,7 +238,7 @@
   </action>
   <action name="actionFileSave">
    <property name="icon">
-    <iconset>
+    <iconset resource="../../resources/resources.qrc">
      <normaloff>:/images/images/document-save.png</normaloff>:/images/images/document-save.png</iconset>
    </property>
    <property name="text">
@@ -260,7 +255,7 @@
   </action>
   <action name="actionEditUndo">
    <property name="icon">
-    <iconset>
+    <iconset resource="../../resources/resources.qrc">
      <normaloff>:/images/images/edit-undo.png</normaloff>:/images/images/edit-undo.png</iconset>
    </property>
    <property name="text">
@@ -272,7 +267,7 @@
   </action>
   <action name="actionEditRedo">
    <property name="icon">
-    <iconset>
+    <iconset resource="../../resources/resources.qrc">
      <normaloff>:/images/images/edit-redo.png</normaloff>:/images/images/edit-redo.png</iconset>
    </property>
    <property name="text">
@@ -284,7 +279,7 @@
   </action>
   <action name="actionEditCut">
    <property name="icon">
-    <iconset>
+    <iconset resource="../../resources/resources.qrc">
      <normaloff>:/images/images/edit-cut.png</normaloff>:/images/images/edit-cut.png</iconset>
    </property>
    <property name="text">
@@ -296,7 +291,7 @@
   </action>
   <action name="actionEditCopy">
    <property name="icon">
-    <iconset>
+    <iconset resource="../../resources/resources.qrc">
      <normaloff>:/images/images/edit-copy.png</normaloff>:/images/images/edit-copy.png</iconset>
    </property>
    <property name="text">
@@ -308,7 +303,7 @@
   </action>
   <action name="actionEditPaste">
    <property name="icon">
-    <iconset>
+    <iconset resource="../../resources/resources.qrc">
      <normaloff>:/images/images/edit-paste.png</normaloff>:/images/images/edit-paste.png</iconset>
    </property>
    <property name="text">
@@ -320,7 +315,7 @@
   </action>
   <action name="actionEditSelectAll">
    <property name="icon">
-    <iconset>
+    <iconset resource="../../resources/resources.qrc">
      <normaloff>:/images/images/edit-select-all.png</normaloff>:/images/images/edit-select-all.png</iconset>
    </property>
    <property name="text">
@@ -335,7 +330,7 @@
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset>
+    <iconset resource="../../resources/resources.qrc">
      <normaloff>:/images/images/format-text-bold.png</normaloff>:/images/images/format-text-bold.png</iconset>
    </property>
    <property name="text">
@@ -350,7 +345,7 @@
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset>
+    <iconset resource="../../resources/resources.qrc">
      <normaloff>:/images/images/format-text-italic.png</normaloff>:/images/images/format-text-italic.png</iconset>
    </property>
    <property name="text">
@@ -365,7 +360,7 @@
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset>
+    <iconset resource="../../resources/resources.qrc">
      <normaloff>:/images/images/format-text-underline.png</normaloff>:/images/images/format-text-underline.png</iconset>
    </property>
    <property name="text">
@@ -380,7 +375,7 @@
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset>
+    <iconset resource="../../resources/resources.qrc">
      <normaloff>:/images/images/format-text-strikethrough.png</normaloff>:/images/images/format-text-strikethrough.png</iconset>
    </property>
    <property name="text">
@@ -389,7 +384,7 @@
   </action>
   <action name="actionFormatAlignLeft">
    <property name="icon">
-    <iconset>
+    <iconset resource="../../resources/resources.qrc">
      <normaloff>:/images/images/format-justify-left.png</normaloff>:/images/images/format-justify-left.png</iconset>
    </property>
    <property name="text">
@@ -398,7 +393,7 @@
   </action>
   <action name="actionFormatAlignCenter">
    <property name="icon">
-    <iconset>
+    <iconset resource="../../resources/resources.qrc">
      <normaloff>:/images/images/format-justify-center.png</normaloff>:/images/images/format-justify-center.png</iconset>
    </property>
    <property name="text">
@@ -407,7 +402,7 @@
   </action>
   <action name="actionFormatAlignRight">
    <property name="icon">
-    <iconset>
+    <iconset resource="../../resources/resources.qrc">
      <normaloff>:/images/images/format-justify-right.png</normaloff>:/images/images/format-justify-right.png</iconset>
    </property>
    <property name="text">
@@ -416,7 +411,7 @@
   </action>
   <action name="actionFormatAlignJustify">
    <property name="icon">
-    <iconset>
+    <iconset resource="../../resources/resources.qrc">
      <normaloff>:/images/images/format-justify-fill.png</normaloff>:/images/images/format-justify-fill.png</iconset>
    </property>
    <property name="text">
@@ -425,7 +420,7 @@
   </action>
   <action name="actionFormatIncreaseIndent">
    <property name="icon">
-    <iconset>
+    <iconset resource="../../resources/resources.qrc">
      <normaloff>:/images/images/format-indent-more.png</normaloff>:/images/images/format-indent-more.png</iconset>
    </property>
    <property name="text">
@@ -434,7 +429,7 @@
   </action>
   <action name="actionFormatDecreaseIndent">
    <property name="icon">
-    <iconset>
+    <iconset resource="../../resources/resources.qrc">
      <normaloff>:/images/images/format-indent-less.png</normaloff>:/images/images/format-indent-less.png</iconset>
    </property>
    <property name="text">
@@ -446,7 +441,7 @@
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset>
+    <iconset resource="../../resources/resources.qrc">
      <normaloff>:/images/images/bulleted-list.png</normaloff>:/images/images/bulleted-list.png</iconset>
    </property>
    <property name="text">
@@ -458,7 +453,7 @@
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset>
+    <iconset resource="../../resources/resources.qrc">
      <normaloff>:/images/images/numbered-list.png</normaloff>:/images/images/numbered-list.png</iconset>
    </property>
    <property name="text">
@@ -467,7 +462,7 @@
   </action>
   <action name="actionInsertImage">
    <property name="icon">
-    <iconset>
+    <iconset resource="../../resources/resources.qrc">
      <normaloff>:/images/images/image-x-generic.png</normaloff>:/images/images/image-x-generic.png</iconset>
    </property>
    <property name="text">
@@ -476,7 +471,7 @@
   </action>
   <action name="actionCreateLink">
    <property name="icon">
-    <iconset>
+    <iconset resource="../../resources/resources.qrc">
      <normaloff>:/images/images/text-html.png</normaloff>:/images/images/text-html.png</iconset>
    </property>
    <property name="text">
@@ -485,7 +480,7 @@
   </action>
   <action name="actionZoomOut">
    <property name="icon">
-    <iconset>
+    <iconset resource="../../resources/resources.qrc">
      <normaloff>:/images/images/list-remove.png</normaloff>:/images/images/list-remove.png</iconset>
    </property>
    <property name="text">
@@ -494,7 +489,7 @@
   </action>
   <action name="actionZoomIn">
    <property name="icon">
-    <iconset>
+    <iconset resource="../../resources/resources.qrc">
      <normaloff>:/images/images/list-add.png</normaloff>:/images/images/list-add.png</iconset>
    </property>
    <property name="text">
@@ -576,7 +571,7 @@
   </action>
   <action name="actionInsertHtml">
    <property name="icon">
-    <iconset>
+    <iconset resource="../../resources/resources.qrc">
      <normaloff>:/images/images/insert-html.png</normaloff>:/images/images/insert-html.png</iconset>
    </property>
    <property name="text">
@@ -594,6 +589,8 @@
    <header>QtWebKit/QWebView</header>
   </customwidget>
  </customwidgets>
- <resources/>
+ <resources>
+  <include location="../../resources/resources.qrc"/>
+ </resources>
  <connections/>
 </ui>

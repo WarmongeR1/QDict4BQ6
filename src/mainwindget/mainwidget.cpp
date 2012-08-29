@@ -100,6 +100,8 @@ void MainWidget::createConnect()
     connect(ui->checkBEditOn, SIGNAL(stateChanged(int)), SLOT(showHideEdit(int)));
     /// edit dialog on
     connect(ui->pBTest, SIGNAL(clicked()), SLOT(showHtmlEditor()));
+    /// double click in table edit
+    connect(ui->tableEdit, SIGNAL(cellDoubleClicked(int,int)), SLOT(editWordInPos(int,int)));
 }
 ///----------------------------------------------------------------------------
 void MainWidget::createActions()
@@ -485,5 +487,16 @@ void MainWidget::showHtmlEditor()
     gui_htmleditor->show();
 }
 ///----------------------------------------------------------------------------
+void MainWidget::editWordInPos(int row, int column)
+{
+    qDebug() << "column = " << column
+             << "row = " << row;
+    if (column == 1)
+    {
+        qDebug() << ui->tableEdit->currentItem()->data(0);
+
+//        gui_htmleditor->show();
+    }
+}
 ///----------------------------------------------------------------------------
 ///----------------------------------------------------------------------------
