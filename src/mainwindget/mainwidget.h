@@ -18,6 +18,7 @@ namespace Ui {
 }
 class AboutDialog;
 class AppSettings;
+class HtmlEditor;
 
 class MainWidget : public QWidget
 {
@@ -67,6 +68,12 @@ private slots:
 
     /**
       @function
+      Show html editor
+      */
+    void showHtmlEditor();
+
+    /**
+      @function
       Gen idx file
       */
     void genIdx();
@@ -94,6 +101,7 @@ private:
     Ui::MainWidget *ui;
     AboutDialog *gui_about; // about dialog
     AppSettings *gui_settings; // settings dialog
+    HtmlEditor *gui_htmleditor; // html editor for word
 
     //tray
     QSystemTrayIcon *trIcon;

@@ -310,6 +310,13 @@ p, li { white-space: pre-wrap; }
       </spacer>
      </item>
      <item>
+      <widget class="QPushButton" name="pBTest">
+       <property name="text">
+        <string>test button</string>
+       </property>
+      </widget>
+     </item>
+     <item>
       <widget class="QPushButton" name="pBSiteHome">
        <property name="text">
         <string>Site</string>

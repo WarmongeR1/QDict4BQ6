@@ -1,6 +1,7 @@
 #include "mainwidget.h"
 #include "ui_mainwidget.h"
 #include "about.h"
+#include "htmleditor.h"
 #include "defines.h"
 #include "common.h"
 #include "appsettings.h"
@@ -58,12 +59,16 @@ void MainWidget::debug()
 ///----------------------------------------------------------------------------
 void MainWidget::init()
 {
+    /// set data
     setLangList();
     setTypeList();
+
     gui_about = new AboutDialog(this);
 
     gui_settings = new AppSettings(this);
     gui_settings->loadSettings();
+
+    gui_htmleditor = new HtmlEditor(this);
 
     ui->LEArticles->setText("</h4>");
     ui->LEHeadLines->setText("<h4>");
@@ -93,6 +98,8 @@ void MainWidget::createConnect()
     connect(ui->pBExit, SIGNAL(clicked()), qApp, SLOT(quit()));
     /// tab edit activate
     connect(ui->checkBEditOn, SIGNAL(stateChanged(int)), SLOT(showHideEdit(int)));
+    /// edit dialog on
+    connect(ui->pBTest, SIGNAL(clicked()), SLOT(showHtmlEditor()));
 }
 ///----------------------------------------------------------------------------
 void MainWidget::createActions()
@@ -473,6 +480,10 @@ void MainWidget::setLangList()
     ui->comBoxLang-> setModel(typeModel);
 }
 ///----------------------------------------------------------------------------
+void MainWidget::showHtmlEditor()
+{
+    gui_htmleditor->show();
+}
 ///----------------------------------------------------------------------------
 ///----------------------------------------------------------------------------
 ///----------------------------------------------------------------------------

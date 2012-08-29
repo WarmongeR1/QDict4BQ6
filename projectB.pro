@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui network webkit
 
 TARGET = projectB
 TEMPLATE = app
@@ -21,12 +21,15 @@ UI_DIR      = build/ui
 
 DEPENDPATH += \
     src/dialogs/about \
+    src/dialogs \
     src/main \
     src/mainwindget \
     src/common \
     src/defines \
     src/textedit \
-    src/dialogs/settings
+    src/dialogs/settings \
+    src/htmleditor \
+    src/highlighter
 
 INCLUDEPATH += \
     src/dialogs/about \
@@ -35,23 +38,31 @@ INCLUDEPATH += \
     src/mainwindget \
     src/common \
     src/textedit \
-    src/dialogs/settings
+    src/dialogs/settings \
+    src/htmleditor \
+    src/highlighter
 
 SOURCES += main.cpp\
         mainwidget.cpp \
         about.cpp \
         common.cpp \
-    src/dialogs/settings/appsettings.cpp
+        appsettings.cpp \
+        htmleditor.cpp \
+        highlighter.cpp
 
 HEADERS  += mainwidget.h \
         about.h \
         defines.h\
         common.h \
-    src/dialogs/settings/appsettings.h
+        appsettings.h \
+        htmleditor.h \
+        highlighter.h
 
 FORMS    += mainwidget.ui \
         about.ui \
-    src/dialogs/settings/appsettings.ui
+        appsettings.ui \
+        htmleditor.ui \
+        inserthtmldialog.ui
 
 RESOURCES += \
     resources/resources.qrc \
