@@ -11,6 +11,8 @@
 #include <QFileDialog>
 #include <QDir>
 #include <QMessageBox>
+#include <QStringList>
+#include <QDate>
 
 #include <QDebug>
 
@@ -26,8 +28,8 @@ MainWidget::MainWidget(QWidget *parent) :
     createConnect();
     trIcon->show();  //display tray
 
-    //    debug();
-    //    genIdx();
+        debug();
+        genIdx();
 }
 ///----------------------------------------------------------------------------
 MainWidget::~MainWidget()
@@ -41,17 +43,19 @@ void MainWidget::debug()
     QString str = "";
     //    str = "/home/files/Develop/C++/Qt/MyProgs/projectB/projectB/bin/example/greek.htm";
     //        str = "/home/files/Develop/C++/Qt/MyProgs/projectB/projectB/bin/example/robinson.htm";
-    //            str = "/home/files/Develop/C++/Qt/MyProgs/projectB/projectB/bin/example/cslav.htm";
+//                str = "/home/files/Develop/C++/Qt/MyProgs/projectB/projectB/bin/example/cslav.htm";
     //        str = "/home/files/Develop/C++/Qt/MyProgs/projectB/projectB/bin/example/vikhlyantsev.htm";
-    //    str = "/home/files/Develop/C++/Qt/MyProgs/projectB/projectB/bin/example/";
+    //    str = "/home/files/Develop/git/projectB/projectB/bin/example";
     //            str = "/home/files/Develop/C++/Qt/MyProgs/projectB/projectB/bin/example/bibleinfo.htm";
     //        str = "/home/files/Develop/C++/Qt/MyProgs/projectB/projectB/bin/example/greek_utf-16_edit.htm";
     //    str = "/home/files/Develop/C++/Qt/MyProgs/projectB/projectB/bin/example/BrockhausLexicon.htm";
-
+    str = "/home/files/Develop/git/projectB/projectB/bin/example/cslav.htm";
 
     ui->LEFile->setText(str);
 
     ui->LENameDict->setText("text name1");
+    ui->LEAuthor->setText("test");
+//    getParams();
 }
 ///----------------------------------------------------------------------------
 void MainWidget::init()
@@ -230,6 +234,7 @@ void MainWidget::genIdx()
     /// set codecs
     QTextStream streamInput(&fileOld);
     bool flag = false;
+    // TODO: edit
     QString encoding = getEncodingFromFile(oldPathToFile);
     if (encoding == "ASCII")
     {
@@ -239,6 +244,8 @@ void MainWidget::genIdx()
     {
         streamInput.setCodec(getCodecOfEncoding(encoding));
     }
+    // TODO: end edit
+
     QTextStream streamIdx(&fileIdx);
     streamIdx.setCodec(getCodecOfEncoding("UTF-16"));
     streamIdx.setGenerateByteOrderMark(true);
@@ -253,17 +260,29 @@ void MainWidget::genIdx()
     QString line, str, str2;
     int count = 0;
     count++;
+
     QString tagBegin = ui->LEHeadLines->text();
     QString tagEnd = ui->LEArticles->text();
+
+    //----------
+    /// skip begin text
 
     do
     {
         line = streamInput.readLine() + "\r\n";
+
+        /// edit to standart
+        /// replace tag to standart
         line.replace(tagBegin, "<h4>");
         line.replace(tagEnd, "</h4>");
-        //        line.remove("<br>");
+
         if (line.indexOf("<h4>") == -1)
         {
+
+//            if (line.indexOf("<title>") != -1)
+
+
+
             streamDict << line;
             count += line.length() * 2;
         }
@@ -271,8 +290,35 @@ void MainWidget::genIdx()
     while (line.indexOf("<h4>") == -1
            and !streamInput.atEnd());
 
+    if (ui->checkBParams->checkState())
+    {
+        QStringList list = getParams();
+
+
+        qDebug() << QDate::currentDate().toString();
+
+        streamDict << "<html>\r\n";
+        streamDict << "<head>\r\n";
+        streamDict << "\t<meta name=\"Author\" content=\"" << list.at(0) << "\">\r\n";
+        streamDict << "\t<meta name=\"Date\" content=\"DateOfDict\">\r\n";
+        streamDict << "\t<meta name=\"Date\" content=\"" <<
+                      QDate::currentDate().toString() << "\">\r\n";
+        streamDict << "\t<meta name=\"Revision\" content=\"" << list.at(1) << "\">\r\n";
+        streamDict << "\t<meta name=\"Language\" content=\"" << list.at(2) <<  "\">\r\n";
+        streamDict << "\t<meta name=\"Type\" content=\"" << list.at(3) << "\">\r\n";
+        streamDict << "\t<meta name=\"Description\" content=\"" << list.at(4) << "\">\r\n";
+        streamDict << "\t<meta name=\"Rights\" content=\"" << list.at(5) << "\">\r\n";
+        streamDict << "\t<meta name=\"Numbering\" content=\"" << list.at(6) << "\">\r\n";
+        streamDict << "<title>" << ui->LENameDict->text() << "</title>\r\n";
+        streamDict << "</head>\r\n";
+    }
+
+    //-----------
+
     do
     {
+        /// edit to standart
+        /// replace tag to standart
         line.replace(tagBegin, "<h4>");
         line.replace(tagEnd, "</h4>");
 
@@ -281,9 +327,10 @@ void MainWidget::genIdx()
         int posH4_1 = line.indexOf("<h4>");
         int posH4_2 = line.indexOf("<h4>", posH4_1);
 
+        /// split text  mid <h4> and <h4>
+        /// if the text in multiple lines
         while ((posH4_2 == -1 or posH4_1 == posH4_2)
-               and
-               !streamInput.atEnd())
+               and !streamInput.atEnd())
         {
             line.append(streamInput.readLine() + "\r\n");
             posH4_2 = line.indexOf("<h4>", posH4_1 + h4);
@@ -318,15 +365,74 @@ void MainWidget::genIdx()
 ///----------------------------------------------------------------------------
 void MainWidget::showHideEdit(int flag)
 {
-//    ui->
     ui->LEFind->setEnabled(flag);
     ui->tableEdit->setEnabled(flag);
     ui->pBAddWord->setEnabled(flag);
     ui->label->setEnabled(flag);
     ui->label_6->setEnabled(flag);
+    if (flag)
+        showWordInTable();
+}
+///----------------------------------------------------------------------------
+void MainWidget::showWordInTable()
+{
+    qDebug() << "show =)";
+//    for (int i = 0; i < data.files.size(); ++i)
+//    {
+//        QTableWidgetItem *fileNameItem = new QTableWidgetItem(data.files[i]);
+//        fileNameItem->setFlags(fileNameItem->flags() ^ Qt::ItemIsEditable);
 
+//        QTableWidgetItem *bookItem = new QTableWidgetItem(data.books[i]);
+//        bookItem->setFlags(bookItem->flags() ^ Qt::ItemIsEditable);
 
+//        QTableWidgetItem *moduleItem = new QTableWidgetItem(data.modules[i]);
+//        moduleItem->setFlags(moduleItem->flags() ^ Qt::ItemIsEditable);
+
+//        QTableWidgetItem *verseItem = new QTableWidgetItem(data.verse[i]);
+//        verseItem->setFlags(verseItem->flags() ^ Qt::ItemIsEditable);
+
+//        QTableWidgetItem *chapterItem = new QTableWidgetItem(data.chapter[i]);
+//        chapterItem->setFlags(chapterItem->flags() ^ Qt::ItemIsEditable);
+
+//        QTableWidgetItem *urlItem = new QTableWidgetItem(data.url[i]);
+//        urlItem->setFlags(urlItem->flags() ^ Qt::ItemIsEditable);
+
+//        int row = ui->tableFiles->rowCount();
+//        ui->tableFiles->insertRow(row);
+
+//        ui->tableFiles->setItem(row, 0, moduleItem);
+//        ui->tableFiles->setItem(row, 1, bookItem);
+//        ui->tableFiles->setItem(row, 2, chapterItem);
+//        ui->tableFiles->setItem(row, 3, verseItem);
+//        ui->tableFiles->setItem(row, 4, fileNameItem);
+//        ui->tableFiles->setItem(row, 5, urlItem);
+//    }
+//    ui->tableFiles->resizeColumnsToContents();
+
+//    ui->filesFoundLabel->setText(tr("%1 file(s) found").arg(data.files.size()) +
+//                                 (" (Double click on a file to open it)"));
+}
+///----------------------------------------------------------------------------
+QStringList MainWidget::getParams()
+{
+    QStringList list;
+    list << ui->LEAuthor->text(); // [0]
+    list << QString::number(ui->spinBoxVersion->value()); // [1]
+    list << ui->comBoxLang->currentText(); // [2]
+    list << ui->comBoxType->currentText(); // [3]
+    list << ui->LEDescription->text(); // [4]
+    list << ui->LECopyright->text(); // [5]
+    list << ui->LENumbering->text(); // [6]
+    return list;
 }
 
+
+///----------------------------------------------------------------------------
+
+
+///----------------------------------------------------------------------------
+
+///----------------------------------------------------------------------------
+///----------------------------------------------------------------------------
 ///----------------------------------------------------------------------------
 ///----------------------------------------------------------------------------

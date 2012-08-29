@@ -116,8 +116,18 @@ private:
       */
     void createTrayIcon(); // add actionts to tray menu
 
-
     void debug();
+    /**
+      @function
+      Fill table of word in dict
+      */
+    void showWordInTable();
+
+    /**
+      @function
+      Return info in params tab
+      */
+    QStringList getParams();
 };
 
 #endif // MAINWIDGET_H
