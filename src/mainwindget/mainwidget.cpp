@@ -512,10 +512,11 @@ void MainWidget::editWordInPos(int row, int column)
 ///----------------------------------------------------------------------------
 void MainWidget::replaceStr(QString newstr)
 {
-    qDebug() << newstr;
+//    qDebug() << newstr;
     QString old = ui->tableEdit->currentItem()->data(0).toString();
     replaceStrInFile(ui->LEFile->text(),
                      old,
                      newstr);
+    QFile::remove(QDir::currentPath() + "/edit.html");
 }
 ///----------------------------------------------------------------------------
