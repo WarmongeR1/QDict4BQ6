@@ -25,8 +25,8 @@ MainWidget::MainWidget(QWidget *parent) :
     createConnect();
     trIcon->show();  //display tray
 
-    debug();
-    genIdx();
+//    debug();
+//    genIdx();
 }
 ///----------------------------------------------------------------------------
 MainWidget::~MainWidget()
@@ -46,13 +46,13 @@ void MainWidget::debug()
     //            str = "/home/files/Develop/C++/Qt/MyProgs/projectB/projectB/bin/example/bibleinfo.htm";
     //        str = "/home/files/Develop/C++/Qt/MyProgs/projectB/projectB/bin/example/greek_utf-16_edit.htm";
     //    str = "/home/files/Develop/C++/Qt/MyProgs/projectB/projectB/bin/example/BrockhausLexicon.htm";
-    str = "/home/files/Develop/git/projectB/projectB/bin/example/cslav.htm";
+//    str = "/home/files/Develop/git/projectB/projectB/bin/example/cslav.htm";
 
     ui->LEFile->setText(str);
 
     ui->LENameDict->setText("text name1");
     ui->LEAuthor->setText("test");
-    showHideEdit(1);
+//    showHideEdit(1);
 
 //    QStringList list = getListWord(ui->LEFile->text());
 //    qDebug() << list;

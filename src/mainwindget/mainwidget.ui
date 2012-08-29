@@ -6,12 +6,12 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>581</width>
+    <width>631</width>
     <height>320</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>projectB</string>
+   <string>QDict4BQ6</string>
   </property>
   <layout class="QGridLayout" name="gridLayout_3">
    <item row="0" column="0">

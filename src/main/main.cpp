@@ -8,7 +8,7 @@
 int main(int argc, char *argv[])
 {
 
-    Q_INIT_RESOURCE(resources);
+//    Q_INIT_RESOURCE(resources);
     QApplication a(argc, argv);
 
     a.setOrganizationName(GL_AUTHOR);
@@ -18,9 +18,9 @@ int main(int argc, char *argv[])
     QString lang = settings->value("language/lang").toString();
 
     QTranslator translator;
-    if (lang == "Russian" or lang.isEmpty()) translator.load("projectB_ru",":lang/lang");
-    if (lang == "Deutch") translator.load("projectB_de",":lang/lang");
-    if (lang == "France") translator.load("projectB_fr",":lang/lang");
+    if (lang == "Russian" or lang.isEmpty()) translator.load("QDict4BQ6_ru",":lang/lang");
+    if (lang == "Deutch") translator.load("QDict4BQ6_de",":lang/lang");
+    if (lang == "France") translator.load("QDict4BQ6_fr",":lang/lang");
     a.installTranslator(&translator);
 
     MainWidget w;

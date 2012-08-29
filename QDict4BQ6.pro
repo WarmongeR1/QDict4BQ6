@@ -6,11 +6,11 @@
 
 QT       += core gui network webkit
 
-TARGET = projectB
+TARGET = Dict4BQ6
 TEMPLATE = app
 LANGUAGE = C++
 
-PROJECTNAME = projectB
+PROJECTNAME = Dict4BQ6
 DESTDIR     = build/bin
 OBJECTS_DIR = build/obj
 MOC_DIR     = build/moc
@@ -69,4 +69,4 @@ RESOURCES += \
     resources/resources.qrc
 
 TRANSLATIONS += \
-    resources/lang/projectB_ru.ts
+    resources/lang/QDict4BQ6_ru.ts
