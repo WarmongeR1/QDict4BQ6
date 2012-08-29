@@ -24,6 +24,7 @@
 
 #include "htmleditor.h"
 #include "highlighter.h"
+#include "common.h"
 
 #include "ui_htmleditor.h"
 #include "ui_inserthtmldialog.h"
@@ -213,15 +214,19 @@ bool HtmlEditor::fileSave()
 
     QFile file(fileName);
     bool success = file.open(QIODevice::WriteOnly);
-    if (success) {
+    if (success)
+    {
         // FIXME: here we always use UTF-8 encoding
         QString content = ui->webView->page()->mainFrame()->toHtml();
         QByteArray data = content.toUtf8();
         qint64 c = file.write(data);
         success = (c >= data.length());
     }
+    file.close();
 
     setWindowModified(false);
+    QString str = getTextFromHtmlFile(fileName);
+    emit saveWordInfo(str);
     return success;
 }
 ///----------------------------------------------------------------------------

@@ -69,5 +69,51 @@ QStringList getFillType();
   @return list_of_words
   */
 QStringList getListWord(QString);
+
+
+/**
+  @function
+  Create empty html file,
+  @param file_path
+  @param title
+  @return bool
+  */
+bool createEmptyHtml(QString fileName, QString title);
+
+/**
+  @function
+  Create empty html file with text,
+  @param file_path
+  @param title
+  @param text
+  @return bool
+  */
+bool createEmptyHtml(QString fileName, QString title, QString text);
+/**
+  @function
+  Create empty file with text,
+  @param file_path
+  @param text
+  @return bool
+  */
+bool createEmpty(QString fileName, QString text);
+/**
+  @function
+  Retrun text from <body> </body>
+  @param file_path
+  @return text
+  */
+QString getTextFromHtmlFile(QString fileName);
+
+/**
+  @function
+  Replace text in file
+  @param file_path
+  @param old_text
+  @param new_text
+  */
+void replaceStrInFile(QString filepath, QString old, QString newstr);
+
+
 #endif // end __COMMON_H
 

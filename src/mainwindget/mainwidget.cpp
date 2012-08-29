@@ -52,6 +52,8 @@ void MainWidget::debug()
 
     ui->LENameDict->setText("text name1");
     ui->LEAuthor->setText("test");
+    showHideEdit(1);
+
 //    QStringList list = getListWord(ui->LEFile->text());
 //    qDebug() << list;
     //    getParams();
@@ -98,10 +100,10 @@ void MainWidget::createConnect()
     connect(ui->pBExit, SIGNAL(clicked()), qApp, SLOT(quit()));
     /// tab edit activate
     connect(ui->checkBEditOn, SIGNAL(stateChanged(int)), SLOT(showHideEdit(int)));
-    /// edit dialog on
-    connect(ui->pBTest, SIGNAL(clicked()), SLOT(showHtmlEditor()));
     /// double click in table edit
     connect(ui->tableEdit, SIGNAL(cellDoubleClicked(int,int)), SLOT(editWordInPos(int,int)));
+    /// saveWordInfo
+    connect(gui_htmleditor, SIGNAL(saveWordInfo(QString)), SLOT(replaceStr(QString)));
 }
 ///----------------------------------------------------------------------------
 void MainWidget::createActions()
@@ -489,14 +491,31 @@ void MainWidget::showHtmlEditor()
 ///----------------------------------------------------------------------------
 void MainWidget::editWordInPos(int row, int column)
 {
-    qDebug() << "column = " << column
-             << "row = " << row;
+    Q_UNUSED(row);
+//    qDebug() << "column = " << column
+//             << "row = " << row;
     if (column == 1)
     {
-        qDebug() << ui->tableEdit->currentItem()->data(0);
+        QString old = ui->tableEdit->currentItem()->data(0).toString();
+//        qDebug() << old;
 
-//        gui_htmleditor->show();
+        QString path_to_file = QDir::currentPath()
+                + "/edit.html";
+        QFile::remove(path_to_file);
+
+//        qDebug() << path_to_file;
+        createEmptyHtml(path_to_file, "edit", old);
+        gui_htmleditor->load(path_to_file);
+        gui_htmleditor->show();
     }
 }
 ///----------------------------------------------------------------------------
+void MainWidget::replaceStr(QString newstr)
+{
+    qDebug() << newstr;
+    QString old = ui->tableEdit->currentItem()->data(0).toString();
+    replaceStrInFile(ui->LEFile->text(),
+                     old,
+                     newstr);
+}
 ///----------------------------------------------------------------------------

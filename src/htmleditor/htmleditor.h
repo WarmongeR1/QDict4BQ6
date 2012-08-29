@@ -47,8 +47,11 @@ public:
     HtmlEditor(QWidget *parent = 0);
     ~HtmlEditor();
 
+    bool load(const QString &f);
 protected:
     virtual void closeEvent(QCloseEvent *e);
+signals:
+    void saveWordInfo(QString);
 
 private:
 
@@ -66,7 +69,7 @@ private:
     void setupActions();
     void setupToolBar();
     void setupMenu();
-    bool load(const QString &f);
+
     bool maybeSave();
     void setCurrentFileName(const QString &fileName);
     void execCommand(const QString&);

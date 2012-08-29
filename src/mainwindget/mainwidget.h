@@ -105,6 +105,8 @@ private slots:
       */
     void editWordInPos(int row,int column);
 
+    void replaceStr(QString newstr);
+
 private:
     Ui::MainWidget *ui;
     AboutDialog *gui_about; // about dialog

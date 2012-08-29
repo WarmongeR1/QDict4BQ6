@@ -137,8 +137,8 @@ QStringList getListWord(QString filename)
         {
             /// edit to standart
             /// replace tag to standart
-//            line.replace(tagBegin, "<h4>");
-//            line.replace(tagEnd, "</h4>");
+            //            line.replace(tagBegin, "<h4>");
+            //            line.replace(tagEnd, "</h4>");
 
             int h4 = QString("<h4>").length();
 
@@ -162,7 +162,7 @@ QStringList getListWord(QString filename)
                             posEnd - posBegin - QString("<h4>").length());
             if (!str.isEmpty())
             {
-//                streamDict << str;
+                //                streamDict << str;
             }
 
             if (!str2.isEmpty())
@@ -172,12 +172,12 @@ QStringList getListWord(QString filename)
                     count++;
 
                 count2 = count;
-//                streamIdx << str2 << "\r\n" << QString::number(count2) + "\r\n";
+                //                streamIdx << str2 << "\r\n" << QString::number(count2) + "\r\n";
             }
             count += (str.length()) *2;
             list << QString(str).remove("\r\n");
             line.remove(str);
-//            QString sttt = str2 + "<|>" + str;
+            //            QString sttt = str2 + "<|>" + str;
 
             line.append(streamInput.readLine() + "\r\n");
         } while (!streamInput.atEnd());
@@ -191,5 +191,116 @@ QStringList getListWord(QString filename)
 }
 
 ///----------------------------------------------------------------------------
+bool createEmptyHtml(QString fileName, QString title, QString text)
+{
+    bool ret = true;
+    QFile file(fileName);
+    if (!file.exists())
+    {
+        //create file if it's not exist
+        if (file.open(QIODevice::ReadWrite))
+        {
+            //try to open or create file
+            QTextStream ts(&file);
+            ts.setCodec("UTF-8");
+            ts << "<html>\n<head>" << endl;
+            ts << "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" />" << endl;
+            ts << "<title>" << title <<"</title>" << endl;
+            ts << "</head>\n<body>\n" << text << "\n</body>\n</html>" << endl;
+            file.close();
+        }
+        else
+        {
+            ret = false;
+        }
+    }
+    return ret;
+}
+///----------------------------------------------------------------------------
+bool createEmptyHtml(QString fileName, QString title)
+{
+    bool ret = true;
+    QFile file(fileName);
+    if (!file.exists())
+    {
+        //create file if it's not exist
+        if (file.open(QIODevice::ReadWrite))
+        {
+            //try to open or create file
+            QTextStream ts(&file);
+            ts.setCodec("UTF-8");
+            ts << "<html>\n<head>" << endl;
+            ts << "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" />" << endl;
+            ts << "<title>" << title <<"</title>" << endl;
+            ts << "</head>\n<body>\n</body></html>" << endl;
+            file.close();
+        }
+        else
+        {
+            ret = false;
+        }
+    }
+    return ret;
+}
+///----------------------------------------------------------------------------
+void replaceStrInFile(QString filepath, QString old, QString newstr)
+{
+    QFile file(filepath);
+    QString str;
+    if (file.open(QIODevice::ReadOnly))
+    {
+        QTextStream stream(&file);
+        stream.setCodec(getCodecOfEncoding("UTF-8"));
+        str = stream.readAll();
+        str.replace(old, newstr);
+    }
+    else
+    {
+        qDebug() << "Error: not open file (replacestrinfile):" << filepath;
+    }
+    file.close();
+
+    if(file.open(QIODevice::WriteOnly))
+    {
+        QTextStream stream(&file);
+        stream.setCodec(getCodecOfEncoding("UTF-8"));
+        stream << str;
+        file.close();
+    }
+    else
+    {
+        qDebug() << "Error: not open file (replacestrinfile write):" << filepath;
+    }
+
+}
+///----------------------------------------------------------------------------
+QString getTextFromHtmlFile(QString filePath)
+{
+    QString str = "";
+    QFile file(filePath);
+//    qDebug() << filePath;
+    file.close();
+    if (file.open(QIODevice::ReadOnly))
+    {
+        QTextStream stream(&file);
+        stream.setCodec(getCodecOfEncoding("UTF-8"));
+        str = stream.readAll();
+//        qDebug() << "str = " << str;
+        int body = QString("<body>").length();
+        int posBegin = str.indexOf("<body>");
+
+        int posEnd = str.indexOf("</body>");
+        str = str.mid(posBegin + body,
+                      posEnd - posBegin - body);
+
+    }
+    else
+    {
+        qDebug() << "Error: not open file(getTextFromHtmlFile):" << filePath;
+    }
+
+    return str;
+}
+
 ///----------------------------------------------------------------------------
 ///----------------------------------------------------------------------------
