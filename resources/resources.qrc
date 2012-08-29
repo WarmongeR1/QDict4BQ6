@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/lang">
+        <file>lang/projectB_ru.qm</file>
+    </qresource>
+    <qresource prefix="/images">
+        <file>images/img.png</file>
+    </qresource>
+    <qresource prefix="/"/>
+</RCC>
