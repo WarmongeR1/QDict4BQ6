@@ -548,6 +548,24 @@ p, li { white-space: pre-wrap; }
         <source>HTML-Files (*.htm *.html);;Text files (*.txt)</source>
         <translation>HTML-файлы (*.htm *.html);;Текстовые файлы (*.txt)</translation>
     </message>
+    <message>
+        <location filename="../../src/mainwindget/mainwidget.cpp" line="219"/>
+        <source>- Please input name of dict.
+</source>
+        <translation>- Пожалуйста, введите название словаря.
+</translation>
+    </message>
+    <message>
+        <location filename="../../src/mainwindget/mainwidget.cpp" line="224"/>
+        <source>- Please browse file.
+</source>
+        <translation>- Пожалуйста, выберите файл.</translation>
+    </message>
+    <message>
+        <location filename="../../src/mainwindget/mainwidget.cpp" line="230"/>
+        <source>Gen idx</source>
+        <translation>Генерация idx</translation>
+    </message>
 </context>
 <context>
     <name>MainWindow</name>
