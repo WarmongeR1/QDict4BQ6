@@ -321,13 +321,13 @@ QString getTextFromHtmlFile(QString filePath)
         QString encoding = getEncodingFromFile(filePath);
         stream.setCodec(getCodecOfEncoding(encoding));
         str = stream.readAll();
-//        //        qDebug() << "str = " << str;
-//        int body = QString("<body>").length();
-//        int posBegin = str.indexOf("<body>");
+        //        //        qDebug() << "str = " << str;
+        //        int body = QString("<body>").length();
+        //        int posBegin = str.indexOf("<body>");
 
-//        int posEnd = str.indexOf("</body>");
-//        str = str.mid(posBegin + body,
-//                      posEnd - posBegin - body);
+        //        int posEnd = str.indexOf("</body>");
+        //        str = str.mid(posBegin + body,
+        //                      posEnd - posBegin - body);
         file.close();
     }
     else
@@ -337,7 +337,6 @@ QString getTextFromHtmlFile(QString filePath)
 
     return str;
 }
-
 ///----------------------------------------------------------------------------
 QStringList getInfoFromFile(QString file_path)
 {
@@ -454,13 +453,48 @@ void deleteWordFromDict(QString filePath, QString word, QString description)
 void addWordToDict(QString filePath, QString word, QString description)
 {
     QString text = getTextFromHtmlFile(filePath);
+    text.remove("</html>")
+            .remove("</body>");
     text.append(QString("\r\n<h4>%1</h4> %2")
                 .arg(word)
                 .arg(description));
+    text.append("</body>")
+            .append("</html>");
+
     QFile::remove(filePath);
     createEmpty(filePath, text);
 }
 ///----------------------------------------------------------------------------
+QString getDescriptionFromHtmlFile(QString filePath)
+{
+    QString str = "";
+    QFile file(filePath);
+    //    qDebug() << filePath;
+    file.close();
+    if (file.open(QIODevice::ReadOnly))
+    {
+        QTextStream stream(&file);
+        QString encoding = getEncodingFromFile(filePath);
+        stream.setCodec(getCodecOfEncoding(encoding));
+        str = stream.readAll();
+        //        qDebug() << "str = " << str;
+        int body = QString("<body>").length();
+        int posBegin = str.indexOf("<body>");
+
+        int posEnd = str.indexOf("</body>");
+        str = str.mid(posBegin + body,
+                      posEnd - posBegin - body);
+        str.remove("\n")
+                .remove("\r");
+        file.close();
+    }
+    else
+    {
+        qDebug() << "Error: not open file(getTextFromHtmlFile):" << filePath;
+    }
+
+    return str;
+}
 ///----------------------------------------------------------------------------
 ///----------------------------------------------------------------------------
 

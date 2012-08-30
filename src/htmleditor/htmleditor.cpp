@@ -225,7 +225,7 @@ bool HtmlEditor::fileSave()
     file.close();
 
     setWindowModified(false);
-    QString str = getTextFromHtmlFile(fileName);
+    QString str = getDescriptionFromHtmlFile(fileName);
     emit saveWordInfo(str);
     return success;
 }

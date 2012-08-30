@@ -104,7 +104,13 @@ bool createEmpty(QString fileName, QString text);
   @return text
   */
 QString getTextFromHtmlFile(QString fileName);
-
+/**
+  @function
+  Retrurn description from <body> </body>
+  @param file_path
+  @return text
+  */
+QString getDescriptionFromHtmlFile(QString fileName);
 /**
   @function
   Replace text in file
