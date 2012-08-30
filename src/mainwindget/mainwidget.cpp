@@ -25,8 +25,8 @@ MainWidget::MainWidget(QWidget *parent) :
     createConnect();
     trIcon->show();  //display tray
 
-//    debug();
-//    genIdx();
+    debug();
+    //    genIdx();
 }
 ///----------------------------------------------------------------------------
 MainWidget::~MainWidget()
@@ -46,16 +46,22 @@ void MainWidget::debug()
     //            str = "/home/files/Develop/C++/Qt/MyProgs/projectB/projectB/bin/example/bibleinfo.htm";
     //        str = "/home/files/Develop/C++/Qt/MyProgs/projectB/projectB/bin/example/greek_utf-16_edit.htm";
     //    str = "/home/files/Develop/C++/Qt/MyProgs/projectB/projectB/bin/example/BrockhausLexicon.htm";
-//    str = "/home/files/Develop/git/projectB/projectB/bin/example/cslav.htm";
+    //    str = "/home/files/Develop/git/projectB/projectB/bin/example/cslav.htm";
 
+    //    str = "/home/files/Develop/git/QDict4BQ6/QDict4BQ6/bin/Example/"
+    str = "/home/files/Develop/git/QDict4BQ6/QDict4BQ6/bin/Example/dict_En_CJB.htm";
     ui->LEFile->setText(str);
 
+    //    QString text = getTextFromHtmlFile(str);
+    //    qDebug()  << "Author = " << getParamInfo(&text, "Author");
     ui->LENameDict->setText("text name1");
     ui->LEAuthor->setText("test");
-//    showHideEdit(1);
 
-//    QStringList list = getListWord(ui->LEFile->text());
-//    qDebug() << list;
+    setInfoDictFromFile();
+    //    showHideEdit(1);
+
+    //    QStringList list = getListWord(ui->LEFile->text());
+    //    qDebug() << list;
     //    getParams();
 }
 ///----------------------------------------------------------------------------
@@ -148,7 +154,7 @@ void MainWidget::browseFile()
     if (!fn.isEmpty())
     {
         ui->LEFile->setText(fn);
-        //        qDebug() << "Input encoding = " << getEncodingFromFile(fn);
+        setInfoDictFromFile();
     }
 }
 ///----------------------------------------------------------------------------
@@ -287,67 +293,53 @@ void MainWidget::genIdx()
         /// replace tag to standart
         line.replace(tagBegin, "<h4>");
         line.replace(tagEnd, "</h4>");
-
-        if (line.indexOf("<h4>") == -1)
-        {
-
-            //            if (line.indexOf("<title>") != -1)
-
-
-
-            streamDict << line;
-            count += line.length() * 2;
-        }
     }
     while (line.indexOf("<h4>") == -1
            and !streamInput.atEnd());
 
-    if (ui->checkBParams->checkState())
-    {
-        QStringList list = getParams();
-        streamDict << "<html>\r\n";
-        streamDict << "<head>\r\n";
-        streamDict << "\t<meta name=\"Author\" content=\"" << list.at(0) << "\">\r\n";
-        streamDict << "\t<meta name=\"Date\" content=\"DateOfDict\">\r\n";
-        streamDict << "\t<meta name=\"Date\" content=\"" <<
-                      QDate::currentDate().toString() << "\">\r\n";
-        streamDict << "\t<meta name=\"Revision\" content=\"" << list.at(1) << "\">\r\n";
-        streamDict << "\t<meta name=\"Language\" content=\"" << list.at(2) <<  "\">\r\n";
-        streamDict << "\t<meta name=\"Type\" content=\"" << list.at(3) << "\">\r\n";
-        streamDict << "\t<meta name=\"Description\" content=\"" << list.at(4) << "\">\r\n";
-        streamDict << "\t<meta name=\"Rights\" content=\"" << list.at(5) << "\">\r\n";
-        streamDict << "\t<meta name=\"Numbering\" content=\"" << list.at(6) << "\">\r\n";
-        streamDict << "<title>" << ui->LENameDict->text() << "</title>\r\n";
-        streamDict << "</head>\r\n";
+    QStringList list = getParams();
+    streamDict << "<html>\r\n";
+    streamDict << "<head>\r\n";
+    streamDict << "\t<meta name=\"Author\" content=\"" << list.at(0) << "\">\r\n";
+    streamDict << "\t<meta name=\"Date\" content=\"DateOfDict\">\r\n";
+    streamDict << "\t<meta name=\"Date\" content=\"" <<
+                  QDate::currentDate().toString() << "\">\r\n";
+    streamDict << "\t<meta name=\"Revision\" content=\"" << list.at(1) << "\">\r\n";
+    streamDict << "\t<meta name=\"Language\" content=\"" << list.at(2) <<  "\">\r\n";
+    streamDict << "\t<meta name=\"Type\" content=\"" << list.at(3) << "\">\r\n";
+    streamDict << "\t<meta name=\"Description\" content=\"" << list.at(4) << "\">\r\n";
+    streamDict << "\t<meta name=\"Rights\" content=\"" << list.at(5) << "\">\r\n";
+    streamDict << "\t<meta name=\"Numbering\" content=\"" << list.at(6) << "\">\r\n";
+    streamDict << "<title>" << ui->LENameDict->text() << "</title>\r\n";
+    streamDict << "</head>\r\n";
 
-        QString str;
-        str = "<html>\r\n";
-        count += str.length();
-        str = "<head>\r\n";
-        count += str.length();
-        str = QString("\t<meta name=\"Author\" content=\"%1\">\r\n").arg(list.at(0));
-        count += str.length();
-        str = QString("\t<meta name=\"Date\" content=\"DateOfDict\">\r\n");
-        count += str.length();
-        str = QString("\t<meta name=\"Date\" content=\"%1\">\r\n").arg(QDate::currentDate().toString());
-        count += str.length();
-        str = QString("\t<meta name=\"Revision\" content=\"%1\">\r\n").arg(list.at(1));
-        count += str.length();
-        str = QString("\t<meta name=\"Language\" content=\"%1\">\r\n").arg(list.at(2));
-        count += str.length();
-        str = QString("\t<meta name=\"Type\" content=\"%1\">\r\n").arg(list.at(3));
-        count += str.length();
-        str = QString("\t<meta name=\"Description\" content=\"%1\">\r\n").arg(list.at(4));
-        count += str.length();
-        str = QString("\t<meta name=\"Rights\" content=\"%1\">\r\n").arg(list.at(5));
-        count += str.length();
-        str = QString("\t<meta name=\"Numbering\" content=\"%1\">\r\n").arg(list.at(6));
-        count += str.length();
-        str = QString("<title>%1</title>\r\n").arg(ui->LENameDict->text());
-        count += str.length();
-        str = QString("</head>\r\n");
-        count += str.length();
-    }
+    str = "<html>\r\n";
+    count += str.length();
+    str = "<head>\r\n";
+    count += str.length();
+    str = QString("\t<meta name=\"Author\" content=\"%1\">\r\n").arg(list.at(0));
+    count += str.length();
+    str = QString("\t<meta name=\"Date\" content=\"DateOfDict\">\r\n");
+    count += str.length();
+    str = QString("\t<meta name=\"Date\" content=\"%1\">\r\n").arg(QDate::currentDate().toString());
+    count += str.length();
+    str = QString("\t<meta name=\"Revision\" content=\"%1\">\r\n").arg(list.at(1));
+    count += str.length();
+    str = QString("\t<meta name=\"Language\" content=\"%1\">\r\n").arg(list.at(2));
+    count += str.length();
+    str = QString("\t<meta name=\"Type\" content=\"%1\">\r\n").arg(list.at(3));
+    count += str.length();
+    str = QString("\t<meta name=\"Description\" content=\"%1\">\r\n").arg(list.at(4));
+    count += str.length();
+    str = QString("\t<meta name=\"Rights\" content=\"%1\">\r\n").arg(list.at(5));
+    count += str.length();
+    str = QString("\t<meta name=\"Numbering\" content=\"%1\">\r\n").arg(list.at(6));
+    count += str.length();
+    str = QString("<title>%1</title>\r\n").arg(ui->LENameDict->text());
+    count += str.length();
+    str = QString("</head>\r\n");
+    count += str.length();
+
 
     //-----------
 
@@ -417,10 +409,10 @@ void MainWidget::showWordInTable()
 
     QStringList listWord;
     QStringList listDescription;
-//   listWord = getParams();
-//   listDescription = getParams();
+    //   listWord = getParams();
+    //   listDescription = getParams();
 
-//    qDebug() << list;
+    //    qDebug() << list;
     int ph4 = QString("<h4>").length();
     for (int i = 0; i < list.size(); i++)
     {
@@ -492,18 +484,18 @@ void MainWidget::showHtmlEditor()
 void MainWidget::editWordInPos(int row, int column)
 {
     Q_UNUSED(row);
-//    qDebug() << "column = " << column
-//             << "row = " << row;
+    //    qDebug() << "column = " << column
+    //             << "row = " << row;
     if (column == 1)
     {
         QString old = ui->tableEdit->currentItem()->data(0).toString();
-//        qDebug() << old;
+        //        qDebug() << old;
 
         QString path_to_file = QDir::currentPath()
                 + "/edit.html";
         QFile::remove(path_to_file);
 
-//        qDebug() << path_to_file;
+        //        qDebug() << path_to_file;
         createEmptyHtml(path_to_file, "edit", old);
         gui_htmleditor->load(path_to_file);
         gui_htmleditor->show();
@@ -512,7 +504,7 @@ void MainWidget::editWordInPos(int row, int column)
 ///----------------------------------------------------------------------------
 void MainWidget::replaceStr(QString newstr)
 {
-//    qDebug() << newstr;
+    //    qDebug() << newstr;
     QString old = ui->tableEdit->currentItem()->data(0).toString();
     replaceStrInFile(ui->LEFile->text(),
                      old,
@@ -520,3 +512,16 @@ void MainWidget::replaceStr(QString newstr)
     QFile::remove(QDir::currentPath() + "/edit.html");
 }
 ///----------------------------------------------------------------------------
+void MainWidget::setInfoDictFromFile()
+{
+    QString filePath = ui->LEFile->text();
+    QStringList list = getInfoFromFile(filePath);
+
+    ui->LEAuthor->setText(list.at(0));
+    ui->spinBoxVersion->setValue(list.at(1).toDouble());
+    ui->comBoxLang->setCurrentIndex(ui->comBoxLang->findText(list.at(2)));
+    ui->comBoxType->setCurrentIndex(ui->comBoxType->findText(list.at(3)));
+    ui->LEDescription->setText(list.at(4));
+    ui->LECopyright->setText(list.at(5));
+    ui->LENumbering->setText(list.at(6));
+}

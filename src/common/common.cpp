@@ -278,14 +278,15 @@ QString getTextFromHtmlFile(QString filePath)
 {
     QString str = "";
     QFile file(filePath);
-//    qDebug() << filePath;
+    //    qDebug() << filePath;
     file.close();
     if (file.open(QIODevice::ReadOnly))
     {
         QTextStream stream(&file);
-        stream.setCodec(getCodecOfEncoding("UTF-8"));
+        QString encoding = getEncodingFromFile(filePath);
+        stream.setCodec(getCodecOfEncoding(encoding));
         str = stream.readAll();
-//        qDebug() << "str = " << str;
+        //        qDebug() << "str = " << str;
         int body = QString("<body>").length();
         int posBegin = str.indexOf("<body>");
 
@@ -303,4 +304,109 @@ QString getTextFromHtmlFile(QString filePath)
 }
 
 ///----------------------------------------------------------------------------
+QStringList getInfoFromFile(QString file_path)
+{
+    QStringList list;
+    if(QFile::exists(file_path))
+    {
+        QString encoding = getEncodingFromFile(file_path);
+        QFile file(file_path);
+        QString str;
+        QString info[7];
+        if(file.open(QIODevice::ReadOnly))
+        {
+            QTextStream stream(&file);
+            stream.setCodec(getCodecOfEncoding(encoding));
+            do
+            {
+                str = stream.readLine();
+                if (str.indexOf("<meta name=\"Author\"") != -1)
+                    info[0] = getParamInfo(&str, "Author");
+                if (str.indexOf("<meta name=\"Revision\"") != -1)
+                    info[1] = getParamInfo(&str, "Revision");
+                if (str.indexOf("<meta name=\"Language\"") != -1)
+                    info[2] = getParamInfo(&str, "Language");
+                if (str.indexOf("<meta name=\"Type\"") != -1)
+                    info[3] = getParamInfo(&str, "Type");
+                if (str.indexOf("<meta name=\"Description\"") != -1)
+                    info[4] = getParamInfo(&str, "Description");
+                if (str.indexOf("<meta name=\"Rights\"") != -1)
+                    info[5] = getParamInfo(&str, "Rights");
+                if (str.indexOf("<meta name=\"Numbering\"") != -1)
+                    info[6] = getParamInfo(&str, "Numbering");
+            } while(!stream.atEnd());
+            file.close();
+
+            for (int i = 0; i < 7; i++)
+            {
+                list << info[i];
+            }
+        }
+        else
+        {
+            qDebug() << "Error: not open file for read(get info from file):"
+                     << file_path;
+        }
+
+
+    }
+
+    return list;
+}
+///----------------------------------------------------------------------------
+QString getParamInfo(QString *inputstr, QString param)
+{
+    QString str = *inputstr;
+    QString remove = "<meta name=\"" + param + "\" content=\"";
+    str.remove(remove)
+            .remove("\">");
+    str = removeSpaces(str);
+    return str;
+}
+
+///----------------------------------------------------------------------------
+QString removeSpaces(QString str)
+{
+    /// translate to hindi
+    /// bad work
+    /// str.simplified()
+    /// remove after word
+    bool flag = true;
+    int i = 0;
+    do
+    {
+        if(str.at(i) == ' ')
+        {
+            str.remove(i,1);
+            i--;
+        }
+        else
+        {
+            flag = false;
+        }
+
+        i++;
+    } while(flag);
+
+    /// remove before word
+    i = 1;
+    flag = true;
+    do
+    {
+        if(str.at(str.length()-i) == ' ')
+        {
+            str.remove(str.length()-i,1);
+            i++;
+        }
+        else
+        {
+            flag = false;
+        }
+
+        i--;
+    } while(flag);
+
+    return str;
+}
+
 ///----------------------------------------------------------------------------

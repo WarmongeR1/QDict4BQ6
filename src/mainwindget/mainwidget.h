@@ -167,6 +167,11 @@ private:
       Set data to type combobox
       */
     void setTypeList();
+    /**
+      @function
+      Set data from file in LineEdits params
+      */
+    void setInfoDictFromFile();
 };
 
 #endif // MAINWIDGET_H

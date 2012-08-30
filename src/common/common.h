@@ -113,6 +113,27 @@ QString getTextFromHtmlFile(QString fileName);
   @param new_text
   */
 void replaceStrInFile(QString filepath, QString old, QString newstr);
+/**
+  @function
+  Return info from dict input file
+  Return list(QStringList)
+  @param file_path
+  @return info
+  */
+QStringList getInfoFromFile(QString file_path);
+/**
+  @function
+  Return param from dict file
+  Example:
+  Input <meta name="Author" content="TEXT"> , Author
+  Output TEXT
+  @param str
+  @param param
+  @return param
+  */
+QString getParamInfo(QString *inputstr, QString param);
+
+QString removeSpaces(QString str);
 
 
 #endif // end __COMMON_H
