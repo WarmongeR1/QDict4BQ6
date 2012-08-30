@@ -25,7 +25,7 @@ MainWidget::MainWidget(QWidget *parent) :
     createConnect();
     trIcon->show();  //display tray
 
-    debug();
+//    debug();
     //    genIdx();
 }
 ///----------------------------------------------------------------------------
@@ -114,6 +114,8 @@ void MainWidget::createConnect()
     connect(ui->pBAddWord, SIGNAL(clicked()), SLOT(addWordToTable()));
     /// remove word from table
     connect(ui->pBRemove, SIGNAL(clicked()), SLOT(removeWordFromTable()));
+    /// dynamic find
+    connect(ui->LEFile, SIGNAL(textChanged(QString)), SLOT(find(QString)));
 }
 ///----------------------------------------------------------------------------
 void MainWidget::createActions()
@@ -195,12 +197,12 @@ void MainWidget::clearFlied()
     ui->LEFile->clear();
     ui->LEFind->clear();
     ui->LENameDict->clear();
-    find();
+//    find("");
 }
 ///----------------------------------------------------------------------------
-void MainWidget::find()
+void MainWidget::find(QString text)
 {
-
+//    ui->tableEdit->findItems(text);
 }
 ///----------------------------------------------------------------------------
 void MainWidget::editWord()

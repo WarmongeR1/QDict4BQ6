@@ -80,9 +80,9 @@ private slots:
 
     /**
       @function
-      Find in table
+      Find in table text
       */
-    void find();
+    void find(QString string);
 
     /**
       @function

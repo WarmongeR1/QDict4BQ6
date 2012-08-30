@@ -341,7 +341,7 @@ Do you want to save your changes?</source>
         <translation>Ctrl+B</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindget/mainwidget.ui" line="149"/>
+        <location filename="../../src/mainwindget/mainwidget.ui" line="142"/>
         <source>Parameters</source>
         <translation>Параметры</translation>
     </message>
@@ -429,68 +429,72 @@ p, li { white-space: pre-wrap; }
         <translation>Ctrl+F</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindget/mainwidget.ui" line="128"/>
         <source>Params</source>
-        <translation>Параметры</translation>
+        <translation type="obsolete">Параметры</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindget/mainwidget.ui" line="155"/>
+        <location filename="../../src/mainwindget/mainwidget.ui" line="148"/>
         <source>Author:</source>
         <translation>Автор:</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindget/mainwidget.ui" line="165"/>
+        <location filename="../../src/mainwindget/mainwidget.ui" line="158"/>
         <source>Version:</source>
         <translation>Версия:</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindget/mainwidget.ui" line="179"/>
+        <location filename="../../src/mainwindget/mainwidget.ui" line="172"/>
         <source>Language:</source>
         <translation>Язык:</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindget/mainwidget.ui" line="189"/>
+        <location filename="../../src/mainwindget/mainwidget.ui" line="182"/>
         <source>Type:</source>
         <translation>Тип:</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindget/mainwidget.ui" line="199"/>
+        <location filename="../../src/mainwindget/mainwidget.ui" line="192"/>
         <source>Description:</source>
         <translation>Описание:</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindget/mainwidget.ui" line="209"/>
+        <location filename="../../src/mainwindget/mainwidget.ui" line="202"/>
         <source>Copyright:</source>
         <translation>Авторские права:</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindget/mainwidget.ui" line="219"/>
+        <location filename="../../src/mainwindget/mainwidget.ui" line="212"/>
         <source>Numbering:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/mainwindget/mainwidget.ui" line="243"/>
-        <location filename="../../src/mainwindget/mainwidget.ui" line="249"/>
+        <location filename="../../src/mainwindget/mainwidget.ui" line="236"/>
+        <location filename="../../src/mainwindget/mainwidget.ui" line="242"/>
         <source>Edit</source>
         <translation>Редактировать</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindget/mainwidget.ui" line="256"/>
+        <location filename="../../src/mainwindget/mainwidget.ui" line="249"/>
         <source>Find:</source>
         <translation>Поиск:</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindget/mainwidget.ui" line="266"/>
+        <location filename="../../src/mainwindget/mainwidget.ui" line="259"/>
         <source>Add word</source>
         <translation>Добавить слово</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindget/mainwidget.ui" line="269"/>
+        <location filename="../../src/mainwindget/mainwidget.ui" line="262"/>
         <source>Ctrl+W</source>
         <translation>Ctrl+W</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindget/mainwidget.ui" line="276"/>
+        <location filename="../../src/mainwindget/mainwidget.ui" line="269"/>
+        <source>Remove</source>
+        <translation>Удалить</translation>
+    </message>
+    <message>
+        <location filename="../../src/mainwindget/mainwidget.ui" line="279"/>
         <source>Editing double click on a word</source>
         <translation>Для редактирования дважды нажмите на слово</translation>
     </message>
@@ -515,32 +519,32 @@ p, li { white-space: pre-wrap; }
         <translation>Выход</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindget/mainwidget.cpp" line="111"/>
+        <location filename="../../src/mainwindget/mainwidget.cpp" line="123"/>
         <source>&amp;Hide</source>
         <translation>&amp;Скрыть</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindget/mainwidget.cpp" line="114"/>
+        <location filename="../../src/mainwindget/mainwidget.cpp" line="126"/>
         <source>&amp;Expand</source>
         <translation>&amp;Развернуть</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindget/mainwidget.cpp" line="117"/>
+        <location filename="../../src/mainwindget/mainwidget.cpp" line="129"/>
         <source>&amp;Restore</source>
         <translation>&amp;Восстановить</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindget/mainwidget.cpp" line="120"/>
+        <location filename="../../src/mainwindget/mainwidget.cpp" line="132"/>
         <source>Q&amp;uit</source>
         <translation>&amp;Выход</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindget/mainwidget.cpp" line="146"/>
+        <location filename="../../src/mainwindget/mainwidget.cpp" line="158"/>
         <source>Open File...</source>
         <translation>&amp;Открыть файл</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindget/mainwidget.cpp" line="147"/>
+        <location filename="../../src/mainwindget/mainwidget.cpp" line="159"/>
         <source>HTML-Files (*.htm *.html);;Text files (*.txt)</source>
         <translation>HTML-файлы (*.htm *.html);;Текстовые файлы (*.txt)</translation>
     </message>
