@@ -25,7 +25,7 @@ MainWidget::MainWidget(QWidget *parent) :
     createConnect();
     trIcon->show();  //display tray
 
-//    debug();
+    //    debug();
     //    genIdx();
 }
 ///----------------------------------------------------------------------------
@@ -197,12 +197,12 @@ void MainWidget::clearFlied()
     ui->LEFile->clear();
     ui->LEFind->clear();
     ui->LENameDict->clear();
-//    find("");
+    //    find("");
 }
 ///----------------------------------------------------------------------------
 void MainWidget::find(QString text)
 {
-//    ui->tableEdit->findItems(text);
+    //    ui->tableEdit->findItems(text);
 }
 ///----------------------------------------------------------------------------
 void MainWidget::editWord()
@@ -212,189 +212,210 @@ void MainWidget::editWord()
 ///----------------------------------------------------------------------------
 void MainWidget::genIdx()
 {
-    /// create output folder
-    QString pathOutputFolder = QDir::currentPath() + "/Dictionaries";
-
-    /// mkdir cur_path/Dictionaries
-    QDir dir(pathOutputFolder);
-    dir.mkpath(pathOutputFolder);
-
-    /// copy file
-    // надо не копировать, а перекодировать в utf-16 c bom
-    QString oldPathToFile = ui->LEFile->text();
-    QString fileName = getFileNameAbs(oldPathToFile) + ".htm";
-    QString newPathToFile = pathOutputFolder + "/" + fileName;
-
-    /// gen idx file
-    QString fileNameIdx = pathOutputFolder + "/" +
-            getFileNameAbs(oldPathToFile) + ".idx";
-
-
-    /// open files
-    QFile fileOld(oldPathToFile);
-    if (!fileOld.open(QIODevice::ReadOnly))
+    QString s = "";  //holds list of errors
+    bool er = false;
+    if (ui->LENameDict->text().isEmpty())
     {
-        qDebug() << "Error(genIdx()): not open dict file for read: " << oldPathToFile;
-        return;
+        s.append(tr("- Please input name of dict.\n"));
+        er = true;
     }
-    /// open file for dict
-    QFile fileDict(newPathToFile);
-    fileDict.remove();
-    if (!fileDict.open(QIODevice::WriteOnly))
+    if (ui->LEFile->text().isEmpty())
     {
-        qDebug() << "Error(genIdx()): not open dict file for write: " << fileName;
-        return;
-    }
-    /// open file for idx
-    QFile fileIdx(fileNameIdx);
-    fileIdx.remove();
-    if (!fileIdx.open(QIODevice::WriteOnly))
-    {
-        qDebug() << "Error(genIdx()): not open inx file for write: " << fileNameIdx;
-        return;
+        s.append(tr("- Please browse file.\n"));
+        er = true;
     }
 
-    /// fill idx, fill dict
-    /// set codecs
-    QTextStream streamInput(&fileOld);
-    bool flag = false;
-    // TODO: edit
-    QString encoding = getEncodingFromFile(oldPathToFile);
-    if (encoding == "ASCII")
+    if (er)
     {
-        flag = true;
+        QMessageBox::critical(this, tr("Gen idx"), s);
     }
     else
     {
-        streamInput.setCodec(getCodecOfEncoding(encoding));
-    }
-    // TODO: end edit
 
-    QTextStream streamIdx(&fileIdx);
-    streamIdx.setCodec(getCodecOfEncoding("UTF-16"));
-    streamIdx.setGenerateByteOrderMark(true);
+        /// create output folder
+        QString pathOutputFolder = QDir::currentPath() + "/Dictionaries";
 
-    QTextStream streamDict(&fileDict);
-    streamDict.setCodec(getCodecOfEncoding("UTF-16"));
-    streamDict.setGenerateByteOrderMark(true);
+        /// mkdir cur_path/Dictionaries
+        QDir dir(pathOutputFolder);
+        dir.mkpath(pathOutputFolder);
 
-    /// fill
-    streamIdx << ui->LENameDict->text() << "\r\n";
+        /// copy file
+        // надо не копировать, а перекодировать в utf-16 c bom
+        QString oldPathToFile = ui->LEFile->text();
+        QString fileName = getFileNameAbs(oldPathToFile) + ".htm";
+        QString newPathToFile = pathOutputFolder + "/" + fileName;
 
-    QString line, str, str2;
-    int count = 0;
-    count++;
-
-    QString tagBegin = ui->LEHeadLines->text();
-    QString tagEnd = ui->LEArticles->text();
-
-    //----------
-    /// skip begin text
-
-    do
-    {
-        line = streamInput.readLine() + "\r\n";
-
-        /// edit to standart
-        /// replace tag to standart
-        line.replace(tagBegin, "<h4>");
-        line.replace(tagEnd, "</h4>");
-    }
-    while (line.indexOf("<h4>") == -1
-           and !streamInput.atEnd());
-
-    QStringList list = getParams();
-    streamDict << "<html>\r\n";
-    streamDict << "<head>\r\n";
-    streamDict << "\t<meta name=\"Author\" content=\"" << list.at(0) << "\">\r\n";
-    streamDict << "\t<meta name=\"Date\" content=\"DateOfDict\">\r\n";
-    streamDict << "\t<meta name=\"Date\" content=\"" <<
-                  QDate::currentDate().toString() << "\">\r\n";
-    streamDict << "\t<meta name=\"Revision\" content=\"" << list.at(1) << "\">\r\n";
-    streamDict << "\t<meta name=\"Language\" content=\"" << list.at(2) <<  "\">\r\n";
-    streamDict << "\t<meta name=\"Type\" content=\"" << list.at(3) << "\">\r\n";
-    streamDict << "\t<meta name=\"Description\" content=\"" << list.at(4) << "\">\r\n";
-    streamDict << "\t<meta name=\"Rights\" content=\"" << list.at(5) << "\">\r\n";
-    streamDict << "\t<meta name=\"Numbering\" content=\"" << list.at(6) << "\">\r\n";
-    streamDict << "<title>" << ui->LENameDict->text() << "</title>\r\n";
-    streamDict << "</head>\r\n";
-
-    str = "<html>\r\n";
-    count += str.length();
-    str = "<head>\r\n";
-    count += str.length();
-    str = QString("\t<meta name=\"Author\" content=\"%1\">\r\n").arg(list.at(0));
-    count += str.length();
-    str = QString("\t<meta name=\"Date\" content=\"DateOfDict\">\r\n");
-    count += str.length();
-    str = QString("\t<meta name=\"Date\" content=\"%1\">\r\n").arg(QDate::currentDate().toString());
-    count += str.length();
-    str = QString("\t<meta name=\"Revision\" content=\"%1\">\r\n").arg(list.at(1));
-    count += str.length();
-    str = QString("\t<meta name=\"Language\" content=\"%1\">\r\n").arg(list.at(2));
-    count += str.length();
-    str = QString("\t<meta name=\"Type\" content=\"%1\">\r\n").arg(list.at(3));
-    count += str.length();
-    str = QString("\t<meta name=\"Description\" content=\"%1\">\r\n").arg(list.at(4));
-    count += str.length();
-    str = QString("\t<meta name=\"Rights\" content=\"%1\">\r\n").arg(list.at(5));
-    count += str.length();
-    str = QString("\t<meta name=\"Numbering\" content=\"%1\">\r\n").arg(list.at(6));
-    count += str.length();
-    str = QString("<title>%1</title>\r\n").arg(ui->LENameDict->text());
-    count += str.length();
-    str = QString("</head>\r\n");
-    count += str.length();
+        /// gen idx file
+        QString fileNameIdx = pathOutputFolder + "/" +
+                getFileNameAbs(oldPathToFile) + ".idx";
 
 
-    //-----------
-
-    do
-    {
-        /// edit to standart
-        /// replace tag to standart
-        line.replace(tagBegin, "<h4>");
-        line.replace(tagEnd, "</h4>");
-
-        int h4 = QString("<h4>").length();
-
-        int posH4_1 = line.indexOf("<h4>");
-        int posH4_2 = line.indexOf("<h4>", posH4_1);
-
-        /// split text  mid <h4> and <h4>
-        /// if the text in multiple lines
-        while ((posH4_2 == -1 or posH4_1 == posH4_2)
-               and !streamInput.atEnd())
+        /// open files
+        QFile fileOld(oldPathToFile);
+        if (!fileOld.open(QIODevice::ReadOnly))
         {
+            qDebug() << "Error(genIdx()): not open dict file for read: " << oldPathToFile;
+            return;
+        }
+        /// open file for dict
+        QFile fileDict(newPathToFile);
+        fileDict.remove();
+        if (!fileDict.open(QIODevice::WriteOnly))
+        {
+            qDebug() << "Error(genIdx()): not open dict file for write: " << fileName;
+            return;
+        }
+        /// open file for idx
+        QFile fileIdx(fileNameIdx);
+        fileIdx.remove();
+        if (!fileIdx.open(QIODevice::WriteOnly))
+        {
+            qDebug() << "Error(genIdx()): not open inx file for write: " << fileNameIdx;
+            return;
+        }
+
+        /// fill idx, fill dict
+        /// set codecs
+        QTextStream streamInput(&fileOld);
+        bool flag = false;
+        // TODO: edit
+        QString encoding = getEncodingFromFile(oldPathToFile);
+        if (encoding == "ASCII")
+        {
+            flag = true;
+        }
+        else
+        {
+            streamInput.setCodec(getCodecOfEncoding(encoding));
+        }
+        // TODO: end edit
+
+        QTextStream streamIdx(&fileIdx);
+        streamIdx.setCodec(getCodecOfEncoding("UTF-16"));
+        streamIdx.setGenerateByteOrderMark(true);
+
+        QTextStream streamDict(&fileDict);
+        streamDict.setCodec(getCodecOfEncoding("UTF-16"));
+        streamDict.setGenerateByteOrderMark(true);
+
+        /// fill
+        streamIdx << ui->LENameDict->text() << "\r\n";
+
+        QString line, str, str2;
+        int count = 0;
+        count++;
+
+        QString tagBegin = ui->LEHeadLines->text();
+        QString tagEnd = ui->LEArticles->text();
+
+        //----------
+        /// skip begin text
+
+        do
+        {
+            line = streamInput.readLine() + "\r\n";
+
+            /// edit to standart
+            /// replace tag to standart
+            line.replace(tagBegin, "<h4>");
+            line.replace(tagEnd, "</h4>");
+        }
+        while (line.indexOf("<h4>") == -1
+               and !streamInput.atEnd());
+
+        QStringList list = getParams();
+        streamDict << "<html>\r\n";
+        streamDict << "<head>\r\n";
+        streamDict << "\t<meta name=\"Author\" content=\"" << list.at(0) << "\">\r\n";
+        streamDict << "\t<meta name=\"Date\" content=\"DateOfDict\">\r\n";
+        streamDict << "\t<meta name=\"Date\" content=\"" <<
+                      QDate::currentDate().toString() << "\">\r\n";
+        streamDict << "\t<meta name=\"Revision\" content=\"" << list.at(1) << "\">\r\n";
+        streamDict << "\t<meta name=\"Language\" content=\"" << list.at(2) <<  "\">\r\n";
+        streamDict << "\t<meta name=\"Type\" content=\"" << list.at(3) << "\">\r\n";
+        streamDict << "\t<meta name=\"Description\" content=\"" << list.at(4) << "\">\r\n";
+        streamDict << "\t<meta name=\"Rights\" content=\"" << list.at(5) << "\">\r\n";
+        streamDict << "\t<meta name=\"Numbering\" content=\"" << list.at(6) << "\">\r\n";
+        streamDict << "<title>" << ui->LENameDict->text() << "</title>\r\n";
+        streamDict << "</head>\r\n";
+
+        str = "<html>\r\n";
+        count += str.length() * 2;
+        str = "<head>\r\n";
+        count += str.length() * 2;
+        str = QString("\t<meta name=\"Author\" content=\"%1\">\r\n").arg(list.at(0));
+        count += str.length() * 2;
+        str = QString("\t<meta name=\"Date\" content=\"DateOfDict\">\r\n");
+        count += str.length() * 2;
+        str = QString("\t<meta name=\"Date\" content=\"%1\">\r\n").arg(QDate::currentDate().toString());
+        count += str.length() * 2;
+        str = QString("\t<meta name=\"Revision\" content=\"%1\">\r\n").arg(list.at(1));
+        count += str.length() * 2;
+        str = QString("\t<meta name=\"Language\" content=\"%1\">\r\n").arg(list.at(2));
+        count += str.length() * 2;
+        str = QString("\t<meta name=\"Type\" content=\"%1\">\r\n").arg(list.at(3));
+        count += str.length() * 2;
+        str = QString("\t<meta name=\"Description\" content=\"%1\">\r\n").arg(list.at(4));
+        count += str.length() * 2;
+        str = QString("\t<meta name=\"Rights\" content=\"%1\">\r\n").arg(list.at(5));
+        count += str.length() * 2;
+        str = QString("\t<meta name=\"Numbering\" content=\"%1\">\r\n").arg(list.at(6));
+        count += str.length() * 2;
+        str = QString("<title>%1</title>\r\n").arg(ui->LENameDict->text());
+        count += str.length() * 2;
+        str = QString("</head>\r\n");
+        count += str.length() * 2;
+
+
+        //-----------
+
+        do
+        {
+            /// edit to standart
+            /// replace tag to standart
+            line.replace(tagBegin, "<h4>");
+            line.replace(tagEnd, "</h4>");
+
+            int h4 = QString("<h4>").length();
+
+            int posH4_1 = line.indexOf("<h4>");
+            int posH4_2 = line.indexOf("<h4>", posH4_1);
+
+            /// split text  mid <h4> and <h4>
+            /// if the text in multiple lines
+            while ((posH4_2 == -1 or posH4_1 == posH4_2)
+                   and !streamInput.atEnd())
+            {
+                line.append(streamInput.readLine() + "\r\n");
+                posH4_2 = line.indexOf("<h4>", posH4_1 + h4);
+            }
+            str = line.mid(posH4_1,
+                           posH4_2 - posH4_1);
+
+            int posBegin = str.indexOf("<h4>");
+            int posEnd = str.indexOf("</h4>");
+            str2 = line.mid(posBegin + QString("<h4>").length(),
+                            posEnd - posBegin - QString("<h4>").length());
+            if (!str.isEmpty())
+            {
+                streamDict << str;
+            }
+
+            if (!str2.isEmpty())
+            {
+                int count2;
+                if (count %2 != 0)
+                    count++;
+
+                count2 = count;
+                streamIdx << str2 << "\r\n" << QString::number(count2) + "\r\n";
+            }
+            count += (str.length()) *2;
+            line.remove(str);
             line.append(streamInput.readLine() + "\r\n");
-            posH4_2 = line.indexOf("<h4>", posH4_1 + h4);
-        }
-        str = line.mid(posH4_1,
-                       posH4_2 - posH4_1);
-
-        int posBegin = str.indexOf("<h4>");
-        int posEnd = str.indexOf("</h4>");
-        str2 = line.mid(posBegin + QString("<h4>").length(),
-                        posEnd - posBegin - QString("<h4>").length());
-        if (!str.isEmpty())
-        {
-            streamDict << str;
-        }
-
-        if (!str2.isEmpty())
-        {
-            int count2;
-            if (count %2 != 0)
-                count++;
-
-            count2 = count;
-            streamIdx << str2 << "\r\n" << QString::number(count2) + "\r\n";
-        }
-        count += (str.length()) *2;
-        line.remove(str);
-        line.append(streamInput.readLine() + "\r\n");
-    } while (!streamInput.atEnd());
-    //        QMessageBox::information(0, "Gen idx file", "Operation Complete");
+        } while (!streamInput.atEnd());
+        QMessageBox::information(0, "Gen idx file", "Operation Complete");
+    }
 }
 ///----------------------------------------------------------------------------
 void MainWidget::showHideEdit(int flag)
@@ -418,7 +439,7 @@ void MainWidget::showWordInTable()
     //   listWord = getParams();
     //   listDescription = getParams();
 
-//        qDebug() << list;
+    //        qDebug() << list;
     int ph4 = QString("<h4>").length();
     for (int i = 0; i < list.size(); i++)
     {
@@ -433,8 +454,8 @@ void MainWidget::showWordInTable()
     }
 
     /// clear table
-//    ui->tableEdit->clearContents();
-//    ui->tableEdit->repaint();
+    //    ui->tableEdit->clearContents();
+    //    ui->tableEdit->repaint();
     for(int i = ui->tableEdit->rowCount(); i >= 0; i--)
     {
         ui->tableEdit->removeRow(i);
@@ -516,7 +537,7 @@ void MainWidget::editWordInPos(int row, int column)
 ///----------------------------------------------------------------------------
 void MainWidget::replaceStr(QString newstr)
 {
-//        qDebug() << newstr;
+    //        qDebug() << newstr;
     QString old = ui->tableEdit->currentItem()->data(0).toString();
     replaceStrInFile(ui->LEFile->text(),
                      old,
@@ -562,8 +583,8 @@ void MainWidget::removeWordFromTable()
 {
     int column = ui->tableEdit->currentItem()->column();
     int row = ui->tableEdit->currentItem()->row();
-//    qDebug() << "column = " << column
-//             << "row = " << row;
+    //    qDebug() << "column = " << column
+    //             << "row = " << row;
     QString word, description;
     if (column == 0)
     {
@@ -578,8 +599,8 @@ void MainWidget::removeWordFromTable()
 
     deleteWordFromDict(ui->LEFile->text(), word, description);
     showWordInTable();
-//    qDebug() << "word = " << word
-//             << "description = " << description;
+    //    qDebug() << "word = " << word
+    //             << "description = " << description;
 
 
 }
