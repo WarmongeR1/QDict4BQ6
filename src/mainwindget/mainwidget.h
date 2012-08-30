@@ -104,6 +104,18 @@ private slots:
       @param column
       */
     void editWordInPos(int row,int column);
+    /**
+      @function
+      Add item with
+      word name = ui->LEFind -> text()
+      description  = "nu description"
+      */
+    void addWordToTable();
+    /**
+      @function
+      Delete selected item from table
+      */
+    void removeWordFromTable();
 
     void replaceStr(QString newstr);
 

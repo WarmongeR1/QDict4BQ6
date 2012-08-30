@@ -132,9 +132,23 @@ QStringList getInfoFromFile(QString file_path);
   @return param
   */
 QString getParamInfo(QString *inputstr, QString param);
-
+/**
+  @function
+  Hindi function for remove spaces
+  dont use QString::simplified()
+  used while :)
+  @param text
+  */
 QString removeSpaces(QString str);
-
+/**
+  @function
+  Delete word in file
+  Delete <h4>word</h4> and description texts
+  @param file_path
+  @param word
+  @param description
+  */
+void deleteWordInDict(QString filePath, QString word, QString description);
 
 #endif // end __COMMON_H
 

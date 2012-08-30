@@ -110,6 +110,10 @@ void MainWidget::createConnect()
     connect(ui->tableEdit, SIGNAL(cellDoubleClicked(int,int)), SLOT(editWordInPos(int,int)));
     /// saveWordInfo
     connect(gui_htmleditor, SIGNAL(saveWordInfo(QString)), SLOT(replaceStr(QString)));
+    /// add word to table
+    connect(ui->pBAddWord, SIGNAL(clicked()), SLOT(addWordToTable()));
+    /// remove word from table
+    connect(ui->pBRemove, SIGNAL(clicked()), SLOT(removeWordFromTable()));
 }
 ///----------------------------------------------------------------------------
 void MainWidget::createActions()
@@ -525,3 +529,48 @@ void MainWidget::setInfoDictFromFile()
     ui->LECopyright->setText(list.at(5));
     ui->LENumbering->setText(list.at(6));
 }
+///----------------------------------------------------------------------------
+void MainWidget::addWordToTable()
+{
+    QString wordName = ui->LEFind->text();
+    QString wordDescription = "no description";
+
+    QTableWidgetItem *wordNameItem = new QTableWidgetItem(wordName);
+    wordNameItem->setFlags(wordNameItem->flags() ^ Qt::ItemIsEditable);
+
+    QTableWidgetItem *descriptionItem = new QTableWidgetItem(wordDescription);
+    descriptionItem->setFlags(descriptionItem->flags() ^ Qt::ItemIsEditable);
+
+    int row = ui->tableEdit->rowCount();
+    ui->tableEdit->insertRow(row);
+
+    ui->tableEdit->setItem(row, 0, wordNameItem);
+    ui->tableEdit->setItem(row, 1, descriptionItem);
+}
+///----------------------------------------------------------------------------
+void MainWidget::removeWordFromTable()
+{
+    int column = ui->tableEdit->currentItem()->column();
+    int row = ui->tableEdit->currentItem()->row();
+    qDebug() << "column = " << column
+             << "row = " << row;
+    QString word, description;
+    if (column == 0)
+    {
+        word = ui->tableEdit->item(row, column)->data(0).toString();
+        description = ui->tableEdit->item(row, column +1)->data(0).toString();
+    }
+    if (column == 1)
+    {
+        description = ui->tableEdit->item(row, column)->data(0).toString();
+        word = ui->tableEdit->item(row, column -1)->data(0).toString();
+    }
+
+    deleteWordInDict(ui->LEFile->text(), word, description);
+    showWordInTable();
+    qDebug() << "word = " << word
+             << "description = " << description;
+
+
+}
+///----------------------------------------------------------------------------

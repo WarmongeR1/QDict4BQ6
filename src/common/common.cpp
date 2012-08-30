@@ -130,7 +130,18 @@ QStringList getListWord(QString filename)
     if (file.open(QIODevice::ReadOnly))
     {
         QTextStream streamInput(&file);
-        QString line = streamInput.readLine();
+        streamInput.setCodec(getCodecOfEncoding(getEncodingFromFile(filename)));
+        QString line;
+        do
+        {
+            line = streamInput.readLine() + "\r\n";
+            /// edit to standart
+            /// replace tag to standart
+//            line.replace(tagBegin, "<h4>");
+//            line.replace(tagEnd, "</h4>");
+        }
+        while (line.indexOf("<h4>") == -1
+               and !streamInput.atEnd());
         int count;
         QString str, str2;
         do
@@ -207,6 +218,29 @@ bool createEmptyHtml(QString fileName, QString title, QString text)
             ts << "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" />" << endl;
             ts << "<title>" << title <<"</title>" << endl;
             ts << "</head>\n<body>\n" << text << "\n</body>\n</html>" << endl;
+            file.close();
+        }
+        else
+        {
+            ret = false;
+        }
+    }
+    return ret;
+}
+///----------------------------------------------------------------------------
+bool createEmpty(QString fileName, QString text)
+{
+    bool ret = true;
+    QFile file(fileName);
+    if (!file.exists())
+    {
+        //create file if it's not exist
+        if (file.open(QIODevice::ReadWrite))
+        {
+            //try to open or create file
+            QTextStream ts(&file);
+            ts.setCodec("UTF-8");
+            ts << text;
             file.close();
         }
         else
@@ -347,8 +381,6 @@ QStringList getInfoFromFile(QString file_path)
             qDebug() << "Error: not open file for read(get info from file):"
                      << file_path;
         }
-
-
     }
 
     return list;
@@ -408,5 +440,17 @@ QString removeSpaces(QString str)
 
     return str;
 }
-
 ///----------------------------------------------------------------------------
+void deleteWordInDict(QString filePath, QString word, QString description)
+{
+    QString text = getTextFromHtmlFile(filePath);
+    text.remove(QString("<h4>%1</h4>").arg(word))
+            .remove(description);
+    QFile::remove(filePath);
+    createEmpty(filePath, text);
+}
+///----------------------------------------------------------------------------
+///----------------------------------------------------------------------------
+///----------------------------------------------------------------------------
+///----------------------------------------------------------------------------
+
