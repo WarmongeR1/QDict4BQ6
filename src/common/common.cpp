@@ -132,13 +132,11 @@ QStringList getListWord(QString filename)
         QTextStream streamInput(&file);
         streamInput.setCodec(getCodecOfEncoding(getEncodingFromFile(filename)));
         QString line;
+
+        /// split bad string
         do
         {
             line = streamInput.readLine() + "\r\n";
-            /// edit to standart
-            /// replace tag to standart
-//            line.replace(tagBegin, "<h4>");
-//            line.replace(tagEnd, "</h4>");
         }
         while (line.indexOf("<h4>") == -1
                and !streamInput.atEnd());
@@ -191,6 +189,9 @@ QStringList getListWord(QString filename)
             //            QString sttt = str2 + "<|>" + str;
 
             line.append(streamInput.readLine() + "\r\n");
+            line.remove("</body>")
+                    .remove("</html>")
+                    .remove("<body>");
         } while (!streamInput.atEnd());
         file.close();
     }
@@ -320,14 +321,14 @@ QString getTextFromHtmlFile(QString filePath)
         QString encoding = getEncodingFromFile(filePath);
         stream.setCodec(getCodecOfEncoding(encoding));
         str = stream.readAll();
-        //        qDebug() << "str = " << str;
-        int body = QString("<body>").length();
-        int posBegin = str.indexOf("<body>");
+//        //        qDebug() << "str = " << str;
+//        int body = QString("<body>").length();
+//        int posBegin = str.indexOf("<body>");
 
-        int posEnd = str.indexOf("</body>");
-        str = str.mid(posBegin + body,
-                      posEnd - posBegin - body);
-
+//        int posEnd = str.indexOf("</body>");
+//        str = str.mid(posBegin + body,
+//                      posEnd - posBegin - body);
+        file.close();
     }
     else
     {
@@ -441,7 +442,7 @@ QString removeSpaces(QString str)
     return str;
 }
 ///----------------------------------------------------------------------------
-void deleteWordInDict(QString filePath, QString word, QString description)
+void deleteWordFromDict(QString filePath, QString word, QString description)
 {
     QString text = getTextFromHtmlFile(filePath);
     text.remove(QString("<h4>%1</h4>").arg(word))
@@ -450,6 +451,15 @@ void deleteWordInDict(QString filePath, QString word, QString description)
     createEmpty(filePath, text);
 }
 ///----------------------------------------------------------------------------
+void addWordToDict(QString filePath, QString word, QString description)
+{
+    QString text = getTextFromHtmlFile(filePath);
+    text.append(QString("\r\n<h4>%1</h4> %2")
+                .arg(word)
+                .arg(description));
+    QFile::remove(filePath);
+    createEmpty(filePath, text);
+}
 ///----------------------------------------------------------------------------
 ///----------------------------------------------------------------------------
 ///----------------------------------------------------------------------------

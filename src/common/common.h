@@ -148,7 +148,16 @@ QString removeSpaces(QString str);
   @param word
   @param description
   */
-void deleteWordInDict(QString filePath, QString word, QString description);
+void deleteWordFromDict(QString filePath, QString word, QString description);
+/**
+  @function
+  Add word in file
+  Add <h4>word</h4> and description texts
+  @param file_path
+  @param word
+  @param description
+  */
+void addWordToDict(QString filePath, QString word, QString description);
 
 #endif // end __COMMON_H
 

@@ -416,7 +416,7 @@ void MainWidget::showWordInTable()
     //   listWord = getParams();
     //   listDescription = getParams();
 
-    //    qDebug() << list;
+//        qDebug() << list;
     int ph4 = QString("<h4>").length();
     for (int i = 0; i < list.size(); i++)
     {
@@ -426,13 +426,19 @@ void MainWidget::showWordInTable()
         int posEnd = line.indexOf("</h4>");
         listWord << line.mid(posBegin + ph4,
                              posEnd - ph4);
-        listDescription << line.mid(posEnd + ph4+1,
+        listDescription << line.mid(posEnd + ph4 + 1,
                                     line.length() - posEnd - ph4-1);
     }
 
+    /// clear table
+//    ui->tableEdit->clearContents();
+//    ui->tableEdit->repaint();
+    for(int i = ui->tableEdit->rowCount(); i >= 0; i--)
+    {
+        ui->tableEdit->removeRow(i);
+    }
 
     /// fill table
-    ui->tableEdit->clear();
     for (int i = 0; i < listWord.size(); ++i)
     {
         QTableWidgetItem *wordNameItem = new QTableWidgetItem(listWord.at(i));
@@ -514,6 +520,7 @@ void MainWidget::replaceStr(QString newstr)
                      old,
                      newstr);
     QFile::remove(QDir::currentPath() + "/edit.html");
+    showWordInTable();
 }
 ///----------------------------------------------------------------------------
 void MainWidget::setInfoDictFromFile()
@@ -546,14 +553,15 @@ void MainWidget::addWordToTable()
 
     ui->tableEdit->setItem(row, 0, wordNameItem);
     ui->tableEdit->setItem(row, 1, descriptionItem);
+    addWordToDict(ui->LEFile->text(), wordName, wordDescription);
 }
 ///----------------------------------------------------------------------------
 void MainWidget::removeWordFromTable()
 {
     int column = ui->tableEdit->currentItem()->column();
     int row = ui->tableEdit->currentItem()->row();
-    qDebug() << "column = " << column
-             << "row = " << row;
+//    qDebug() << "column = " << column
+//             << "row = " << row;
     QString word, description;
     if (column == 0)
     {
@@ -566,10 +574,10 @@ void MainWidget::removeWordFromTable()
         word = ui->tableEdit->item(row, column -1)->data(0).toString();
     }
 
-    deleteWordInDict(ui->LEFile->text(), word, description);
+    deleteWordFromDict(ui->LEFile->text(), word, description);
     showWordInTable();
-    qDebug() << "word = " << word
-             << "description = " << description;
+//    qDebug() << "word = " << word
+//             << "description = " << description;
 
 
 }
