@@ -55,9 +55,9 @@ void MainWidget::debug()
     //    QString text = getTextFromHtmlFile(str);
     //    qDebug()  << "Author = " << getParamInfo(&text, "Author");
     ui->LENameDict->setText("text name1");
-    ui->LEAuthor->setText("test");
+    //    ui->LEAuthor->setText("test");
 
-    setInfoDictFromFile();
+    //    setInfoDictFromFile();
     //    showHideEdit(1);
 
     //    QStringList list = getListWord(ui->LEFile->text());
@@ -161,6 +161,7 @@ void MainWidget::browseFile()
     {
         ui->LEFile->setText(fn);
         setInfoDictFromFile();
+        showHideEdit(ui->checkBEditOn->checkState());
     }
 }
 ///----------------------------------------------------------------------------
@@ -420,13 +421,37 @@ void MainWidget::genIdx()
 ///----------------------------------------------------------------------------
 void MainWidget::showHideEdit(int flag)
 {
+
     ui->LEFind->setEnabled(flag);
     ui->tableEdit->setEnabled(flag);
     ui->pBAddWord->setEnabled(flag);
     ui->label->setEnabled(flag);
     ui->label_6->setEnabled(flag);
+
     if (flag)
-        showWordInTable();
+    {
+        bool er = false;
+        QString s = "";
+
+        if (ui->LEFile->text().isEmpty())
+        {
+            s.append(tr("- Please enter a file.\n"));
+            er = true;
+        }
+
+        if (er)
+        {
+            QMessageBox::critical(this, tr("Edit words error"), s);
+            ui->checkBEditOn->setCheckState(Qt::Unchecked);
+        }
+        else
+        {
+
+            if (flag)
+                showWordInTable();
+        }
+    }
+
 }
 ///----------------------------------------------------------------------------
 void MainWidget::showWordInTable()
