@@ -10,7 +10,6 @@
         <translation>О программе</translation>
     </message>
     <message utf8="true">
-        <location filename="../../src/dialogs/about/about.ui" line="30"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -28,7 +27,7 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; color:#000000;&quot;&gt;Website: &lt;/span&gt;&lt;a href=&quot;http://warmonger1.github.com/QDict4BQ6/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://warmonger1.github.com/QDict4BQ6/&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;DejaVu Sans&apos;; color:#000000;&quot;&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+        <translation type="obsolete">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
@@ -36,6 +35,43 @@ p, li { white-space: pre-wrap; }
 &lt;tr&gt;
 &lt;td style=&quot;border: none;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; font-size:10pt; font-weight:600;&quot;&gt;QDict4BQ6 v 0.1 &lt;/span&gt;&lt;img src=&quot;:/banners/banners/globe-small.png&quot; /&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;QDict4BQ6 - кроссплатформенная программа для создание idx файла для словаря &amp;quot;Цитата из Библии&amp;quot;.&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Возможности:&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;   Создание idx файла.&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;   Редактирование словаря.&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;   Создание модуля с нуля &lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; color:#000000;&quot;&gt;Website: &lt;/span&gt;&lt;a href=&quot;http://warmonger1.github.com/QDict4BQ6/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://warmonger1.github.com/QDict4BQ6/&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;DejaVu Sans&apos;; color:#000000;&quot;&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message utf8="true">
+        <location filename="../../src/dialogs/about/about.ui" line="30"/>
+        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;table border=&quot;0&quot; style=&quot;-qt-table-type: root; margin-top:4px; margin-bottom:4px; margin-left:4px; margin-right:4px;&quot;&gt;
+&lt;tr&gt;
+&lt;td style=&quot;border: none;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; font-size:10pt; font-weight:600;&quot;&gt;QDict4BQ6 v 0.2(разрабатывается сейчас) &lt;/span&gt;&lt;img src=&quot;:/banners/banners/globe-small.png&quot; /&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;QDict4BQ6 - кроссплатформенная программа для создание idx файла для словаря &amp;quot;Цитата из Библии&amp;quot;.&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Возможности:&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;   Создание idx файла.&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;   Редактирование словаря.&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;   Создание модуля с нуля &lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; color:#000000;&quot;&gt;Website: &lt;/span&gt;&lt;a href=&quot;http://warmonger1.github.com/QDict4BQ6/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://warmonger1.github.com/QDict4BQ6/&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;DejaVu Sans&apos;; color:#000000;&quot;&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;table border=&quot;0&quot; style=&quot;-qt-table-type: root; margin-top:4px; margin-bottom:4px; margin-left:4px; margin-right:4px;&quot;&gt;
+&lt;tr&gt;
+&lt;td style=&quot;border: none;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;DejaVu Sans&apos;; font-size:10pt; font-weight:600;&quot;&gt;QDict4BQ6 v 0.2(разрабатывается сейчас) &lt;/span&gt;&lt;img src=&quot;:/banners/banners/globe-small.png&quot; /&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;QDict4BQ6 - кроссплатформенная программа для создание idx файла для словаря &amp;quot;Цитата из Библии&amp;quot;.&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Возможности:&lt;/p&gt;
@@ -169,7 +205,7 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation></translation>
     </message>
-    <message>
+    <message utf8="true">
         <location filename="../../src/dialogs/about/about.ui" line="191"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
@@ -178,21 +214,21 @@ p, li { white-space: pre-wrap; }
 &lt;table border=&quot;0&quot; style=&quot;-qt-table-type: root; margin-top:4px; margin-bottom:4px; margin-left:4px; margin-right:4px;&quot;&gt;
 &lt;tr&gt;
 &lt;td style=&quot;border: none;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Благодарости&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Samuel A Kim - за материалы для тестов. За толчок к началу разработки. За идеи вкладки &amp;quot;параметры&amp;quot;.&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation></translation>
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;table border=&quot;0&quot; style=&quot;-qt-table-type: root; margin-top:4px; margin-bottom:4px; margin-left:4px; margin-right:4px;&quot;&gt;
+&lt;tr&gt;
+&lt;td style=&quot;border: none;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Благодарости&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Samuel A Kim - за материалы для тестов. За толчок к началу разработки. За идеи вкладки &amp;quot;параметры&amp;quot;.&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../../src/dialogs/about/about.ui" line="185"/>
@@ -230,7 +266,7 @@ p, li { white-space: pre-wrap; }
     <name>HtmlEditor</name>
     <message>
         <location filename="../../src/htmleditor/htmleditor.cpp" line="86"/>
-        <location filename="../../src/htmleditor/htmleditor.cpp" line="615"/>
+        <location filename="../../src/htmleditor/htmleditor.cpp" line="624"/>
         <source>HTML Editor</source>
         <translation>HTML редактор</translation>
     </message>
@@ -242,93 +278,93 @@ Do you want to save your changes?</source>
 Сохранить изменения?</translation>
     </message>
     <message>
-        <location filename="../../src/htmleditor/htmleditor.cpp" line="204"/>
+        <location filename="../../src/htmleditor/htmleditor.cpp" line="213"/>
         <source>Open File...</source>
-        <translation>&amp;Открыть файл</translation>
+        <translation>&amp;Открыть файл...</translation>
     </message>
     <message>
-        <location filename="../../src/htmleditor/htmleditor.cpp" line="205"/>
-        <location filename="../../src/htmleditor/htmleditor.cpp" line="236"/>
+        <location filename="../../src/htmleditor/htmleditor.cpp" line="214"/>
+        <location filename="../../src/htmleditor/htmleditor.cpp" line="245"/>
         <source>HTML-Files (*.htm *.html);;All Files (*)</source>
         <translation>HTML-файлы (*.htm *.html);;Все файлы (*)</translation>
     </message>
     <message>
-        <location filename="../../src/htmleditor/htmleditor.cpp" line="235"/>
+        <location filename="../../src/htmleditor/htmleditor.cpp" line="244"/>
         <source>Save as...</source>
         <translation>Сохранить как...</translation>
     </message>
     <message>
-        <location filename="../../src/htmleditor/htmleditor.cpp" line="248"/>
+        <location filename="../../src/htmleditor/htmleditor.cpp" line="257"/>
         <source>Common Graphics (*.png *.jpg *.jpeg *.gif);;</source>
         <translation>Common Graphics (*.png *.jpg *.jpeg *.gif);;</translation>
     </message>
     <message>
-        <location filename="../../src/htmleditor/htmleditor.cpp" line="249"/>
+        <location filename="../../src/htmleditor/htmleditor.cpp" line="258"/>
         <source>Portable Network Graphics (PNG) (*.png);;</source>
         <translation>Portable Network Graphics (PNG) (*.png);;</translation>
     </message>
     <message>
-        <location filename="../../src/htmleditor/htmleditor.cpp" line="250"/>
+        <location filename="../../src/htmleditor/htmleditor.cpp" line="259"/>
         <source>JPEG (*.jpg *.jpeg);;</source>
         <translation>JPEG (*.jpg *.jpeg);;</translation>
     </message>
     <message>
-        <location filename="../../src/htmleditor/htmleditor.cpp" line="251"/>
+        <location filename="../../src/htmleditor/htmleditor.cpp" line="260"/>
         <source>Graphics Interchange Format (*.gif);;</source>
         <translation>Graphics Interchange Format (*.gif);;</translation>
     </message>
     <message>
-        <location filename="../../src/htmleditor/htmleditor.cpp" line="252"/>
+        <location filename="../../src/htmleditor/htmleditor.cpp" line="261"/>
         <source>All Files (*)</source>
         <translation>Все файлы (*)</translation>
     </message>
     <message>
-        <location filename="../../src/htmleditor/htmleditor.cpp" line="254"/>
+        <location filename="../../src/htmleditor/htmleditor.cpp" line="263"/>
         <source>Open image...</source>
         <translation>Открыть изображение...</translation>
     </message>
     <message>
-        <location filename="../../src/htmleditor/htmleditor.cpp" line="301"/>
+        <location filename="../../src/htmleditor/htmleditor.cpp" line="310"/>
         <source>Create link</source>
         <translation>Создать ссылку</translation>
     </message>
     <message>
-        <location filename="../../src/htmleditor/htmleditor.cpp" line="482"/>
+        <location filename="../../src/htmleditor/htmleditor.cpp" line="491"/>
         <source>Font</source>
         <translation>Шрифт</translation>
     </message>
     <message>
-        <location filename="../../src/htmleditor/htmleditor.cpp" line="482"/>
+        <location filename="../../src/htmleditor/htmleditor.cpp" line="491"/>
         <source>Select font:</source>
         <translation>Выбрать шрифт:</translation>
     </message>
     <message>
-        <location filename="../../src/htmleditor/htmleditor.cpp" line="501"/>
+        <location filename="../../src/htmleditor/htmleditor.cpp" line="510"/>
         <source>Font Size</source>
         <translation>Размер шрифта</translation>
     </message>
     <message>
-        <location filename="../../src/htmleditor/htmleditor.cpp" line="501"/>
+        <location filename="../../src/htmleditor/htmleditor.cpp" line="510"/>
         <source>Select font size:</source>
         <translation>Выбрать размер шрифта:</translation>
     </message>
     <message>
-        <location filename="../../src/htmleditor/htmleditor.cpp" line="561"/>
+        <location filename="../../src/htmleditor/htmleditor.cpp" line="570"/>
         <source>Open %1 ?</source>
         <translation>Открыть %1 ?</translation>
     </message>
     <message>
-        <location filename="../../src/htmleditor/htmleditor.cpp" line="562"/>
+        <location filename="../../src/htmleditor/htmleditor.cpp" line="571"/>
         <source>Open link</source>
         <translation>Открыть ссылку</translation>
     </message>
     <message>
-        <location filename="../../src/htmleditor/htmleditor.cpp" line="575"/>
+        <location filename="../../src/htmleditor/htmleditor.cpp" line="584"/>
         <source> Zoom: %1% </source>
         <translation> Масштаб: %1% </translation>
     </message>
     <message>
-        <location filename="../../src/htmleditor/htmleditor.cpp" line="615"/>
+        <location filename="../../src/htmleditor/htmleditor.cpp" line="624"/>
         <source>%1[*] - %2</source>
         <translation>%1[*] - %2</translation>
     </message>
@@ -519,52 +555,64 @@ p, li { white-space: pre-wrap; }
         <translation>Выход</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindget/mainwidget.cpp" line="123"/>
+        <location filename="../../src/mainwindget/mainwidget.cpp" line="124"/>
         <source>&amp;Hide</source>
         <translation>&amp;Скрыть</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindget/mainwidget.cpp" line="126"/>
+        <location filename="../../src/mainwindget/mainwidget.cpp" line="127"/>
         <source>&amp;Expand</source>
         <translation>&amp;Развернуть</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindget/mainwidget.cpp" line="129"/>
+        <location filename="../../src/mainwindget/mainwidget.cpp" line="130"/>
         <source>&amp;Restore</source>
         <translation>&amp;Восстановить</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindget/mainwidget.cpp" line="132"/>
+        <location filename="../../src/mainwindget/mainwidget.cpp" line="133"/>
         <source>Q&amp;uit</source>
         <translation>&amp;Выход</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindget/mainwidget.cpp" line="158"/>
+        <location filename="../../src/mainwindget/mainwidget.cpp" line="159"/>
         <source>Open File...</source>
         <translation>&amp;Открыть файл</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindget/mainwidget.cpp" line="159"/>
+        <location filename="../../src/mainwindget/mainwidget.cpp" line="160"/>
         <source>HTML-Files (*.htm *.html);;Text files (*.txt)</source>
         <translation>HTML-файлы (*.htm *.html);;Текстовые файлы (*.txt)</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindget/mainwidget.cpp" line="219"/>
+        <location filename="../../src/mainwindget/mainwidget.cpp" line="238"/>
         <source>- Please input name of dict.
 </source>
         <translation>- Пожалуйста, введите название словаря.
 </translation>
     </message>
     <message>
-        <location filename="../../src/mainwindget/mainwidget.cpp" line="224"/>
+        <location filename="../../src/mainwindget/mainwidget.cpp" line="243"/>
         <source>- Please browse file.
 </source>
         <translation>- Пожалуйста, выберите файл.</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindget/mainwidget.cpp" line="230"/>
+        <location filename="../../src/mainwindget/mainwidget.cpp" line="249"/>
         <source>Gen idx</source>
         <translation>Генерация idx</translation>
+    </message>
+    <message>
+        <location filename="../../src/mainwindget/mainwidget.cpp" line="456"/>
+        <source>- Please enter a file.
+</source>
+        <translation>- Пожалуйста, выберите файл.
+</translation>
+    </message>
+    <message>
+        <location filename="../../src/mainwindget/mainwidget.cpp" line="462"/>
+        <source>Edit words error</source>
+        <translation>Ошибка редактирования словаря</translation>
     </message>
 </context>
 <context>
@@ -575,327 +623,332 @@ p, li { white-space: pre-wrap; }
         <translation>HTML редактор</translation>
     </message>
     <message>
-        <location filename="../../src/htmleditor/htmleditor.ui" line="37"/>
+        <location filename="../../src/htmleditor/htmleditor.ui" line="34"/>
         <source>Tab 1</source>
         <translation>Вкладка 1</translation>
     </message>
     <message>
-        <location filename="../../src/htmleditor/htmleditor.ui" line="47"/>
+        <location filename="../../src/htmleditor/htmleditor.ui" line="44"/>
         <source>about:blank</source>
         <translation>about:blank</translation>
     </message>
     <message>
-        <location filename="../../src/htmleditor/htmleditor.ui" line="56"/>
+        <location filename="../../src/htmleditor/htmleditor.ui" line="53"/>
         <source>Tab 2</source>
         <translation>Вкладка 2</translation>
     </message>
     <message>
-        <location filename="../../src/htmleditor/htmleditor.ui" line="89"/>
+        <location filename="../../src/htmleditor/htmleditor.ui" line="76"/>
+        <source>Finish editing</source>
+        <translation>Закончить редактирование</translation>
+    </message>
+    <message>
+        <location filename="../../src/htmleditor/htmleditor.ui" line="93"/>
         <source>&amp;File</source>
         <translation>&amp;Файл</translation>
     </message>
     <message>
-        <location filename="../../src/htmleditor/htmleditor.ui" line="97"/>
+        <location filename="../../src/htmleditor/htmleditor.ui" line="101"/>
         <source>&amp;Edit</source>
         <translation>&amp;Правка</translation>
     </message>
     <message>
-        <location filename="../../src/htmleditor/htmleditor.ui" line="114"/>
+        <location filename="../../src/htmleditor/htmleditor.ui" line="118"/>
         <source>F&amp;ormat</source>
         <translation>Ф&amp;орматирование</translation>
     </message>
     <message>
-        <location filename="../../src/htmleditor/htmleditor.ui" line="118"/>
+        <location filename="../../src/htmleditor/htmleditor.ui" line="122"/>
         <source>St&amp;yle</source>
         <translation>Офо&amp;рмление</translation>
     </message>
     <message>
-        <location filename="../../src/htmleditor/htmleditor.ui" line="132"/>
+        <location filename="../../src/htmleditor/htmleditor.ui" line="136"/>
         <source>&amp;Align</source>
         <translation>&amp;Выравнивание</translation>
     </message>
     <message>
-        <location filename="../../src/htmleditor/htmleditor.ui" line="165"/>
+        <location filename="../../src/htmleditor/htmleditor.ui" line="169"/>
         <source>Standard</source>
         <translation>Стандарт</translation>
     </message>
     <message>
-        <location filename="../../src/htmleditor/htmleditor.ui" line="187"/>
+        <location filename="../../src/htmleditor/htmleditor.ui" line="191"/>
         <source>Formatting</source>
         <translation>Форматирование</translation>
     </message>
     <message>
-        <location filename="../../src/htmleditor/htmleditor.ui" line="221"/>
+        <location filename="../../src/htmleditor/htmleditor.ui" line="225"/>
         <source>&amp;New</source>
         <translation>&amp;Новый</translation>
     </message>
     <message>
-        <location filename="../../src/htmleditor/htmleditor.ui" line="224"/>
+        <location filename="../../src/htmleditor/htmleditor.ui" line="228"/>
         <source>Ctrl+N</source>
         <translation>Ctrl+N</translation>
     </message>
     <message>
-        <location filename="../../src/htmleditor/htmleditor.ui" line="233"/>
+        <location filename="../../src/htmleditor/htmleditor.ui" line="237"/>
         <source>&amp;Open...</source>
         <translation>&amp;Открыть...</translation>
     </message>
     <message>
-        <location filename="../../src/htmleditor/htmleditor.ui" line="236"/>
+        <location filename="../../src/htmleditor/htmleditor.ui" line="240"/>
         <source>Ctrl+O</source>
         <translation>Ctrl+O</translation>
     </message>
     <message>
-        <location filename="../../src/htmleditor/htmleditor.ui" line="245"/>
+        <location filename="../../src/htmleditor/htmleditor.ui" line="249"/>
         <source>&amp;Save</source>
         <translation>&amp;Сохранить</translation>
     </message>
     <message>
-        <location filename="../../src/htmleditor/htmleditor.ui" line="248"/>
+        <location filename="../../src/htmleditor/htmleditor.ui" line="252"/>
         <source>Ctrl+S</source>
         <translation>Ctrl+S</translation>
     </message>
     <message>
-        <location filename="../../src/htmleditor/htmleditor.ui" line="253"/>
+        <location filename="../../src/htmleditor/htmleditor.ui" line="257"/>
         <source>Save &amp;As...</source>
         <translation>Сохранить &amp;как...</translation>
     </message>
     <message>
-        <location filename="../../src/htmleditor/htmleditor.ui" line="262"/>
+        <location filename="../../src/htmleditor/htmleditor.ui" line="266"/>
         <source>&amp;Undo</source>
         <translation>&amp;Отменить</translation>
     </message>
     <message>
-        <location filename="../../src/htmleditor/htmleditor.ui" line="265"/>
+        <location filename="../../src/htmleditor/htmleditor.ui" line="269"/>
         <source>Ctrl+Z</source>
         <translation>Ctrl+Z</translation>
     </message>
     <message>
-        <location filename="../../src/htmleditor/htmleditor.ui" line="274"/>
+        <location filename="../../src/htmleditor/htmleditor.ui" line="278"/>
         <source>&amp;Redo</source>
         <translation>&amp;Вернуть</translation>
     </message>
     <message>
-        <location filename="../../src/htmleditor/htmleditor.ui" line="277"/>
+        <location filename="../../src/htmleditor/htmleditor.ui" line="281"/>
         <source>Ctrl+Y</source>
         <translation>Ctrl+Y</translation>
     </message>
     <message>
-        <location filename="../../src/htmleditor/htmleditor.ui" line="286"/>
+        <location filename="../../src/htmleditor/htmleditor.ui" line="290"/>
         <source>Cu&amp;t</source>
         <translation>Выре&amp;зать</translation>
     </message>
     <message>
-        <location filename="../../src/htmleditor/htmleditor.ui" line="289"/>
+        <location filename="../../src/htmleditor/htmleditor.ui" line="293"/>
         <source>Ctrl+X</source>
         <translation>Ctrl+X</translation>
     </message>
     <message>
-        <location filename="../../src/htmleditor/htmleditor.ui" line="298"/>
+        <location filename="../../src/htmleditor/htmleditor.ui" line="302"/>
         <source>&amp;Copy</source>
         <translation>&amp;Копировать</translation>
     </message>
     <message>
-        <location filename="../../src/htmleditor/htmleditor.ui" line="301"/>
+        <location filename="../../src/htmleditor/htmleditor.ui" line="305"/>
         <source>Ctrl+C</source>
         <translation>Ctrl+C</translation>
     </message>
     <message>
-        <location filename="../../src/htmleditor/htmleditor.ui" line="310"/>
+        <location filename="../../src/htmleditor/htmleditor.ui" line="314"/>
         <source>&amp;Paste</source>
         <translation>В&amp;ставить</translation>
     </message>
     <message>
-        <location filename="../../src/htmleditor/htmleditor.ui" line="313"/>
+        <location filename="../../src/htmleditor/htmleditor.ui" line="317"/>
         <source>Ctrl+V</source>
         <translation>Ctrl+V</translation>
     </message>
     <message>
-        <location filename="../../src/htmleditor/htmleditor.ui" line="322"/>
+        <location filename="../../src/htmleditor/htmleditor.ui" line="326"/>
         <source>Select A&amp;ll</source>
         <translation>Вы&amp;делить все</translation>
     </message>
     <message>
-        <location filename="../../src/htmleditor/htmleditor.ui" line="325"/>
+        <location filename="../../src/htmleditor/htmleditor.ui" line="329"/>
         <source>Ctrl+A</source>
         <translation>Ctrl+A</translation>
     </message>
     <message>
-        <location filename="../../src/htmleditor/htmleditor.ui" line="337"/>
+        <location filename="../../src/htmleditor/htmleditor.ui" line="341"/>
         <source>&amp;Bold</source>
         <translation>&amp;Жирный</translation>
     </message>
     <message>
-        <location filename="../../src/htmleditor/htmleditor.ui" line="340"/>
+        <location filename="../../src/htmleditor/htmleditor.ui" line="344"/>
         <source>Ctrl+B</source>
         <translation>Ctrl+B</translation>
     </message>
     <message>
-        <location filename="../../src/htmleditor/htmleditor.ui" line="352"/>
+        <location filename="../../src/htmleditor/htmleditor.ui" line="356"/>
         <source>&amp;Italic</source>
         <translation>&amp;Курсив</translation>
     </message>
     <message>
-        <location filename="../../src/htmleditor/htmleditor.ui" line="355"/>
+        <location filename="../../src/htmleditor/htmleditor.ui" line="359"/>
         <source>Ctrl+I</source>
         <translation>Ctrl+I</translation>
     </message>
     <message>
-        <location filename="../../src/htmleditor/htmleditor.ui" line="367"/>
+        <location filename="../../src/htmleditor/htmleditor.ui" line="371"/>
         <source>&amp;Underline</source>
         <translation>&amp;Подчеркнутый</translation>
     </message>
     <message>
-        <location filename="../../src/htmleditor/htmleditor.ui" line="370"/>
+        <location filename="../../src/htmleditor/htmleditor.ui" line="374"/>
         <source>Ctrl+U</source>
         <translation>Ctrl+U</translation>
     </message>
     <message>
-        <location filename="../../src/htmleditor/htmleditor.ui" line="382"/>
+        <location filename="../../src/htmleditor/htmleditor.ui" line="386"/>
         <source>&amp;Strikethrough</source>
         <translation>&amp;Зачеркнутый</translation>
     </message>
     <message>
-        <location filename="../../src/htmleditor/htmleditor.ui" line="391"/>
+        <location filename="../../src/htmleditor/htmleditor.ui" line="395"/>
         <source>Align &amp;Left</source>
         <translation>&amp;Левое выравнивание</translation>
     </message>
     <message>
-        <location filename="../../src/htmleditor/htmleditor.ui" line="400"/>
+        <location filename="../../src/htmleditor/htmleditor.ui" line="404"/>
         <source>Align &amp;Center</source>
         <translation>&amp;Выравнить по центру</translation>
     </message>
     <message>
-        <location filename="../../src/htmleditor/htmleditor.ui" line="409"/>
+        <location filename="../../src/htmleditor/htmleditor.ui" line="413"/>
         <source>Align &amp;Right</source>
         <translation>&amp;Правое выравнивание</translation>
     </message>
     <message>
-        <location filename="../../src/htmleditor/htmleditor.ui" line="418"/>
+        <location filename="../../src/htmleditor/htmleditor.ui" line="422"/>
         <source>Align &amp;Justify</source>
         <translation>&amp;По ширине</translation>
     </message>
     <message>
-        <location filename="../../src/htmleditor/htmleditor.ui" line="427"/>
+        <location filename="../../src/htmleditor/htmleditor.ui" line="431"/>
         <source>I&amp;ncrease Indent</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/htmleditor/htmleditor.ui" line="436"/>
+        <location filename="../../src/htmleditor/htmleditor.ui" line="440"/>
         <source>&amp;Decrease Indent</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/htmleditor/htmleditor.ui" line="448"/>
+        <location filename="../../src/htmleditor/htmleditor.ui" line="452"/>
         <source>Bulle&amp;ted List</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/htmleditor/htmleditor.ui" line="460"/>
+        <location filename="../../src/htmleditor/htmleditor.ui" line="464"/>
         <source>&amp;Numbered List</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/htmleditor/htmleditor.ui" line="469"/>
+        <location filename="../../src/htmleditor/htmleditor.ui" line="473"/>
         <source>Insert &amp;Image...</source>
         <translation>&amp;Добавить изображение...</translation>
     </message>
     <message>
-        <location filename="../../src/htmleditor/htmleditor.ui" line="478"/>
+        <location filename="../../src/htmleditor/htmleditor.ui" line="482"/>
         <source>Create Link...</source>
         <translation>Создать ссылку...</translation>
     </message>
     <message>
-        <location filename="../../src/htmleditor/htmleditor.ui" line="487"/>
+        <location filename="../../src/htmleditor/htmleditor.ui" line="491"/>
         <source>Zoom Out</source>
         <translation>Уменьшить</translation>
     </message>
     <message>
-        <location filename="../../src/htmleditor/htmleditor.ui" line="496"/>
+        <location filename="../../src/htmleditor/htmleditor.ui" line="500"/>
         <source>Zoom In</source>
         <translation>Увеличить</translation>
     </message>
     <message>
-        <location filename="../../src/htmleditor/htmleditor.ui" line="501"/>
+        <location filename="../../src/htmleditor/htmleditor.ui" line="505"/>
         <source>E&amp;xit</source>
         <translation>Выход</translation>
     </message>
     <message>
-        <location filename="../../src/htmleditor/htmleditor.ui" line="504"/>
+        <location filename="../../src/htmleditor/htmleditor.ui" line="508"/>
         <source>Ctrl+Q</source>
         <translation>Ctrl+Q</translation>
     </message>
     <message>
-        <location filename="../../src/htmleditor/htmleditor.ui" line="509"/>
+        <location filename="../../src/htmleditor/htmleditor.ui" line="513"/>
         <source>&amp;Paragraph</source>
         <translation>&amp;Параграф</translation>
     </message>
     <message>
-        <location filename="../../src/htmleditor/htmleditor.ui" line="514"/>
+        <location filename="../../src/htmleditor/htmleditor.ui" line="518"/>
         <source>Heading &amp;1</source>
-        <translation type="unfinished"></translation>
+        <translation>Заголовок &amp;1</translation>
     </message>
     <message>
-        <location filename="../../src/htmleditor/htmleditor.ui" line="519"/>
+        <location filename="../../src/htmleditor/htmleditor.ui" line="523"/>
         <source>Heading &amp;2</source>
-        <translation type="unfinished"></translation>
+        <translation>Заголовок &amp;2</translation>
     </message>
     <message>
-        <location filename="../../src/htmleditor/htmleditor.ui" line="524"/>
+        <location filename="../../src/htmleditor/htmleditor.ui" line="528"/>
         <source>Heading &amp;3</source>
-        <translation type="unfinished"></translation>
+        <translation>Заголовок &amp;3</translation>
     </message>
     <message>
-        <location filename="../../src/htmleditor/htmleditor.ui" line="529"/>
+        <location filename="../../src/htmleditor/htmleditor.ui" line="533"/>
         <source>Heading &amp;4</source>
-        <translation type="unfinished"></translation>
+        <translation>Заголовок &amp;4</translation>
     </message>
     <message>
-        <location filename="../../src/htmleditor/htmleditor.ui" line="534"/>
+        <location filename="../../src/htmleditor/htmleditor.ui" line="538"/>
         <source>Heading &amp;5</source>
-        <translation type="unfinished"></translation>
+        <translation>Заголовок &amp;5</translation>
     </message>
     <message>
-        <location filename="../../src/htmleditor/htmleditor.ui" line="539"/>
+        <location filename="../../src/htmleditor/htmleditor.ui" line="543"/>
         <source>Heading &amp;6</source>
-        <translation type="unfinished"></translation>
+        <translation>Заголовок &amp;6</translation>
     </message>
     <message>
-        <location filename="../../src/htmleditor/htmleditor.ui" line="544"/>
+        <location filename="../../src/htmleditor/htmleditor.ui" line="548"/>
         <source>Pre&amp;formatted</source>
-        <translation type="unfinished"></translation>
+        <translation>Предварительное &amp;форматирование</translation>
     </message>
     <message>
-        <location filename="../../src/htmleditor/htmleditor.ui" line="549"/>
+        <location filename="../../src/htmleditor/htmleditor.ui" line="553"/>
         <source>&amp;Address</source>
         <translation>&amp;Адрес</translation>
     </message>
     <message>
-        <location filename="../../src/htmleditor/htmleditor.ui" line="554"/>
+        <location filename="../../src/htmleditor/htmleditor.ui" line="558"/>
         <source>&amp;Font Name...</source>
         <translation>&amp;Название шрифта...</translation>
     </message>
     <message>
-        <location filename="../../src/htmleditor/htmleditor.ui" line="559"/>
+        <location filename="../../src/htmleditor/htmleditor.ui" line="563"/>
         <source>Text &amp;Color...</source>
         <translation>&amp;Цвет текста...</translation>
     </message>
     <message>
-        <location filename="../../src/htmleditor/htmleditor.ui" line="564"/>
+        <location filename="../../src/htmleditor/htmleditor.ui" line="568"/>
         <source>Bac&amp;kground Color...</source>
         <translation>&amp;Фоновый цвет...</translation>
     </message>
     <message>
-        <location filename="../../src/htmleditor/htmleditor.ui" line="569"/>
+        <location filename="../../src/htmleditor/htmleditor.ui" line="573"/>
         <source>Font Si&amp;ze...</source>
         <translation>&amp;Размер шрифта</translation>
     </message>
     <message>
-        <location filename="../../src/htmleditor/htmleditor.ui" line="578"/>
+        <location filename="../../src/htmleditor/htmleditor.ui" line="582"/>
         <source>Insert HTML...</source>
-        <translation>Вставит HTML</translation>
+        <translation>Вставить HTML</translation>
     </message>
     <message>
-        <location filename="../../src/htmleditor/htmleditor.ui" line="581"/>
+        <location filename="../../src/htmleditor/htmleditor.ui" line="585"/>
         <source>Insert HTML</source>
         <translation>Вставить HTML</translation>
     </message>

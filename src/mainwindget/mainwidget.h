@@ -191,11 +191,6 @@ private:
     void setInfoDictFromFile();
     /**
       @function
-      Save items from ui tableedit
-      */
-    void saveTableItems();
-    /**
-      @function
       Set items in table (set word and description)
       */
     void setFindWords(QStringList* word, QStringList* description);

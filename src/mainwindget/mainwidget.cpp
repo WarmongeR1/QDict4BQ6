@@ -445,6 +445,7 @@ void MainWidget::showHideEdit(int flag)
     ui->pBAddWord->setEnabled(flag);
     ui->label->setEnabled(flag);
     ui->label_6->setEnabled(flag);
+    ui->pBRemove->setEnabled(flag);
 
     if (flag)
     {
@@ -651,24 +652,6 @@ void MainWidget::removeWordFromTable()
     //             << "description = " << description;
 
 
-}
-///----------------------------------------------------------------------------
-void MainWidget::saveTableItems()
-{
-//    /// save table items
-//    int iColumns = ui->tableEdit->columnCount();
-//    int iRows = ui->tableEdit->rowCount();
-//    savedTree.clear();
-
-//    for(int i = 0; i < iRows; ++i)
-//    {
-//        for(int j = 0; j < iColumns; ++j)
-//        {
-//            QTableWidgetItem* pWidget = ui->tableEdit->item(i, j);
-//            savedTree.append(pWidget);
-//            pWidget = 0;
-//        }
-//    }
 }
 ///----------------------------------------------------------------------------
 void MainWidget::setFindWords(QStringList *listWord, QStringList *listDescription)
