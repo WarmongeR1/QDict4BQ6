@@ -439,7 +439,6 @@ void MainWidget::genIdx()
 ///----------------------------------------------------------------------------
 void MainWidget::showHideEdit(int flag)
 {
-
     ui->LEFind->setEnabled(flag);
     ui->tableEdit->setEnabled(flag);
     ui->pBAddWord->setEnabled(flag);
@@ -465,12 +464,10 @@ void MainWidget::showHideEdit(int flag)
         }
         else
         {
-
             if (flag)
                 showWordInTable();
         }
     }
-
 }
 ///----------------------------------------------------------------------------
 void MainWidget::showWordInTable()

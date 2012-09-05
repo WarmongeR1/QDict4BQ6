@@ -116,14 +116,13 @@ QStringList getFillType()
     //   Vocabulary/Толковый
     //   Wordbook/Словарь
     QStringList items;
-    items << QString ("Dictionary")
-          << QString ("Encyclopedia")
-          << QString ("Encyclopedia")
-          << QString ("Glossary")
-          << QString ("Lexicon")
-          << QString ("Thesaurus")
-          << QString ("Vocabulary")
-          << QString ("Wordbook");
+    items << QString::fromUtf8( ("Dictionary/Справочник"))
+          << QString::fromUtf8( ("Encyclopedia/Энциклопедия"))
+          << QString::fromUtf8( ("Glossary/Глоссарий"))
+          << QString::fromUtf8( ("Lexicon/Симфония"))
+          << QString::fromUtf8( ("Thesaurus/Тезаурус"))
+          << QString::fromUtf8( ("Vocabulary/Толковый"))
+          << QString::fromUtf8( ("Wordbook/Словарь"));
     return items;
 }
 ///----------------------------------------------------------------------------
