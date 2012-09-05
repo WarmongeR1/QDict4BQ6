@@ -115,6 +115,13 @@ private slots:
     void openLink(const QUrl&);
     void changeZoom(int);
 
+    /**
+      @function
+      Function for pBFinishEdit.
+      Save file and close dialog
+      */
+    void finishEdit();
+
 private:
     Ui_MainWindow *ui;
     QString fileName;

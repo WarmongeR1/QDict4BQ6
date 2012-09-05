@@ -173,6 +173,9 @@ void HtmlEditor::createConnects()
 
     connect(ui->webView->page(), SIGNAL(contentsChanged()), SLOT(adjustSource()));
     ui->webView->setFocus();
+
+    ///  finish editing
+    connect(ui->pBFinishEdit, SIGNAL(clicked()), SLOT(finishEdit()));
 }
 ///----------------------------------------------------------------------------
 void HtmlEditor::fileNew()
@@ -197,6 +200,12 @@ void HtmlEditor::fileNew()
         QApplication::postEvent(ui->webView, e1);
         QApplication::postEvent(ui->webView, e2);
     }
+}
+///----------------------------------------------------------------------------
+void HtmlEditor::finishEdit()
+{
+    fileSave();
+    close();
 }
 ///----------------------------------------------------------------------------
 void HtmlEditor::fileOpen()
