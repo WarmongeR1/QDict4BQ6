@@ -98,7 +98,11 @@ QStringList getFillLang()
 {
     QStringList items;
     items << QString ("rus")
-          << QString ("eng");
+          << QString ("eng")
+          << QString ("ukr")
+          << QString ("he-rus")
+          << QString ("gr-rus")
+          << QString ("he");
     return items;
 }
 ///----------------------------------------------------------------------------
@@ -393,6 +397,13 @@ QString getParamInfo(QString *inputstr, QString param)
     str.remove(remove)
             .remove("\">");
     str = removeSpaces(str);
+
+    if (str == "RU")
+        str = "rus";
+
+    if (str == "En")
+        str = "eng";
+
     return str;
 }
 
