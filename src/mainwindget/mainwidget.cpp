@@ -25,7 +25,7 @@ MainWidget::MainWidget(QWidget *parent) :
     createConnect();
     trIcon->show();  //display tray
 
-    //    debug();
+        debug();
     //    genIdx();
 }
 ///----------------------------------------------------------------------------
@@ -115,7 +115,8 @@ void MainWidget::createConnect()
     /// remove word from table
     connect(ui->pBRemove, SIGNAL(clicked()), SLOT(removeWordFromTable()));
     /// dynamic find
-    connect(ui->LEFile, SIGNAL(textChanged(QString)), SLOT(find(QString)));
+    connect(ui->LEFind, SIGNAL(textChanged(QString)), SLOT(find(QString)));
+//    connect(ui->LEFind, SIGNAL(textEdited(QString)), SLOT(find(QString)));
 }
 ///----------------------------------------------------------------------------
 void MainWidget::createActions()
@@ -203,7 +204,24 @@ void MainWidget::clearFlied()
 ///----------------------------------------------------------------------------
 void MainWidget::find(QString text)
 {
-    //    ui->tableEdit->findItems(text);
+    if (!text.isEmpty())
+    {
+        QStringList word;
+        QStringList description;
+        for (int i = 0; i < saveWord.size(); i++)
+        {
+            if (saveWord.at(i).indexOf(text) >= 0)
+            {
+                word << saveWord.at(i);
+                description << saveDescription.at(i);
+            }
+        }
+        setFindWords(&word, &description);
+    }
+    else
+    {
+        showWordInTable();
+    }
 }
 ///----------------------------------------------------------------------------
 void MainWidget::editWord()
@@ -505,6 +523,11 @@ void MainWidget::showWordInTable()
     ui->tableEdit->resizeRowsToContents();
     ui->tableEdit->resizeColumnToContents(0);
     ui->tableEdit->resizeColumnToContents(1);
+
+    saveWord = listWord;
+    saveDescription = listDescription;
+//    saveTableItems();
+
 }
 ///----------------------------------------------------------------------------
 QStringList MainWidget::getParams()
@@ -629,4 +652,49 @@ void MainWidget::removeWordFromTable()
 
 
 }
+///----------------------------------------------------------------------------
+void MainWidget::saveTableItems()
+{
+//    /// save table items
+//    int iColumns = ui->tableEdit->columnCount();
+//    int iRows = ui->tableEdit->rowCount();
+//    savedTree.clear();
+
+//    for(int i = 0; i < iRows; ++i)
+//    {
+//        for(int j = 0; j < iColumns; ++j)
+//        {
+//            QTableWidgetItem* pWidget = ui->tableEdit->item(i, j);
+//            savedTree.append(pWidget);
+//            pWidget = 0;
+//        }
+//    }
+}
+///----------------------------------------------------------------------------
+void MainWidget::setFindWords(QStringList *listWord, QStringList *listDescription)
+{
+    /// clear table
+    for(int i = ui->tableEdit->rowCount(); i >= 0; i--)
+    {
+        ui->tableEdit->removeRow(i);
+    }
+
+    /// fill table
+    for (int i = 0; i < listWord->size(); ++i)
+    {
+        QTableWidgetItem *wordNameItem = new QTableWidgetItem(listWord->at(i));
+        wordNameItem->setFlags(wordNameItem->flags() ^ Qt::ItemIsEditable);
+
+        QTableWidgetItem *descriptionItem = new QTableWidgetItem(listDescription->at(i));
+        descriptionItem->setFlags(descriptionItem->flags() ^ Qt::ItemIsEditable);
+
+        int row = ui->tableEdit->rowCount();
+        ui->tableEdit->insertRow(row);
+
+        ui->tableEdit->setItem(row, 0, wordNameItem);
+        ui->tableEdit->setItem(row, 1, descriptionItem);
+    }
+}
+
+///----------------------------------------------------------------------------
 ///----------------------------------------------------------------------------

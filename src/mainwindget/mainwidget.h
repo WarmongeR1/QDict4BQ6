@@ -16,6 +16,7 @@
 namespace Ui {
     class MainWidget;
 }
+class QTableWidget;
 class AboutDialog;
 class AppSettings;
 class HtmlEditor;
@@ -125,6 +126,10 @@ private:
     AppSettings *gui_settings; // settings dialog
     HtmlEditor *gui_htmleditor; // html editor for word
 
+    /// save tree items
+    QStringList saveWord;
+    QStringList saveDescription;
+
 
     //tray
     QSystemTrayIcon *trIcon;
@@ -184,6 +189,16 @@ private:
       Set data from file in LineEdits params
       */
     void setInfoDictFromFile();
+    /**
+      @function
+      Save items from ui tableedit
+      */
+    void saveTableItems();
+    /**
+      @function
+      Set items in table (set word and description)
+      */
+    void setFindWords(QStringList* word, QStringList* description);
 };
 
 #endif // MAINWIDGET_H
