@@ -52,6 +52,17 @@ void MainWidget::debug()
     str = "/home/files/Develop/git/QDict4BQ6/QDict4BQ6/bin/Example/dict_En_CJB.htm";
     ui->LEFile->setText(str);
 
+
+//    QString t_test_string = "testAbbdAdd";
+//    QString b;
+//    b = t_test_string;
+//    for (int i = 0; i < t_test_string.length(); i++)
+//    {
+//        b = b.remove(b.length() -1 , 1);
+//        qDebug() << b;
+//    }
+//    qDebug() << findPosWord(str, "Add");
+
     //    QString text = getTextFromHtmlFile(str);
     //    qDebug()  << "Author = " << getParamInfo(&text, "Author");
     ui->LENameDict->setText("text name1");
@@ -623,6 +634,8 @@ void MainWidget::addWordToTable()
     ui->tableEdit->setItem(row, 0, wordNameItem);
     ui->tableEdit->setItem(row, 1, descriptionItem);
     addWordToDict(ui->LEFile->text(), wordName, wordDescription);
+    showWordInTable();
+    find(wordName);
 }
 ///----------------------------------------------------------------------------
 void MainWidget::removeWordFromTable()

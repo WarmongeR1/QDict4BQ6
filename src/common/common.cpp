@@ -463,13 +463,12 @@ void deleteWordFromDict(QString filePath, QString word, QString description)
 void addWordToDict(QString filePath, QString word, QString description)
 {
     QString text = getTextFromHtmlFile(filePath);
-    text.remove("</html>")
-            .remove("</body>");
-    text.append(QString("\r\n<h4>%1</h4> %2")
-                .arg(word)
-                .arg(description));
-    text.append("</body>")
-            .append("</html>");
+
+    QString oldPos = findPosWord(filePath, word);
+    QString newText = QString("<h4>%1</h4> %2")
+            .arg(word)
+            .arg(description) + "\r\n" + oldPos;
+    text.replace(oldPos, newText);
 
     QFile::remove(filePath);
     createEmpty(filePath, text);
@@ -505,6 +504,35 @@ QString getDescriptionFromHtmlFile(QString filePath)
 
     return str;
 }
+///----------------------------------------------------------------------------
+QString findPosWord(QString file, QString text)
+{
+    QString t_output_str = "";
+    if(QFile::exists(file))
+    {
+        QString t_text = getTextFromHtmlFile(file);
+        QStringList t_list = t_text.split("\n");
+
+        QString t_find_text = text;
+        bool flag = true;
+        do
+        {
+            for (int i = 0; i < t_list.size(); i++)
+            {
+                if (QString(t_list.at(i)).indexOf(t_find_text) != -1)
+                {
+                    t_output_str = t_list.at(i);
+                    flag = false;
+                    break;
+                }
+            }
+            t_find_text.remove(t_find_text.length() -1, 1);
+        } while(flag and
+                !t_find_text.isEmpty());
+    }
+    return t_output_str;
+}
+
 ///----------------------------------------------------------------------------
 ///----------------------------------------------------------------------------
 

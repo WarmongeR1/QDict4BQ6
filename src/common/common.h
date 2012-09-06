@@ -164,6 +164,13 @@ void deleteWordFromDict(QString filePath, QString word, QString description);
   @param description
   */
 void addWordToDict(QString filePath, QString word, QString description);
-
+/**
+  @function
+  Function for find string
+  @param file
+  @param text_to_find
+  @return str_to_pos
+  */
+QString findPosWord(QString file, QString text);
 #endif // end __COMMON_H
 
