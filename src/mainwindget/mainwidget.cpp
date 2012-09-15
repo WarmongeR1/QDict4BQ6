@@ -25,7 +25,7 @@ MainWidget::MainWidget(QWidget *parent) :
     createConnect();
     trIcon->show();  //display tray
 
-        debug();
+//        debug();
     //    genIdx();
 }
 ///----------------------------------------------------------------------------
@@ -321,11 +321,11 @@ void MainWidget::genIdx()
         // TODO: end edit
 
         QTextStream streamIdx(&fileIdx);
-        streamIdx.setCodec(getCodecOfEncoding("UTF-16"));
+        streamIdx.setCodec(getCodecOfEncoding("UTF-8"));
         streamIdx.setGenerateByteOrderMark(true);
 
         QTextStream streamDict(&fileDict);
-        streamDict.setCodec(getCodecOfEncoding("UTF-16"));
+        streamDict.setCodec(getCodecOfEncoding("UTF-8"));
         streamDict.setGenerateByteOrderMark(true);
 
         /// fill
@@ -368,34 +368,40 @@ void MainWidget::genIdx()
         streamDict << "\t<meta name=\"Numbering\" content=\"" << list.at(6) << "\">\r\n";
         streamDict << "<title>" << ui->LENameDict->text() << "</title>\r\n";
         streamDict << "</head>\r\n";
+        streamDict << "<body>\r\n";
+
+        int n = 2; // UTF-16
+        if (ui->checkEncoding->isChecked())
+          n = 1;  // UTF-8
 
         str = "<html>\r\n";
-        count += str.length() * 2;
+        count += str.length() * n;
         str = "<head>\r\n";
-        count += str.length() * 2;
+        count += str.length() * n;
         str = QString("\t<meta name=\"Author\" content=\"%1\">\r\n").arg(list.at(0));
-        count += str.length() * 2;
+        count += str.length() * n;
         str = QString("\t<meta name=\"Date\" content=\"DateOfDict\">\r\n");
-        count += str.length() * 2;
+        count += str.length() * n;
         str = QString("\t<meta name=\"Date\" content=\"%1\">\r\n").arg(QDate::currentDate().toString());
-        count += str.length() * 2;
+        count += str.length() * n;
         str = QString("\t<meta name=\"Revision\" content=\"%1\">\r\n").arg(list.at(1));
-        count += str.length() * 2;
+        count += str.length() * n;
         str = QString("\t<meta name=\"Language\" content=\"%1\">\r\n").arg(list.at(2));
-        count += str.length() * 2;
+        count += str.length() * n;
         str = QString("\t<meta name=\"Type\" content=\"%1\">\r\n").arg(list.at(3));
-        count += str.length() * 2;
+        count += str.length() * n;
         str = QString("\t<meta name=\"Description\" content=\"%1\">\r\n").arg(list.at(4));
-        count += str.length() * 2;
+        count += str.length() * n;
         str = QString("\t<meta name=\"Rights\" content=\"%1\">\r\n").arg(list.at(5));
-        count += str.length() * 2;
+        count += str.length() * n;
         str = QString("\t<meta name=\"Numbering\" content=\"%1\">\r\n").arg(list.at(6));
-        count += str.length() * 2;
+        count += str.length() * n;
         str = QString("<title>%1</title>\r\n").arg(ui->LENameDict->text());
-        count += str.length() * 2;
+        count += str.length() * n;
         str = QString("</head>\r\n");
-        count += str.length() * 2;
-
+        count += str.length() * n;
+        str = QString("<body>\r\n");
+        count += str.length() * n;
 
         //-----------
 
