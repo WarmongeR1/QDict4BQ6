@@ -17,8 +17,11 @@ int main(int argc, char *argv[])
     QSettings *settings = new QSettings("settings.conf",QSettings::NativeFormat);
     QString lang = settings->value("language/lang").toString();
 
+    if (lang.isEmpty())
+        lang = "Russian";
+
     QTranslator translator;
-    if (lang == "Russian" or lang.isEmpty()) translator.load("QDict4BQ6_ru",":lang/lang");
+    if (lang == "Russian") translator.load("QDict4BQ6_ru",":lang/lang");
     if (lang == "Deutch") translator.load("QDict4BQ6_de",":lang/lang");
     if (lang == "France") translator.load("QDict4BQ6_fr",":lang/lang");
     a.installTranslator(&translator);

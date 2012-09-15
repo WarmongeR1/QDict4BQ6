@@ -1,7 +1,8 @@
 #include "appsettings.h"
 #include "ui_appsettings.h"
-
+#include "defines.h"
 #include <QDebug>
+#include <QMessageBox>
 AppSettings::AppSettings(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::AppSettings)
@@ -38,7 +39,9 @@ void AppSettings::init()
 void AppSettings::loadSettings()
 {
     QString lang = settings->value("language/lang").toString();
-//    qDebug() << settings->value("language/lang");
+    //    qDebug() << settings->value("language/lang");
+    if (lang.isEmpty())
+        lang = "Russian";
     ui->comBLanguage->setCurrentIndex(ui->comBLanguage->findText(lang));
 }
 ///----------------------------------------------------------------------------
@@ -58,7 +61,42 @@ void AppSettings::createConnect()
 ///----------------------------------------------------------------------------
 void AppSettings::accept()
 {
-    saveSettings();
-    QWidget::hide();
+    QString lang = ui->comBLanguage->currentText();
+    QString old_lang = settings->value("language/lang").toString();
+    qDebug() << lang << old_lang;
+    if (lang != old_lang)
+    {
+        int ret = QMessageBox::warning(this, tr(GL_PROJECT_NAME),
+                                       tr("Settings has been modified.\n"
+                                          "Do you want to save your changes?"),
+                                       QMessageBox::Save
+                                       | QMessageBox::Discard
+                                       | QMessageBox::Cancel,
+                                       QMessageBox::Save);
+        QMessageBox msgBox;
+        switch (ret)
+        {
+        case QMessageBox::Save:
+            // Save was clicked
+            saveSettings();
+
+            msgBox.setText("Settings has been modified. Please restart the"
+                           "application for the entry into force of the settings");
+            msgBox.exec();
+
+            QWidget::hide();
+            break;
+        case QMessageBox::Discard:
+            //            setParams();
+            QWidget::hide();
+            break;
+        case QMessageBox::Cancel:
+            // Cancel was clicked
+            break;
+        default:
+            // should never be reached
+            break;
+        }
+    }
 }
 ///----------------------------------------------------------------------------
