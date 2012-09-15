@@ -11,7 +11,7 @@ int main(int argc, char *argv[])
 //    Q_INIT_RESOURCE(resources);
     QApplication a(argc, argv);
 
-    a.setOrganizationName(GL_AUTHOR);
+//    a.setOrganizationName(GL_AUTHOR);
     a.setApplicationName(GL_PROJECT_NAME);
 
     QSettings *settings = new QSettings("settings.conf",QSettings::NativeFormat);

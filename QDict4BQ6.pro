@@ -6,11 +6,11 @@
 
 QT       += core gui network webkit
 
-TARGET = Dict4BQ6
+TARGET = QDict4BQ6
 TEMPLATE = app
 LANGUAGE = C++
 
-PROJECTNAME = Dict4BQ6
+PROJECTNAME = QDict4BQ6
 DESTDIR     = build/bin
 OBJECTS_DIR = build/obj
 MOC_DIR     = build/moc
@@ -65,7 +65,6 @@ FORMS    += mainwidget.ui \
         inserthtmldialog.ui
 
 RESOURCES += \
-    resources/resources.qrc \
     resources/resources.qrc
 
 TRANSLATIONS += \

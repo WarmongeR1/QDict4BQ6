@@ -11,6 +11,7 @@
 #include <QDesktopWidget>
 
 
+
 #include <QDebug>
 
 
@@ -354,12 +355,19 @@ void MainWidget::genIdx()
                and !streamInput.atEnd());
 
         QStringList list = getParams();
+        QDate date = QDate::currentDate();
+
+        QString t_day = QString("%1 %2 %3")
+                .arg(date.year())
+                .arg(date.month())
+                .arg(date.day());
+
+
         streamDict << "<html>\r\n";
         streamDict << "<head>\r\n";
         streamDict << "\t<meta name=\"Author\" content=\"" << list.at(0) << "\">\r\n";
-        streamDict << "\t<meta name=\"Date\" content=\"DateOfDict\">\r\n";
-        streamDict << "\t<meta name=\"Date\" content=\"" <<
-                      QDate::currentDate().toString() << "\">\r\n";
+        streamDict << "\t<meta name=\"Date\" content=\"Year Mount Day\">\r\n";
+        streamDict << "\t<meta name=\"Date\" content=\"" << t_day << "\">\r\n";
         streamDict << "\t<meta name=\"Revision\" content=\"" << list.at(1) << "\">\r\n";
         streamDict << "\t<meta name=\"Language\" content=\"" << list.at(2) <<  "\">\r\n";
         streamDict << "\t<meta name=\"Type\" content=\"" << list.at(3) << "\">\r\n";
@@ -382,7 +390,7 @@ void MainWidget::genIdx()
         count += str.length() * n;
         str = QString("\t<meta name=\"Date\" content=\"DateOfDict\">\r\n");
         count += str.length() * n;
-        str = QString("\t<meta name=\"Date\" content=\"%1\">\r\n").arg(QDate::currentDate().toString());
+        str = QString("\t<meta name=\"Date\" content=\"%1\">\r\n").arg(t_day);
         count += str.length() * n;
         str = QString("\t<meta name=\"Revision\" content=\"%1\">\r\n").arg(list.at(1));
         count += str.length() * n;
