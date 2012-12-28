@@ -29,12 +29,12 @@ MainWidget::MainWidget(QWidget *parent) :
 //        debug();
     //    genIdx();
 }
-///----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 MainWidget::~MainWidget()
 {
     delete ui;
 }
-///----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void MainWidget::debug()
 {
     qDebug() << "debug: mainwigdet";
@@ -76,7 +76,7 @@ void MainWidget::debug()
     //    qDebug() << list;
     //    getParams();
 }
-///----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void MainWidget::init()
 {
     /// set data
@@ -99,7 +99,7 @@ void MainWidget::init()
     showHideEdit(ui->checkBEditOn->checkState());
     ui->tableEdit->setColumnCount(2);
 }
-///----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void MainWidget::createConnect()
 {
     /// about
@@ -130,7 +130,7 @@ void MainWidget::createConnect()
     connect(ui->LEFind, SIGNAL(textChanged(QString)), SLOT(find(QString)));
 //    connect(ui->LEFind, SIGNAL(textEdited(QString)), SLOT(find(QString)));
 }
-///----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void MainWidget::createActions()
 {
     minimizeAction = new QAction(tr("&Hide"), this);
@@ -145,7 +145,7 @@ void MainWidget::createActions()
     quitAction = new QAction(tr("Q&uit"), this);
     connect(quitAction, SIGNAL(triggered()), this, SLOT(close()));
 }
-///----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void MainWidget::createTrayIcon()
 {
     trIcon = new QSystemTrayIcon();  //init
@@ -160,12 +160,12 @@ void MainWidget::createTrayIcon()
 
     trIcon->setContextMenu(trayIconMenu); //set menu
 }
-///----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void MainWidget::showHomeSite()
 {
     QDesktopServices::openUrl(QUrl(GL_WEBSITE));
 }
-///----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void MainWidget::browseFile()
 {
     QString fn = QFileDialog::getOpenFileName(this, tr("Open File..."),
@@ -177,12 +177,12 @@ void MainWidget::browseFile()
         showHideEdit(ui->checkBEditOn->checkState());
     }
 }
-///----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void MainWidget::showAbout()
 {
     gui_about->show();
 }
-///----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void MainWidget::showHide(QSystemTrayIcon::ActivationReason r)
 {
     if (r == QSystemTrayIcon::Trigger)
@@ -197,13 +197,13 @@ void MainWidget::showHide(QSystemTrayIcon::ActivationReason r)
         }
     }
 }
-///----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void MainWidget::showSettings()
 {
     gui_settings->loadSettings();
     gui_settings->show();
 }
-///----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void MainWidget::clearFlied()
 {
     ui->LEArticles->setText("</h4>");
@@ -213,7 +213,7 @@ void MainWidget::clearFlied()
     ui->LENameDict->clear();
     //    find("");
 }
-///----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void MainWidget::find(QString text)
 {
     if (!text.isEmpty())
@@ -235,12 +235,12 @@ void MainWidget::find(QString text)
         showWordInTable();
     }
 }
-///----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void MainWidget::editWord()
 {
 
 }
-///----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void MainWidget::genIdx()
 {
     QString s = "";  //holds list of errors
@@ -461,7 +461,7 @@ void MainWidget::genIdx()
         QMessageBox::information(0, "Gen idx file", "Operation Complete");
     }
 }
-///----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void MainWidget::showHideEdit(int flag)
 {
     ui->LEFind->setEnabled(flag);
@@ -494,7 +494,7 @@ void MainWidget::showHideEdit(int flag)
         }
     }
 }
-///----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void MainWidget::showWordInTable()
 {
     /// create list word
@@ -552,7 +552,7 @@ void MainWidget::showWordInTable()
 //    saveTableItems();
 
 }
-///----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 QStringList MainWidget::getParams()
 {
     QStringList list;
@@ -565,26 +565,26 @@ QStringList MainWidget::getParams()
     list << ui->LENumbering->text(); // [6]
     return list;
 }
-///----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void MainWidget::setTypeList()
 {
     QStringList items = getFillType();
     QStringListModel *typeModel = new QStringListModel(items, this);
     ui->comBoxType-> setModel(typeModel);
 }
-///----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void MainWidget::setLangList()
 {
     QStringList items = getFillLang();
     QStringListModel *typeModel = new QStringListModel(items, this);
     ui->comBoxLang-> setModel(typeModel);
 }
-///----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void MainWidget::showHtmlEditor()
 {
     gui_htmleditor->show();
 }
-///----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void MainWidget::editWordInPos(int row, int column)
 {
     Q_UNUSED(row);
@@ -605,7 +605,7 @@ void MainWidget::editWordInPos(int row, int column)
         gui_htmleditor->show();
     }
 }
-///----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void MainWidget::replaceStr(QString newstr)
 {
     //        qDebug() << newstr;
@@ -616,7 +616,7 @@ void MainWidget::replaceStr(QString newstr)
     QFile::remove(QDir::currentPath() + "/edit.html");
     showWordInTable();
 }
-///----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void MainWidget::setInfoDictFromFile()
 {
     QString filePath = ui->LEFile->text();
@@ -630,7 +630,7 @@ void MainWidget::setInfoDictFromFile()
     ui->LECopyright->setText(list.at(5));
     ui->LENumbering->setText(list.at(6));
 }
-///----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void MainWidget::addWordToTable()
 {
     QString wordName = ui->LEFind->text();
@@ -651,7 +651,7 @@ void MainWidget::addWordToTable()
     showWordInTable();
     find(wordName);
 }
-///----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void MainWidget::removeWordFromTable()
 {
     int column = ui->tableEdit->currentItem()->column();
@@ -677,7 +677,7 @@ void MainWidget::removeWordFromTable()
 
 
 }
-///----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void MainWidget::setFindWords(QStringList *listWord, QStringList *listDescription)
 {
     /// clear table
@@ -702,6 +702,4 @@ void MainWidget::setFindWords(QStringList *listWord, QStringList *listDescriptio
         ui->tableEdit->setItem(row, 1, descriptionItem);
     }
 }
-
-///----------------------------------------------------------------------------
-///----------------------------------------------------------------------------
+//------------------------------------------------------------------------------

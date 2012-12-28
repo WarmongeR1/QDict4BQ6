@@ -17,7 +17,6 @@
   */
 QString getEncodingFromFile(QString file, QString language="russian");
 
-
 /**
   @function
   Retun name of file
