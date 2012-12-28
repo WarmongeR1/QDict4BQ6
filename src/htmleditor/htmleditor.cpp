@@ -70,13 +70,13 @@ HtmlEditor::HtmlEditor(QWidget *parent)
     setWindowModified(false);
     changeZoom(100);
 }
-///----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 HtmlEditor::~HtmlEditor()
 {
     delete ui;
     delete ui_dialog;
 }
-///----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 bool HtmlEditor::maybeSave()
 {
     if (!isWindowModified())
@@ -94,7 +94,7 @@ bool HtmlEditor::maybeSave()
         return false;
     return true;
 }
-///----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void HtmlEditor::init()
 {
     highlighter = new Highlighter(ui->plainTextEdit->document());
@@ -115,7 +115,7 @@ void HtmlEditor::init()
     connect(zoomSlider, SIGNAL(valueChanged(int)), SLOT(changeZoom(int)));
     ui->standardToolBar->insertWidget(ui->actionZoomIn, zoomSlider);
 }
-///----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void HtmlEditor::createConnects()
 {
     connect(ui->actionFileNew, SIGNAL(triggered()), SLOT(fileNew()));
@@ -177,7 +177,7 @@ void HtmlEditor::createConnects()
     ///  finish editing
     connect(ui->pBFinishEdit, SIGNAL(clicked()), SLOT(finishEdit()));
 }
-///----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void HtmlEditor::fileNew()
 {
     if (maybeSave()) {
@@ -201,13 +201,13 @@ void HtmlEditor::fileNew()
         QApplication::postEvent(ui->webView, e2);
     }
 }
-///----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void HtmlEditor::finishEdit()
 {
     fileSave();
     close();
 }
-///----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void HtmlEditor::fileOpen()
 {
     QString fn = QFileDialog::getOpenFileName(this, tr("Open File..."),
@@ -215,7 +215,7 @@ void HtmlEditor::fileOpen()
     if (!fn.isEmpty())
         load(fn);
 }
-///----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 bool HtmlEditor::fileSave()
 {
     if (fileName.isEmpty() || fileName.startsWith(QLatin1String(":/")))
@@ -238,7 +238,7 @@ bool HtmlEditor::fileSave()
     emit saveWordInfo(str);
     return success;
 }
-///----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 bool HtmlEditor::fileSaveAs()
 {
     QString fn = QFileDialog::getSaveFileName(this, tr("Save as..."),
@@ -250,7 +250,7 @@ bool HtmlEditor::fileSaveAs()
     setCurrentFileName(fn);
     return fileSave();
 }
-///----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void HtmlEditor::insertImage()
 {
     QString filters;
@@ -270,7 +270,7 @@ void HtmlEditor::insertImage()
     QUrl url = QUrl::fromLocalFile(fn);
     execCommand("insertImage", url.toString());
 }
-///----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 // shamelessly copied from Qt Demo Browser
 static QUrl guessUrlFromString(const QString &string)
 {
@@ -304,7 +304,7 @@ static QUrl guessUrlFromString(const QString &string)
     // Fall back to QUrl's own tolerant parser.
     return QUrl(string, QUrl::TolerantMode);
 }
-///----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void HtmlEditor::createLink()
 {
     QString link = QInputDialog::getText(this, tr("Create link"),
@@ -315,7 +315,7 @@ void HtmlEditor::createLink()
             execCommand("createLink", url.toString());
     }
 }
-///----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void HtmlEditor::insertHtml()
 {
     if (!insertHtmlDialog) {
@@ -338,7 +338,7 @@ void HtmlEditor::insertHtml()
 
     delete hilite;
 }
-///----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void HtmlEditor::zoomOut()
 {
     int percent = static_cast<int>(ui->webView->zoomFactor() * 100);
@@ -352,7 +352,7 @@ void HtmlEditor::zoomOut()
         zoomSlider->setValue(percent);
     }
 }
-///----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void HtmlEditor::zoomIn()
 {
     int percent = static_cast<int>(ui->webView->zoomFactor() * 100);
@@ -366,26 +366,26 @@ void HtmlEditor::zoomIn()
         zoomSlider->setValue(percent);
     }
 }
-///----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void HtmlEditor::editSelectAll()
 {
     ui->webView->triggerPageAction(QWebPage::SelectAll);
 }
-///----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void HtmlEditor::execCommand(const QString &cmd)
 {
     QWebFrame *frame = ui->webView->page()->mainFrame();
     QString js = QString("document.execCommand(\"%1\", false, null)").arg(cmd);
     frame->evaluateJavaScript(js);
 }
-///----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void HtmlEditor::execCommand(const QString &cmd, const QString &arg)
 {
     QWebFrame *frame = ui->webView->page()->mainFrame();
     QString js = QString("document.execCommand(\"%1\", false, \"%2\")").arg(cmd).arg(arg);
     frame->evaluateJavaScript(js);
 }
-///----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 bool HtmlEditor::queryCommandState(const QString &cmd)
 {
     QWebFrame *frame = ui->webView->page()->mainFrame();
@@ -393,97 +393,97 @@ bool HtmlEditor::queryCommandState(const QString &cmd)
     QVariant result = frame->evaluateJavaScript(js);
     return result.toString().simplified().toLower() == "true";
 }
-///----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void HtmlEditor::styleParagraph()
 {
     execCommand("formatBlock", "p");
 }
-///----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void HtmlEditor::styleHeading1()
 {
     execCommand("formatBlock", "h1");
 }
-///----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void HtmlEditor::styleHeading2()
 {
     execCommand("formatBlock", "h2");
 }
-///----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void HtmlEditor::styleHeading3()
 {
     execCommand("formatBlock", "h3");
 }
-///----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void HtmlEditor::styleHeading4()
 {
     execCommand("formatBlock", "h4");
 }
-///----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void HtmlEditor::styleHeading5()
 {
     execCommand("formatBlock", "h5");
 }
-///----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void HtmlEditor::styleHeading6()
 {
     execCommand("formatBlock", "h6");
 }
-///----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void HtmlEditor::stylePreformatted()
 {
     execCommand("formatBlock", "pre");
 }
-///----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void HtmlEditor::styleAddress()
 {
     execCommand("formatBlock", "address");
 }
-///----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void HtmlEditor::formatStrikeThrough()
 {
     execCommand("strikeThrough");
 }
-///----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void HtmlEditor::formatAlignLeft()
 {
     execCommand("justifyLeft");
 }
-///----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void HtmlEditor::formatAlignCenter()
 {
     execCommand("justifyCenter");
 }
-///----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void HtmlEditor::formatAlignRight()
 {
     execCommand("justifyRight");
 }
-///----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void HtmlEditor::formatAlignJustify()
 {
     execCommand("justifyFull");
 }
-///----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void HtmlEditor::formatIncreaseIndent()
 {
     execCommand("indent");
 }
-///----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void HtmlEditor::formatDecreaseIndent()
 {
     execCommand("outdent");
 }
-///----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void HtmlEditor::formatNumberedList()
 {
     execCommand("insertOrderedList");
 }
-///----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void HtmlEditor::formatBulletedList()
 {
     execCommand("insertUnorderedList");
 }
-///----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void HtmlEditor::formatFontName()
 {
     QStringList families = QFontDatabase().families();
@@ -494,7 +494,7 @@ void HtmlEditor::formatFontName()
     if (ok)
         execCommand("fontName", family);
 }
-///----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void HtmlEditor::formatFontSize()
 {
     QStringList sizes;
@@ -513,21 +513,21 @@ void HtmlEditor::formatFontSize()
     if (ok)
         execCommand("fontSize", QString::number(sizes.indexOf(size)));
 }
-///----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void HtmlEditor::formatTextColor()
 {
     QColor color = QColorDialog::getColor(Qt::black, this);
     if (color.isValid())
         execCommand("foreColor", color.name());
 }
-///----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void HtmlEditor::formatBackgroundColor()
 {
     QColor color = QColorDialog::getColor(Qt::white, this);
     if (color.isValid())
         execCommand("hiliteColor", color.name());
 }
-///----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 #define FOLLOW_ENABLE(a1, a2) a1->setEnabled(ui->webView->pageAction(a2)->isEnabled())
 #define FOLLOW_CHECK(a1, a2) a1->setChecked(ui->webView->pageAction(a2)->isChecked())
 
@@ -546,7 +546,7 @@ void HtmlEditor::adjustActions()
     ui->actionFormatNumberedList->setChecked(queryCommandState("insertOrderedList"));
     ui->actionFormatBulletedList->setChecked(queryCommandState("insertUnorderedList"));
 }
-///----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void HtmlEditor::adjustSource()
 {
     setWindowModified(true);
@@ -555,7 +555,7 @@ void HtmlEditor::adjustSource()
     if (ui->tabWidget->currentIndex() == 1)
         changeTab(1);
 }
-///----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void HtmlEditor::changeTab(int index)
 {
     if (sourceDirty && (index == 1)) {
@@ -564,7 +564,7 @@ void HtmlEditor::changeTab(int index)
         sourceDirty = false;
     }
 }
-///----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void HtmlEditor::openLink(const QUrl &url)
 {
     QString msg = QString(tr("Open %1 ?")).arg(url.toString());
@@ -573,7 +573,7 @@ void HtmlEditor::openLink(const QUrl &url)
             QMessageBox::Open)
         QDesktopServices::openUrl(url);
 }
-///----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void HtmlEditor::changeZoom(int percent)
 {
     ui->actionZoomOut->setEnabled(percent > 25);
@@ -584,7 +584,7 @@ void HtmlEditor::changeZoom(int percent)
     zoomLabel->setText(tr(" Zoom: %1% ").arg(percent));
     zoomSlider->setValue(percent);
 }
-///----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void HtmlEditor::closeEvent(QCloseEvent *e)
 {
     if (maybeSave())
@@ -592,7 +592,7 @@ void HtmlEditor::closeEvent(QCloseEvent *e)
     else
         e->ignore();
 }
-///----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 bool HtmlEditor::load(const QString &f)
 {
     if (!QFile::exists(f))
@@ -610,7 +610,7 @@ bool HtmlEditor::load(const QString &f)
     setCurrentFileName(f);
     return true;
 }
-///----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void HtmlEditor::setCurrentFileName(const QString &fileName)
 {
     this->fileName = fileName;
@@ -629,4 +629,4 @@ void HtmlEditor::setCurrentFileName(const QString &fileName)
         allowSave = false;
     ui->actionFileSave->setEnabled(allowSave);
 }
-///----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
